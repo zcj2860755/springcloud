@@ -1,0 +1,1101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="41b058ac-2bf9-4cd3-9e74-aa4f5aebbc1d" name="Default Changelist" comment="烟感重构初步">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/springcloud-config-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/springcloud-config-pro.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/springcloud-config-repo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/springcloud-config-repo.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/springcloud-config-repo.iws" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springcloud-config-repo/springcloud-config-test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/ConsumerExampleApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/controller/ConsumerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/hystrix/FeignServiceHystrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/service/FeignExampleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/service/FeignTestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/target/classes/com/zdzc/ConsumerExampleApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/target/classes/com/zdzc/controller/ConsumerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/target/classes/com/zdzc/hystrix/FeignServiceHystrix.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/target/classes/com/zdzc/service/FeignExampleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/target/classes/com/zdzc/service/FeignTestService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-consumer/zdzc-basic-client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/ServiceProducerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/aspect/TransactionAdviceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/controller/ProducerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/core/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/core/ProjectConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/TSysDicMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/mapper/TSysDicMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/model/TSysDic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/ITSysDicService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TSysDicServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/src/main/resources/logger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/META-INF/zdzc-basic-service.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/ServiceProducerApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/aspect/TransactionAdviceConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/controller/ProducerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/controller/TestController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/dao/TSysDicMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/model/TSysDic.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/service/ITSysDicService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/com/zdzc/service/impl/TSysDicServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/target/classes/logger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-basic-service/zdzc-basic-service.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/baseModel/BaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/baseModel/BaseRespsonse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/baseModel/ExceptionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/baseModel/FeignException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/baseModel/PageList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/core/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/core/ProjectConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/enums/ExceptionEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/model/TSysDic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/redis/RedisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/swagger/Swagger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/test/java/mybatisGenerator/CodeGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/test/resources/template/controller-restful.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/test/resources/template/service-impl.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/src/test/resources/template/service.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/baseModel/BaseException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/baseModel/BaseRespsonse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/baseModel/ExceptionResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/baseModel/FeignException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/baseModel/PageList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/core/Mapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/core/ProjectConstant.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/enums/ExceptionEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/model/TSysDic.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/redis/RedisService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/classes/com/zdzc/swagger/Swagger.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/test-classes/mybatisGenerator/CodeGenerator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/test-classes/template/controller-restful.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/test-classes/template/service-impl.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/target/test-classes/template/service.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-common/zdzc-common.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-client/src/main/java/com/zdzc/ConfigClientApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-client/src/main/java/com/zdzc/controller/ConfigClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-client/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-client/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-client/zdzc-config-client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-server/src/main/java/com/zdzc/ConfigServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-server/src/main/resources/application-bakcup.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-config-server/zdzc-config-server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/src/main/java/com/zdzc/EurekaServerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/src/main/resources/application-peer1.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/src/main/resources/application-peer2.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/src/main/resources/application-peer3.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/classes/application-peer1.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/classes/application-peer2.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/classes/application-peer3.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/classes/com/zdzc/EurekaServerApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/zdzc-eureka-registry-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/target/zdzc-eureka-registry-1.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-eureka-registry/zdzc-eureka.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zipkin-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zipkin-server/src/main/java/com/zdzc/ZipkinApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zipkin-server/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zipkin-server/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zipkin-server/target/classes/com/zdzc/ZipkinApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zipkin-server/zdzc-zipkin-server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zuul/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zuul/src/main/java/com/zdzc/ServiceZuulApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zuul/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc-zuul/zdzc-zuul.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zdzc.iws" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-common/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-eureka-registry/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-zuul/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-basic-service/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-basic-consum/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-basic-consumer/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-zipkin-server/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-config-server/target/" />
+    <ignored path="$PROJECT_DIR$/zdzc-config-client/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TSysDicServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#432#433#0" expanded="true" />
+                <element signature="e#481#482#0" expanded="true" />
+                <element signature="e#541#542#0" expanded="true" />
+                <element signature="e#583#584#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/ITSysDicService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/controller/TestController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+              <folding>
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1107#1108#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/ServiceProducerApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/logger.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/ConsumerExampleApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/controller/ConsumerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/hystrix/FeignServiceHystrix.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/service/FeignTestService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>freemarker</find>
+      <find>TSysDic</find>
+      <find>ProjectConstant</find>
+      <find>BIZPROJECT</find>
+      <find>com.github.pagehelper.autoconfigure</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/zdzc-common/src/main/java/zdzc/core/ProjectConstant.java" />
+        <option value="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/core/ProjectConstant.java" />
+        <option value="$PROJECT_DIR$/zdzc-eureka-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-eureka-registry/src/main/java/com/zdzc/EurekaServerApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-zuul/src/main/java/com/zdzc/ServiceZuulApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/swagger/Swagger.java" />
+        <option value="$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/redis/RedisService.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-consum/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/consumer/ConsumerExampleApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/hystrix/FeignServiceHystrix.java" />
+        <option value="$PROJECT_DIR$/zdzc-common/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-zipkin-server/src/main/java/zdzc/ZipkinApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-zipkin-server/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-zipkin-server/src/main/java/com/zdzc/ZipkinApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-zipkin-server/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application-bean.xml" />
+        <option value="$PROJECT_DIR$/zdzc-common/src/test/java/mybatisGenerator/CodeGenerator.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/TSysDicMapper.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/model/TSysDic.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/ServiceProducerApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/zdzc-config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-config-server/src/main/java/configserver/ConfigServerApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-config-server/src/main/java/com/zdzc/ConfigServerApplication.java" />
+        <option value="$PROJECT_DIR$/zdzc-config-client/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-config-client/src/main/java/configclient/controller/ConfigClientController.java" />
+        <option value="$PROJECT_DIR$/zdzc-config-client/src/main/java/com/zdzc/controller/ConfigClientController.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/pom.xml" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TSysDicServiceImpl.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/ITSysDicService.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/controller/TestController.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/controller/ConsumerController.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/service/FeignTestService.java" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/resources/logger.xml" />
+        <option value="$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application.properties" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="userSettingsFile" value="D:\developeUtil\apache-maven-3.5.3-bin\apache-maven-3.5.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="zdzc" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="zdzc" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="zdzc-eureka-registry" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="zdzc-eureka-registry" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc-basic-service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc-basic-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc-basic-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc-basic-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc-basic-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="zdzc" type="b2602c69:ProjectViewProjectNode" />
+              <item name="zdzc" type="462c0819:PsiDirectoryNode" />
+              <item name="zdzc-basic-service" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zdzc.controller" />
+      <recent name="configserver" />
+      <recent name="com.zdzc.service.impl" />
+      <recent name="com.zdzc.service" />
+      <recent name="com.zdzc.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\zdzc\zdzc-basic-service\src\main\java\com\zdzc" />
+      <recent name="F:\zdzc\zdzc-config-client\src\main\resources" />
+      <recent name="F:\zdzc\zdzc-config-client\src\main\java" />
+      <recent name="F:\zdzc\zdzc-config-server\src\main\resources" />
+      <recent name="F:\zdzc" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ServiceProducerApplication (1)">
+    <configuration name="CodeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mybatisGenerator.CodeGenerator" />
+      <module name="zdzc-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mybatisGenerator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZipkinApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zdzc.ZipkinApplication" />
+      <module name="zdzc-zipkin-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zdzc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-config-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.ConfigClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-config-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.ConfigServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConsumerExampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-basic-client" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.ConsumerExampleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-eureka" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceProducerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-basic-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.ServiceProducerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceProducerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-basic-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zenchn.fire.producer.ServiceProducerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceZuulApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="zdzc-zuul" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.ServiceZuulApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZipkinApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="zdzc-zipkin-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zdzc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.zdzc.ZipkinApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CodeGenerator" />
+        <item itemvalue="Application.ZipkinApplication" />
+        <item itemvalue="Spring Boot.ZipkinApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\win10\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41b058ac-2bf9-4cd3-9e74-aa4f5aebbc1d" name="Default Changelist" comment="" />
+      <created>1564649890138</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564649890138</updated>
+      <workItem from="1564649896681" duration="22673000" />
+    </task>
+    <task id="LOCAL-00001" summary="烟感重构初步">
+      <created>1564709705059</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564709705059</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="22673000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="Capture Tool" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Web" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.329718" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Maven" visible="true" weight="0.25692964" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="烟感重构初步" />
+    <option name="LAST_COMMIT_MESSAGE" value="烟感重构初步" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-autoconfigure/1.1.0/pagehelper-spring-boot-autoconfigure-1.1.0-sources.jar!/com/github/pagehelper/autoconfigure/PageHelperAutoConfiguration.java</url>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TSysDicServiceImpl.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/TSysParamsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/model/Test.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/model/TSysParams.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/model/TMobileData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="246" column="6" selection-start-line="246" selection-start-column="6" selection-end-line="246" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/mapper/TestMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/mapper/TSysParamsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-common/src/main/java/com/zdzc/model/TSysDic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/ITestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/ITSysParamsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TSysParamsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TestServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-common/src/test/java/mybatisGenerator/CodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="35" column="59" selection-start-line="35" selection-start-column="59" selection-end-line="35" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/controller/TSysParamsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/model/TSysDic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/springcloud-config-repo/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-client/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-client/src/main/java/com/zdzc/ConfigClientApplication.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-client/src/main/java/com/zdzc/controller/ConfigClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-client/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="8" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-server/src/main/java/com/zdzc/ConfigServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-config-server/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application-test.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application-bean.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application22.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/mapper/TSysDicMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/dao/TSysDicMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info/biz-service/info.2019-08-02.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-532" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info/LOG_PATH_IS_UNDEFINED/info.2019-08-02.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-703" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error/basic-service/error.2019-08-02.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1805">
+          <caret line="14" column="81" lean-forward="true" selection-start-line="14" selection-start-column="81" selection-end-line="14" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info/basic-service/info.2019-08-02.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2812" />
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-autoconfigure/1.1.0/pagehelper-spring-boot-autoconfigure-1.1.0.jar!/com/github/pagehelper/autoconfigure/PageHelperAutoConfiguration.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-autoconfigure/1.1.0/pagehelper-spring-boot-autoconfigure-1.1.0-sources.jar!/com/github/pagehelper/autoconfigure/PageHelperAutoConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1081">
+          <caret line="57" column="54" lean-forward="true" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#3179#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-97">
+          <caret line="76" column="24" selection-start-line="72" selection-start-column="6" selection-end-line="76" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/aspect/TransactionAdviceConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/core/ProjectConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/core/Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/controller/ProducerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/5.1.2.RELEASE/spring-core-5.1.2.RELEASE-sources.jar!/org/springframework/cglib/proxy/MethodProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="217" selection-start-line="217" selection-end-line="217" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/ITSysDicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/service/impl/TSysDicServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#432#433#0" expanded="true" />
+            <element signature="e#481#482#0" expanded="true" />
+            <element signature="e#541#542#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="35" column="25" lean-forward="true" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+          <folding>
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/hystrix/FeignServiceHystrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/service/FeignTestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/ConsumerExampleApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-consumer/src/main/java/com/zdzc/controller/ConsumerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/logger.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/java/com/zdzc/ServiceProducerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zdzc-basic-service/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="31" column="60" lean-forward="true" selection-start-line="31" selection-start-column="60" selection-end-line="31" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>zdzc-common</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

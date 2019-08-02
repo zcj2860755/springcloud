@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysDicMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysDic">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="dic_key" jdbcType="VARCHAR" property="dicKey" />
+    <result column="dic_value" jdbcType="INTEGER" property="dicValue" />
+    <result column="is_enable" jdbcType="INTEGER" property="isEnable" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+
+
+  <select id="selectSysDicByPKey" resultMap="BaseResultMap">
+    select tsd.*,tsdc.dic_value as categoryName from t_sys_dic_category tsdc inner join t_sys_dic tsd
+          on tsd.category_id=tsdc.id and tsd.is_enable=1 and tsdc.is_enable=1
+      <where>
+        <if test="parentKey!=null">
+          tsdc.dic_key=#{parentKey}
+        </if>
+        <if test="dicKey!=null">
+          and tsd.dic_key=#{dicKey}
+        </if>
+        <if test="categoryId!=null">
+          and tsd.category_id=#{categoryId}
+        </if>
+        <if test="id!=null">
+          and tsd.id=#{id}
+        </if>
+      </where>
+      order by tsd.sort_no desc
+  </select>
+
+
+
+  <select id="selectSysDicByPKeyAll" resultMap="BaseResultMap">
+    select tsd.*,tsdc.dic_value as categoryName from t_sys_dic_category tsdc inner join t_sys_dic tsd
+    on tsd.category_id=tsdc.id
+    <where>
+      <if test="parentKey!=null">
+        tsdc.dic_key=#{parentKey}
+      </if>
+      <if test="dicKey!=null">
+        and tsd.dic_key=#{dicKey}
+      </if>
+      <if test="categoryId!=null">
+        and tsd.category_id=#{categoryId}
+      </if>
+      <if test="id!=null">
+        and tsd.id=#{id}
+      </if>
+    </where>
+    order by tsd.sort_no desc
+  </select>
+
+  <!-- 通过字典大类编码获取字典小类详情 -->
+  <select id="getDicListByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+        d.*
+    FROM
+        xzdev.t_sys_dic d
+            LEFT JOIN
+        t_sys_dic_category c ON d.category_id = c.id
+    WHERE
+        c.dic_key = #{dicKey, jdbcType=VARCHAR} order by d.sort_no
+  </select>
+</mapper>

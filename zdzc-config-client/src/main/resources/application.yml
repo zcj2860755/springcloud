@@ -1,0 +1,16 @@
+server:
+  port: 8889
+
+spring:
+  application:
+    name: config-client
+
+#关闭安全认证
+management:
+  security:
+    enabled: false
+  #refresh接入点显式暴露出来
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info

@@ -1,0 +1,23 @@
+server:
+  port: 8762
+
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    #表示是否将自己注册到Eureka Server，默认为true。
+    register-with-eureka: false
+    #表示是否从Eureka Server获取注册信息，默认为true。
+    fetch-registry: false
+    service-url:
+      #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+      defaultZone: http://peer1:8761/eureka/,http://peer3:8763/eureka/
+    lease-renewal-interval-in-seconds: 5   #每隔5s心跳一次,证明本服务还活着
+    lease-expiration-duration-in-seconds: 15  #本服务15s内没有心跳,就将该服务从服务端剔除
+  server:
+    enable-self-preservation: false
+
+
+spring:
+  application:
+    name: eureka-server-peer2
