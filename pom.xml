@@ -9,10 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>zdzc-common</module>
-        <module>zdzc-eureka-registry</module>
+        <module>zdzc-eureka</module>
         <module>zdzc-zuul</module>
         <module>zdzc-basic-service</module>
-        <module>zdzc-basic-consumer</module>
+        <module>zdzc-basic-client</module>
         <module>zdzc-zipkin-server</module>
         <module>zdzc-config-server</module>
         <module>zdzc-config-client</module>
