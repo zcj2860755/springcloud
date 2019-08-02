@@ -21,12 +21,12 @@ public class Swagger {
         @Bean
         public Docket createRestApi() {
             return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).enable(enableSwagger).select().
-                    apis(RequestHandlerSelectors.basePackage("com.zenchn.*")).
+                    apis(RequestHandlerSelectors.basePackage("com.zdzc.controller")).
                     paths(PathSelectors.any()).build();
         }
 
         private ApiInfo apiInfo() {
-            return new ApiInfoBuilder().title("智慧消防项目api接口").version("1.0").build();
+            return new ApiInfoBuilder().title("浙大正呈项目api接口文档").version("1.0").build();
         }
 }
 
