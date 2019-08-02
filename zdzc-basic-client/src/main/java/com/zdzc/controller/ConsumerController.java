@@ -57,4 +57,5 @@ public class ConsumerController {
     public String test(@PathVariable String name) {
         return feignTestService.test(name+", from "+applicationName);
     }
+
 }
