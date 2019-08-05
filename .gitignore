@@ -25,3 +25,15 @@ info
 
 # Log file
 *.log
+
+zdzc-base-service/target/
+zdzc-common/target/classes/com/zdzc/common/
+zdzc-common/target/classes/com/zdzc/utils/
+zdzc-common/target/generated-sources/
+zdzc-common/target/generated-test-sources/
+zdzc-common/target/maven-archiver/
+zdzc-common/target/maven-status/
+zdzc-common/target/zdzc-common-1.0-SNAPSHOT.jar
+zdzc-common/target/zdzc-common-1.0-SNAPSHOT.jar.original
+zdzc-eureka/target/
+zdzc-zuul/target/
