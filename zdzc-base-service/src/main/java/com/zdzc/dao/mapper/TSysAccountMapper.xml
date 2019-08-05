@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysAccountMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysAccount">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="pro_id" jdbcType="VARCHAR" property="proId" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="lastlogin_time" jdbcType="TIMESTAMP" property="lastloginTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="isbind" jdbcType="INTEGER" property="isbind" />
+    <result column="self_id" jdbcType="VARCHAR" property="selfId" />
+    <result column="del_flag" jdbcType="INTEGER" property="delFlag" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,account,password,real_name,sex,tel,email,pro_id,role_id,status,lastlogin_time,create_time,isbind,self_id,del_flag
+  </sql>
+
+  <update id="deleteAccount">
+    update t_sys_account set del_flag=#{delFlag}
+    <where>
+      <if test="ids != null">
+        id in
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </update>
+
+
+  <update id="updateByProjectId">
+    update t_sys_account set isbind = 0  where pro_id = #{proId}
+ </update>
+
+  <select id="selectParamsBySreach" resultMap="BaseResultMap">
+
+    select *
+    from t_sys_account
+    <where>
+      <if test="searchContent != null">
+        (account like concat('%',#{searchContent},'%') or real_name like concat('%',#{searchContent},'%') or tel like concat('%',#{searchContent},'%'))
+      </if>
+      <if test="proId!=null">
+        and pro_id = #{proId}
+      </if>
+      <if test="roleId!=null">
+        and role_id = #{roleId}
+      </if>
+      <if test="delFlag!=null">
+        and del_flag = #{delFlag}
+      </if>
+      <if test="status!=null">
+        and status = #{status}
+      </if>
+      <if test="id != null">
+        and id=#{id}
+      </if>
+      <if test="projectIds != null">
+        and pro_id in
+        <foreach collection="projectIds" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+  <!-- 通过设备编号查询绑定的用户信息 -->
+  <select id="getAccountInfoByImei" resultType="com.zdzc.model.TSysAccount" parameterType="java.lang.String">
+    SELECT
+        a.account, a.real_name, a.tel
+    FROM
+        t_device_info d
+            LEFT JOIN
+        t_sys_account a ON d.account_id = a.id
+    where d.device_code = #{imei, jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="selectProjectManger" resultType="java.lang.String">
+    select id from t_sys_account where del_flag = 0 and pro_id=#{proId}
+  </select>
+
+  <select id="selectAccountList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_account
+    where del_flag=#{delFlag} and (isbind=#{isbind} or pro_id=#{proId})
+  </select>
+
+  <select id="selectAbleUserList" resultMap="BaseResultMap">
+    select *
+    from t_sys_account
+    <where>
+      <if test="delFlag != null">
+        and del_flag = #{delFlag}
+      </if>
+      <if test="status != null">
+        and status = #{status}
+      </if>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="projectIds != null">
+        and pro_id in
+        <foreach collection="projectIds" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+  </select>
+</mapper>

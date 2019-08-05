@@ -7,37 +7,42 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="zdzc-basic-client" />
+        <module name="zdzc-config-server" />
         <module name="zdzc-zuul" />
         <module name="zdzc-common" />
-        <module name="zdzc-basic-service" />
-        <module name="zdzc-config-server" />
+        <module name="zdzc-base-service" />
+        <module name="zdzc-zipkin" />
         <module name="zdzc-eureka" />
+        <module name="zdzc-base-client" />
         <module name="zdzc-config-client" />
-        <module name="zdzc-zipkin-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="zdzc" target="1.8" />
+      <module name="zdzc-base-client" target="1.8" />
+      <module name="zdzc-base-service" target="1.8" />
+      <module name="zdzc-base-service2" target="1.8" />
       <module name="zdzc-basic-client" target="1.8" />
-      <module name="zdzc-basic-service" target="1.8" />
       <module name="zdzc-common" target="1.8" />
       <module name="zdzc-config-client" target="1.8" />
       <module name="zdzc-config-server" target="1.8" />
       <module name="zdzc-eureka" target="1.8" />
-      <module name="zdzc-zipkin-server" target="1.8" />
+      <module name="zdzc-zipkin" target="1.8" />
       <module name="zdzc-zuul" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zdzc-base-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zdzc-base-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zdzc-base-service2" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-basic-client" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/zdzc-basic-consumer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-basic-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-config-client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-config-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-eureka" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/zdzc-eureka-registry" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zdzc-zipkin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-zipkin-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zdzc-zuul" charset="UTF-8" />
   </component>
@@ -51,13 +56,15 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="zdzc" options="-parameters" />
+      <module name="zdzc-base-client" options="-parameters" />
+      <module name="zdzc-base-service" options="-parameters" />
+      <module name="zdzc-base-service2" options="-parameters" />
       <module name="zdzc-basic-client" options="-parameters" />
-      <module name="zdzc-basic-service" options="-parameters" />
       <module name="zdzc-common" options="-parameters" />
       <module name="zdzc-config-client" options="-parameters" />
       <module name="zdzc-config-server" options="-parameters" />
       <module name="zdzc-eureka" options="-parameters" />
-      <module name="zdzc-zipkin-server" options="-parameters" />
+      <module name="zdzc-zipkin" options="-parameters" />
       <module name="zdzc-zuul" options="-parameters" />
     </option>
   </component>
@@ -69,6 +76,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/zdzc-base-service2/pom.xml" />
         <option value="$PROJECT_DIR$/zdzc-basic-consum/pom.xml" />
       </set>
     </option>
@@ -197,13 +205,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/zdzc.iml" filepath="$PROJECT_DIR$/zdzc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zdzc-basic-client/zdzc-basic-client.iml" filepath="$PROJECT_DIR$/zdzc-basic-client/zdzc-basic-client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zdzc-basic-service/zdzc-basic-service.iml" filepath="$PROJECT_DIR$/zdzc-basic-service/zdzc-basic-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zdzc-base-client/zdzc-base-client.iml" filepath="$PROJECT_DIR$/zdzc-base-client/zdzc-base-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zdzc-base-service/zdzc-base-service.iml" filepath="$PROJECT_DIR$/zdzc-base-service/zdzc-base-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zdzc-base-client/zdzc-basic-client.iml" filepath="$PROJECT_DIR$/zdzc-base-client/zdzc-basic-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/zdzc-common/zdzc-common.iml" filepath="$PROJECT_DIR$/zdzc-common/zdzc-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/zdzc-config-client/zdzc-config-client.iml" filepath="$PROJECT_DIR$/zdzc-config-client/zdzc-config-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/zdzc-config-server/zdzc-config-server.iml" filepath="$PROJECT_DIR$/zdzc-config-server/zdzc-config-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/zdzc-eureka/zdzc-eureka.iml" filepath="$PROJECT_DIR$/zdzc-eureka/zdzc-eureka.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zdzc-zipkin-server/zdzc-zipkin-server.iml" filepath="$PROJECT_DIR$/zdzc-zipkin-server/zdzc-zipkin-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zdzc-zipkin/zdzc-zipkin.iml" filepath="$PROJECT_DIR$/zdzc-zipkin/zdzc-zipkin.iml" />
       <module fileurl="file://$PROJECT_DIR$/zdzc-zuul/zdzc-zuul.iml" filepath="$PROJECT_DIR$/zdzc-zuul/zdzc-zuul.iml" />
     </modules>
   </component>
@@ -434,48 +443,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/github/andrewoma/dexx/dexx-collections/0.2/dexx-collections-0.2-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.github.jsqlparser:jsqlparser:0.9.5">
+    <library name="Maven: com.github.jsqlparser:jsqlparser:2.0">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/0.9.5/jsqlparser-0.9.5.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/2.0/jsqlparser-2.0.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/0.9.5/jsqlparser-0.9.5-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/2.0/jsqlparser-2.0-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/0.9.5/jsqlparser-0.9.5-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/jsqlparser/jsqlparser/2.0/jsqlparser-2.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.github.pagehelper:pagehelper-spring-boot-autoconfigure:1.1.0">
+    <library name="Maven: com.github.pagehelper:pagehelper:5.1.10">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-autoconfigure/1.1.0/pagehelper-spring-boot-autoconfigure-1.1.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.1.10/pagehelper-5.1.10.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-autoconfigure/1.1.0/pagehelper-spring-boot-autoconfigure-1.1.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.1.10/pagehelper-5.1.10-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-autoconfigure/1.1.0/pagehelper-spring-boot-autoconfigure-1.1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.github.pagehelper:pagehelper-spring-boot-starter:1.1.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-starter/1.1.0/pagehelper-spring-boot-starter-1.1.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-starter/1.1.0/pagehelper-spring-boot-starter-1.1.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper-spring-boot-starter/1.1.0/pagehelper-spring-boot-starter-1.1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.github.pagehelper:pagehelper:5.0.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.0.0/pagehelper-5.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.0.0/pagehelper-5.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.0.0/pagehelper-5.0.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/5.1.10/pagehelper-5.1.10-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.github.vlsi.compactmap:compactmap:1.2.1">
@@ -511,17 +498,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.google.code.findbugs:jsr305:3.0.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.google.code.gson:gson:2.8.5">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar!/" />
@@ -531,28 +507,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.5/gson-2.8.5-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.errorprone:error_prone_annotations:2.2.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.guava:failureaccess:1.0.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.google.guava:guava:16.0">
@@ -577,28 +531,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/20.0/guava-20.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: com.google.guava:guava:27.0.1-jre">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/27.0.1-jre/guava-27.0.1-jre.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/27.0.1-jre/guava-27.0.1-jre-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/27.0.1-jre/guava-27.0.1-jre-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: com.google.inject:guice:4.1.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/guice/4.1.0/guice-4.1.0.jar!/" />
@@ -608,17 +540,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/inject/guice/4.1.0/guice-4.1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: com.google.j2objc:j2objc-annotations:1.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.googlecode.javaewah:JavaEWAH:1.1.6">
@@ -1930,17 +1851,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/net/minidev/json-smart/2.3/json-smart-2.3-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: net.sf.ehcache:ehcache:2.10.6">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/2.10.6/ehcache-2.10.6.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/2.10.6/ehcache-2.10.6-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/2.10.6/ehcache-2.10.6-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.antlr:antlr-runtime:3.4">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/antlr/antlr-runtime/3.4/antlr-runtime-3.4.jar!/" />
@@ -2139,17 +2049,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/bouncycastle/bcprov-jdk15on/1.60/bcprov-jdk15on-1.60-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.checkerframework:checker-qual:2.5.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: org.codehaus.jettison:jettison:1.3.7">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jettison/jettison/1.3.7/jettison-1.3.7.jar!/" />
@@ -2159,17 +2058,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/jettison/jettison/1.3.7/jettison-1.3.7-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: org.codehaus.mojo:animal-sniffer-annotations:1.17">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.codehaus.woodstox:stax2-api:3.1.4">

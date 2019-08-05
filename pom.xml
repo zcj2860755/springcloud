@@ -11,9 +11,9 @@
         <module>zdzc-common</module>
         <module>zdzc-eureka</module>
         <module>zdzc-zuul</module>
-        <module>zdzc-basic-service</module>
-        <module>zdzc-basic-client</module>
-        <module>zdzc-zipkin-server</module>
+        <module>zdzc-base-service</module>
+        <module>zdzc-base-client</module>
+        <module>zdzc-zipkin</module>
         <module>zdzc-config-server</module>
         <module>zdzc-config-client</module>
     </modules>
