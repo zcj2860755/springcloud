@@ -38,7 +38,7 @@ public class CodeGenerator {
     private static final String PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
     private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
     private static final String PACKAGE_PATH_CONTROLLER = packageConvertPath(CONTROLLER_PACKAGE);//生成的Controller存放路径
-    private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的Controller存放路径
+    private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的hystrix存放路径
 
 
     private static final String AUTHOR = "administrator";//@author
@@ -182,6 +182,7 @@ public class CodeGenerator {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("date", DATE);
             data.put("author", AUTHOR);
+            data.put("feifnClientName",FEIGNCLIENTNAME);
             String modelNameUpperCamel = StringUtils.isEmpty(modelName) ? tableNameConvertUpperCamel(tableName) : modelName;
             data.put("baseRequestMapping", modelNameConvertMappingPath(modelNameUpperCamel));
             data.put("modelNameUpperCamel", modelNameUpperCamel);

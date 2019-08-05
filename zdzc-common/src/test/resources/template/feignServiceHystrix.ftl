@@ -12,25 +12,25 @@ public class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNa
     @Override
     public String findById(){
         return "service has fail!";
-    };
+    }
 
     @Override
     public String list(){
         return "service has fail!";
-    };
+    }
 
     @Override
     public String add(){
         return "service has fail!";
-    };
+    }
 
     @Override
     public String delete(){
         return "service has fail!";
-    };
+    }
 
     @Override
     public String put() {
         return "service has fail!";
-    };
+    }
 }
