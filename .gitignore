@@ -19,3 +19,9 @@
 ### Log Dirs ###
 error
 info
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
