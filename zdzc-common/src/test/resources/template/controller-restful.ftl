@@ -3,7 +3,7 @@ package ${basePackage}.controller;
 import ${basePackage}.model.${modelNameUpperCamel};
 import ${basePackage}.service.I${modelNameUpperCamel}Service;
 import org.springframework.web.bind.annotation.*;
-import com.zdzc.baseModel.PageList;
+import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
 
@@ -21,23 +21,23 @@ public class ${modelNameUpperCamel}Controller {
 
     }
 
-    @PostMapping
+    @DeleteMapping
     public void delete(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
 
     }
 
-    @PostMapping
+    @PutMapping
     public void update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
 
     }
 
-    @PostMapping()
+    @GetMapping("findById")
     public ${modelNameUpperCamel} detail(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
 
         return null;
     }
 
-    @PostMapping
+    @GetMapping
     public PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}) {
 
         return null;

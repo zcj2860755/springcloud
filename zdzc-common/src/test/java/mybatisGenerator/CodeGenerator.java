@@ -20,30 +20,34 @@ import static com.zdzc.core.ProjectConstant.*;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT";
-    private static final String JDBC_USERNAME = "root";
-    private static final String JDBC_PASSWORD = "123456";
+    private static final String JDBC_URL = "jdbc:mysql://rm-bp138y5rq628s790h4o.mysql.rds.aliyuncs.com:3306/devfire?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT";
+    private static final String JDBC_USERNAME = "fire";
+    private static final String JDBC_PASSWORD = "zdzc@2018";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
-    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/common/src/test/resources/template";//模板位置
+    private static final String TEMPLATE_FILE_PATH = PROJECT_PATH + "/zdzc-common/src/test/resources/template";//模板位置
 
     private static final String JAVA_PATH = "/src/main/java"; //java文件路径
     private static final String RESOURCES_PATH = "/src/main/resources";//资源文件路径
 
-    private static final String BIZPROJECT="/zdzc-basic-service";    //业务层
-    private static final String COMMONPROJECT="/zdzc-common";  //公共模块
-    //private static final String RESTPROJECT="/rest";       //rest请求层
+    private static final String BIZPROJECT="/zdzc-base-service";    //服务端   服务端业务逻辑
+    private static final String COMMONPROJECT="/zdzc-common";  //公共模块   实体类
+    private static final String FEIGNPATH="/zdzc-base-client";  //客户端   Feign项目模块
 
     private static final String PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
     private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
     private static final String PACKAGE_PATH_CONTROLLER = packageConvertPath(CONTROLLER_PACKAGE);//生成的Controller存放路径
+    private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的Controller存放路径
 
-    private static final String AUTHOR = "zcj";//@author
+
+    private static final String AUTHOR = "administrator";//@author
+    private static final String FEIGNCLIENTNAME = "";//@FeignClient名称
+
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("t_sys_dic");
+        genCode("111");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
@@ -144,6 +148,7 @@ public class CodeGenerator {
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("date", DATE);
             data.put("author", AUTHOR);
+            data.put("feifnClientName",FEIGNCLIENTNAME);
             String modelNameUpperCamel = StringUtils.isEmpty(modelName) ? tableNameConvertUpperCamel(tableName) : modelName;
             data.put("modelNameUpperCamel", modelNameUpperCamel);
             data.put("modelNameLowerCamel", tableNameConvertLowerCamel(tableName));
@@ -164,6 +169,7 @@ public class CodeGenerator {
             cfg.getTemplate("service-impl.ftl").process(data,
                     new FileWriter(file1));
             System.out.println(modelNameUpperCamel + "ServiceImpl.java 生成成功");
+
         } catch (Exception e) {
             throw new RuntimeException("生成Service失败", e);
         }
@@ -190,6 +196,24 @@ public class CodeGenerator {
             //cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
 
             System.out.println(modelNameUpperCamel + "Controller.java 生成成功");
+
+
+            File file1 = new File(PROJECT_PATH + FEIGNPATH+ JAVA_PATH + FEIGN_HYSTRIX_PATH + "Feign" + modelNameUpperCamel + "ServiceHystrix.java");
+            if (!file1.getParentFile().exists()) {
+                file1.getParentFile().mkdirs();
+            }
+            cfg.getTemplate("feignServiceHystrix.ftl").process(data,
+                    new FileWriter(file1));
+            System.out.println(modelNameUpperCamel + "FeignServiceHystrix.java 生成成功");
+
+
+            File file2 = new File(PROJECT_PATH + FEIGNPATH+ JAVA_PATH + PACKAGE_PATH_SERVICE + "Feign" + modelNameUpperCamel + "Service.java");
+            if (!file2.getParentFile().exists()) {
+                file2.getParentFile().mkdirs();
+            }
+            cfg.getTemplate("feignService.ftl").process(data,
+                    new FileWriter(file2));
+            System.out.println(modelNameUpperCamel + "FeignService.java 生成成功");
         } catch (Exception e) {
             throw new RuntimeException("生成Controller失败", e);
         }

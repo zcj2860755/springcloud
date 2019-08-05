@@ -13,4 +13,5 @@ public final class ProjectConstant {
     public static final String SERVICE_IMPL_PACKAGE = SERVICE_PACKAGE + ".impl";//ServiceImpl所在包
     public static final String CONTROLLER_PACKAGE = BASE_PACKAGE + ".controller";//Controller所在包
     public static final String MAPPER_INTERFACE_REFERENCE = BASE_PACKAGE + ".core.Mapper";//Mapper插件基础接口的完全限定名
+    public static final String FEIGN_HYSTRIX_PACKAGE = BASE_PACKAGE + ".hystrix";//熔断器路径
 }
