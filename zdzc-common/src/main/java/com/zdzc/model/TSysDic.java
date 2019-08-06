@@ -7,6 +7,7 @@ public class TSysDic {
     /**
      * 主键
      */
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
@@ -44,6 +45,40 @@ public class TSysDic {
      * 备注
      */
     private String remark;
+
+
+
+    @Transient
+    private String CategoryDirKey;   //类别表的key
+    @Transient
+    private String CategoryDirValue;   //类别表的value
+    @Transient
+    private String keyWords;   //关键字
+
+    public String getCategoryDirKey() {
+        return CategoryDirKey;
+    }
+
+    public void setCategoryDirKey(String categoryDirKey) {
+        CategoryDirKey = categoryDirKey;
+    }
+
+    public String getCategoryDirValue() {
+        return CategoryDirValue;
+    }
+
+    public void setCategoryDirValue(String categoryDirValue) {
+        CategoryDirValue = categoryDirValue;
+    }
+    public String getKeyWords() {
+        return keyWords;
+    }
+    public void setKeyWords(String keyWords) {
+        this.keyWords = keyWords;
+    }
+
+
+
 
     /**
      * 获取主键

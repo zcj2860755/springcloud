@@ -1,6 +1,5 @@
 package com.zdzc.controller;
 
-import com.zdzc.model.TSysParams;
 import com.zdzc.service.FeignExampleService;
 import com.zdzc.service.FeignTestService;
 import io.swagger.annotations.Api;
@@ -61,10 +60,10 @@ public class ConsumerController {
 
 
 
-    @GetMapping("/test/body")
+   /* @GetMapping("/test/body")
     public void test(TSysParams tSysParams){
         System.out.println(tSysParams.getId());
         System.out.println(tSysParams.getRemark());
-    }
+    }*/
 
 }
