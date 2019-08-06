@@ -17,7 +17,7 @@ public class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNa
     }
 
     @Override
-    public <${modelNameUpperCamel}> list(){
+    public String list(){
         return "service has fail!";
     }
 
