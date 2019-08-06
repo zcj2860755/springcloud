@@ -11,9 +11,11 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 
+
 /**
-* Created by ${author} on ${date}.
-*/
+ * Author : ${author}
+ * Date : ${date}
+ */
 @RestController
 @RequestMapping("${baseRequestMapping}")
 @Api(description = "接口描述")

@@ -7,9 +7,11 @@ import com.github.fangjinuo.sqlhelper.dialect.pagination.PagingResult;
 
 import javax.annotation.Resource;
 
+
 /**
-* Created by ${author} on ${date}.
-*/
+ * Author : ${author}
+ * Date : ${date}
+ */
 @RestController
 @RequestMapping("${baseRequestMapping}")
 public class ${modelNameUpperCamel}Controller {

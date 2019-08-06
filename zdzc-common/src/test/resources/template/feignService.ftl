@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import ${basePackage}.model.${modelNameUpperCamel};
 
+
 /**
- * Created by ${author} on ${date}.
+ * Author : ${author}
+ * Date : ${date}
  */
 @FeignClient(value = "${feifnClientName}")
 public interface Feign${modelNameUpperCamel}Service {

@@ -3,8 +3,10 @@ package ${basePackage}.hystrix;
 import org.springframework.stereotype.Component;
 import ${basePackage}.service.Feign${modelNameUpperCamel}Service;
 
+
 /**
- * Created by ${author} on ${date}.
+ * Author : ${author}
+ * Date : ${date}
  */
 @Component
 public class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNameUpperCamel}Service {
@@ -15,7 +17,7 @@ public class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNa
     }
 
     @Override
-    public String list(){
+    public <${modelNameUpperCamel}> list(){
         return "service has fail!";
     }
 
@@ -30,7 +32,7 @@ public class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNa
     }
 
     @Override
-    public String put() {
+    public String update() {
         return "service has fail!";
     }
 }

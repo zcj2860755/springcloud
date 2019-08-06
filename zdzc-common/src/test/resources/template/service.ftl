@@ -1,7 +1,9 @@
 package ${basePackage}.service;
 
+
 /**
- * Created by ${author} on ${date}.
+ * Author : ${author}
+ * Date : ${date}
  */
 public interface I${modelNameUpperCamel}Service {
 

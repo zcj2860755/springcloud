@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * Created by ${author} on ${date}.
+ * Author : ${author}
+ * Date : ${date}
  */
 @Service
 public class ${modelNameUpperCamel}ServiceImpl implements I${modelNameUpperCamel}Service {
