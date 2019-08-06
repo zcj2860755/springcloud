@@ -9,30 +9,6 @@ import ${basePackage}.service.Feign${modelNameUpperCamel}Service;
  * Date : ${date}
  */
 @Component
-public class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNameUpperCamel}Service {
+public abstract class Feign${modelNameUpperCamel}ServiceHystrix implements Feign${modelNameUpperCamel}Service {
 
-    @Override
-    public String findById(){
-        return "service has fail!";
-    }
-
-    @Override
-    public String list(){
-        return "service has fail!";
-    }
-
-    @Override
-    public String add(){
-        return "service has fail!";
-    }
-
-    @Override
-    public String delete(){
-        return "service has fail!";
-    }
-
-    @Override
-    public String update() {
-        return "service has fail!";
-    }
 }

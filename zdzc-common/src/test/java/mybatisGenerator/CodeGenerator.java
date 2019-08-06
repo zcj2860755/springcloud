@@ -41,13 +41,13 @@ public class CodeGenerator {
     private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的hystrix存放路径
 
 
-    private static final String AUTHOR = "李琳青";//@author
+    private static final String AUTHOR = "zdzc";//@author
     private static final String FEIGNCLIENTNAME = "basic-service";//@FeignClient名称
 
     private static final String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("t_person");
+        genCode("t_sys_params");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 

@@ -4,6 +4,9 @@ import ${basePackage}.dao.${modelNameUpperCamel}Mapper;
 import ${basePackage}.model.${modelNameUpperCamel};
 import ${basePackage}.service.I${modelNameUpperCamel}Service;
 import org.springframework.stereotype.Service;
+import com.github.pagehelper.PageHelper;
+import com.zdzc.common.BaseRequest;
+import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
 
@@ -16,4 +19,29 @@ public class ${modelNameUpperCamel}ServiceImpl implements I${modelNameUpperCamel
     @Resource
     private ${modelNameUpperCamel}Mapper ${modelNameLowerCamel}Mapper;
 
+    @Override
+    public int save(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        return ${modelNameLowerCamel}Mapper.insertSelective(${modelNameLowerCamel});
+    }
+
+    @Override
+    public int update(${modelNameUpperCamel} ${modelNameLowerCamel}) {
+        return ${modelNameLowerCamel}Mapper.updateByPrimaryKeySelective(${modelNameLowerCamel});
+    }
+
+    @Override
+    public int deleteById(String id){
+        return ${modelNameLowerCamel}Mapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public ${modelNameUpperCamel} findById(String id){
+        return ${modelNameLowerCamel}Mapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public PageList<${modelNameUpperCamel}> list(${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
+        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+        return new PageList<${modelNameUpperCamel}>(${modelNameLowerCamel}Mapper.select(${modelNameLowerCamel}));
+    }
 }

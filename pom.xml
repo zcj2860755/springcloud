@@ -48,7 +48,7 @@
         <guava.version>27.0.1-jre</guava.version>
         <springfox.version>2.8.0</springfox.version>
         <zdzc.common.version>1.0-SNAPSHOT</zdzc.common.version>
-        <sqlhelper.version>1.2.1</sqlhelper.version>
+        <pagehelper.version>1.2.9</pagehelper.version>
     </properties>
 
     <dependencies>
@@ -123,25 +123,12 @@
             <artifactId>spring-cloud-stream-test-support</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- pagehelper -->
         <dependency>
-            <groupId>com.github.fangjinuo.sqlhelper</groupId>
-            <artifactId>sqlhelper-mybatis-spring-boot-autoconfigure</artifactId>
-            <version>${sqlhelper.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.fangjinuo.sqlhelper</groupId>
-            <artifactId>sqlhelper-mybatis-spring-boot-starter</artifactId>
-            <version>${sqlhelper.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.fangjinuo.sqlhelper</groupId>
-            <artifactId>sqlhelper-mybatis</artifactId>
-            <version>${sqlhelper.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.fangjinuo.sqlhelper</groupId>
-            <artifactId>sqlhelper-dialect</artifactId>
-            <version>${sqlhelper.version}</version>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${pagehelper.version}</version>
         </dependency>
     </dependencies>
 
