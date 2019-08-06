@@ -1,10 +1,12 @@
 package ${basePackage}.service;
 
+import com.github.fangjinuo.sqlhelper.dialect.pagination.PagingResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import ${basePackage}.model.${modelNameUpperCamel};
 
 /**
  * Created by ${author} on ${date}.
@@ -16,7 +18,7 @@ public interface Feign${modelNameUpperCamel}Service {
     String findById();
 
     @GetMapping("${baseRequestMapping}")
-    String list();
+    PagingResult<${modelNameUpperCamel}> list();
 
     @PostMapping("${baseRequestMapping}")
     String add();
@@ -25,5 +27,5 @@ public interface Feign${modelNameUpperCamel}Service {
     String delete();
 
     @PutMapping("${baseRequestMapping}")
-    String put();
+    String update();
 }

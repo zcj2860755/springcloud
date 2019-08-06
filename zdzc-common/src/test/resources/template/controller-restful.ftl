@@ -3,7 +3,7 @@ package ${basePackage}.controller;
 import ${basePackage}.model.${modelNameUpperCamel};
 import ${basePackage}.service.I${modelNameUpperCamel}Service;
 import org.springframework.web.bind.annotation.*;
-import com.zdzc.common.PageList;
+import com.github.fangjinuo.sqlhelper.dialect.pagination.PagingResult;
 
 import javax.annotation.Resource;
 
@@ -38,7 +38,7 @@ public class ${modelNameUpperCamel}Controller {
     }
 
     @GetMapping
-    public PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}) {
+    public PagingResult<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}) {
 
         return null;
     }

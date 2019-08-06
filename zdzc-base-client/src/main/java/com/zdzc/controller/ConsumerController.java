@@ -1,5 +1,6 @@
 package com.zdzc.controller;
 
+import com.zdzc.model.TSysParams;
 import com.zdzc.service.FeignExampleService;
 import com.zdzc.service.FeignTestService;
 import io.swagger.annotations.Api;
@@ -56,6 +57,14 @@ public class ConsumerController {
             @ApiImplicitParam(name = "name", value = "名称", required = true, paramType = "query")})
     public String test(@PathVariable String name) {
         return feignTestService.test(name+", from "+applicationName);
+    }
+
+
+
+    @GetMapping("/test/body")
+    public void test(TSysParams tSysParams){
+        System.out.println(tSysParams.getId());
+        System.out.println(tSysParams.getRemark());
     }
 
 }
