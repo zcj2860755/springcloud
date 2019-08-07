@@ -70,6 +70,12 @@
         c.dic_key = #{dicKey, jdbcType=VARCHAR} order by d.sort_no
   </select>
 
+    <select id="selectTSysDicWithCatergory" parameterType="java.lang.String" resultMap="BaseResultMap">
+     SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
+        from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
+        where a.is_enable =1 and b.is_enable = 1 and a.id=#{id}
+  </select>
+
 
      <!--条件查询  多个字段有一样的值会不会有影响-->
     <select id="selectAllDic" resultMap="BaseResultMap">

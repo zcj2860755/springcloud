@@ -31,26 +31,26 @@ public class TSysDicController {
             @ApiImplicitParam(name = "categoryId", value = "类型(字典类别的key)", required = true, paramType = "query"),
             @ApiImplicitParam(name = "CategoryDirValue", value = "类型描述(字典类别的value)", required = true, paramType = "query"),
     })
-    public void add(@RequestBody TSysDic tSysDic){
-        tSysDicService.insert(tSysDic);
+    public int add(@RequestBody TSysDic tSysDic){
+        return tSysDicService.insert(tSysDic);
     }
 
     @DeleteMapping
-    public void delete(@RequestBody TSysDic tSysDic){
-        tSysDicService.delete(tSysDic);
+    public int delete(@RequestParam("id") String id){
+        return tSysDicService.delete(id);
     }
 
     @PutMapping
-    public void update(@RequestBody TSysDic tSysDic){
-        tSysDicService.update(tSysDic);
+    public int update(@RequestBody TSysDic tSysDic){
+        return tSysDicService.update(tSysDic);
     }
 
-    @GetMapping("findById")
-    public TSysDic detail(@RequestParam String Id){
-        return tSysDicService.findById(Id);
+    @GetMapping("/findById")
+    public TSysDic detail(@RequestParam("id") String id){
+        return tSysDicService.findById(id);
     }
 
-    @GetMapping
+    @GetMapping("/findList")
     public PageList<TSysDic> list(@RequestBody TSysDic tSysDic, BaseRequest baseRequest) {
         return tSysDicService.list(tSysDic,baseRequest);
     }

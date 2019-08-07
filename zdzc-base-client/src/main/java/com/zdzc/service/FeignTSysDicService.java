@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 public interface FeignTSysDicService {
 
     @GetMapping("/t/sys/dic/findById")
-    String findById();
+    TSysDic findById(@RequestParam("id") String id);
 
-    @PostMapping("/t/sys/dic")
+    @GetMapping("/t/sys/dic/findList")
     PageList<TSysDic> list(@RequestBody TSysDic tSysDic);
 
     @PostMapping("/t/sys/dic")
-    String add(@RequestBody TSysDic tSysDic);  //去掉也行
+    int add(@RequestBody TSysDic tSysDic);
 
     @DeleteMapping("/t/sys/dic")
-    String delete(TSysDic tSysDic);
+    int delete(@RequestParam("id") String id);
 
     @PutMapping("/t/sys/dic")
-    String update(TSysDic tSysDic);
+    int update(TSysDic tSysDic);
 }

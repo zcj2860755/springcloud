@@ -7,10 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
@@ -36,16 +33,16 @@ public class TSysDicController {
         feigntSysDicService.add(tSysDic);
     }
 
-    @PostMapping("/delete")   //deleteMappering  报错
+    @DeleteMapping("/delete")
     @ApiOperation("删除")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
     })
-    public void delete(@ApiIgnore TSysDic tSysDic){
-        feigntSysDicService.delete(tSysDic);
+    public void delete(String id){
+        feigntSysDicService.delete(id);
     }
 
-    @PostMapping("/update")     // PutMapping("/update") 报错   这个参数都得传 isEnable  cate..key
+    @PutMapping("/update")     // PutMapping("/update") 报错   这个参数都得传 isEnable  cate..key
     @ApiOperation("更新")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
@@ -54,24 +51,22 @@ public class TSysDicController {
         feigntSysDicService.update(tSysDic);
     }
 
-    @GetMapping("findById")
+    @GetMapping("/findById")
     @ApiOperation("获取详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
     })
     public TSysDic detail(String id){
-        feigntSysDicService.findById();
-        return null;
+        return feigntSysDicService.findById(id);
     }
 
-    //@GetMapping("/selectAll")  405  方法不允许
-    @PostMapping("/select")
+    @GetMapping("/selectAll")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query")
     })
-    public PageList<TSysDic> list(@ApiIgnore TSysDic tSysDic) {
+    public PageList<TSysDic> list(@RequestBody TSysDic tSysDic) {
         return feigntSysDicService.list(tSysDic);
     }
 }

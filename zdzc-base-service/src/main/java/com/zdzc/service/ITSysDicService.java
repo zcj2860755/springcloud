@@ -14,7 +14,7 @@ public interface ITSysDicService {
 
     int insert(TSysDic tSysDic);
 
-    int delete(TSysDic tSysDic);
+    int delete(String id);
 
     int update(TSysDic tSysDic);
 

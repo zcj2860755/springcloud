@@ -18,12 +18,12 @@ import com.zdzc.common.PageList;
  */
 @RestController
 @RequestMapping("/t/sys/dic/category")
-@Api(description = "接口描述")
+@Api(description = "数据字典大类API操作接口")
 public class TSysDicCategoryController {
     @Resource
     private FeignTSysDicCategoryService feigntSysDicCategoryService;
 
-    @PostMapping("/insert")
+    @PostMapping("/insert")   //空指针还能插入成功
     @ApiOperation("新增")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
@@ -32,13 +32,13 @@ public class TSysDicCategoryController {
         feigntSysDicCategoryService.add(tSysDicCategory);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete")  // 不加 @requestParam 也可以
     @ApiOperation("删除")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
     })
-    public void delete(String Id){
-        feigntSysDicCategoryService.delete(Id);
+    public void delete(String id){
+        feigntSysDicCategoryService.delete(id);
     }
 
     @PutMapping("/update")

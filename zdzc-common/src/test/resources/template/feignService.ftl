@@ -13,18 +13,20 @@ import ${basePackage}.model.${modelNameUpperCamel};
 @FeignClient(value = "${feifnClientName}")
 public interface Feign${modelNameUpperCamel}Service {
 
-    @GetMapping("${baseRequestMapping}/findById")
-    ${modelNameUpperCamel} findById(@RequestParam String Id);
-
-    @GetMapping("${baseRequestMapping}")
-    PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
-
     @PostMapping("${baseRequestMapping}")
     int add(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
 
     @DeleteMapping("${baseRequestMapping}")
-    int delete(@RequestParam String Id);
+    int delete(@RequestParam("id") String id);
 
     @PutMapping("${baseRequestMapping}")
     int update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
+
+    @GetMapping("${baseRequestMapping}/findById")
+    ${modelNameUpperCamel} findById(@RequestParam("id") String id);
+
+    @GetMapping("${baseRequestMapping}")
+    PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
+
+
 }
