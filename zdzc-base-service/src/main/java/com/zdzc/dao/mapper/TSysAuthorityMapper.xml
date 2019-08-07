@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysAuthority">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="auth_name" jdbcType="VARCHAR" property="authName" />
+    <result column="auth_sign" jdbcType="VARCHAR" property="authSign" />
+    <result column="auth_url" jdbcType="VARCHAR" property="authUrl" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="auth_type" jdbcType="INTEGER" property="authType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="parentName" jdbcType="VARCHAR" property="parentName" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,auth_name,auth_sign,auth_url,parent_id,icon,auth_type,remark,create_time,sort_no
+  </sql>
+
+  <select id="selectParamsBySreach" resultMap="BaseResultMap">
+
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_authority
+    <where>
+      <if test="searchContent != null">
+        auth_name like concat('%',#{searchContent},'%') or auth_sign like concat('%',#{searchContent},'%')
+      </if>
+      <if test="parentId!=null">
+        and parent_id = #{parentId}
+      </if>
+      <if test="authType!=null">
+        and auth_type = #{authType}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="selectAllAuthority" resultMap="BaseResultMap">
+      select t1.*,(select auth_name from  t_sys_authority t2 where t2.id=t1.parent_id) as parentName
+        from  t_sys_authority t1
+        <where>
+            <if test="keyword != null">
+              t1.auth_name like concat('%',#{keyword},'%')
+            </if>
+            <if test="id != null">
+              and t1.id != #{id}
+            </if>
+            <if test="authSign != null">
+              and t1.auth_sign = #{authSign}
+            </if>
+            <if test="authTypeBlack !=null">
+              and t1.auth_type != #{authTypeBlack}
+            </if>
+        </where>
+  </select>
+
+
+  <select id="defaultAuth" resultMap="BaseResultMap">
+
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_authority
+    <where>
+      auth_name = '系统配置' or  auth_name = '项目管理'
+    </where>
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_sign" jdbcType="VARCHAR" property="roleSign" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="is_login" jdbcType="INTEGER" property="isLogin" />
+    <result column="del_flag" jdbcType="INTEGER" property="delFlag" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id,role_name,role_sign,org_id,status,remark,create_time,account_id,is_login,del_flag
+  </sql>
+
+  <select id="selectParamsBySreach" resultMap="BaseResultMap">
+
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_role
+    <where>
+      <if test="searchContent != null">
+        (role_name like concat('%',#{searchContent},'%') or role_sign like concat('%',#{searchContent},'%'))
+      </if>
+      <if test="orgId!=null">
+        and org_id = #{orgId}
+      </if>
+      <if test="status!=null">
+        and status = #{status}
+      </if>
+      <if test="isLogin!=null">
+        and is_login = #{isLogin}
+      </if>
+      <if test="delFlag!=null">
+        and del_flag = #{delFlag}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+
+
+
+</mapper>

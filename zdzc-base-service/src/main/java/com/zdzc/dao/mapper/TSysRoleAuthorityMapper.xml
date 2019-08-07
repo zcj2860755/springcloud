@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysRoleAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysRoleAuthority">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="auth_id" jdbcType="VARCHAR" property="authId" />
+  </resultMap>
+
+
+  <!-- 通过角色编号查询该角色所拥有的权限并排序 -->
+  <select id="selectParamsByOrder" resultType="com.zdzc.model.TSysRoleAuthority" parameterType="java.lang.String">
+    SELECT
+    a.id as id, a.role_id as roleId, a.auth_id as authId
+    FROM
+    t_sys_role_authority a
+    LEFT JOIN
+    t_sys_authority s ON s.id = a.auth_id
+    <where>
+      1 = 1
+      <if test="id != null">
+        id != #{id}
+      </if>
+      <if test="roleId!=null">
+        and role_id = #{roleId}
+      </if>
+    </where>
+    order by s.sort_no desc
+  </select>
+</mapper>
