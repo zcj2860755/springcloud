@@ -18,7 +18,7 @@ import java.util.List;
 public class TestController {
 
 
-    @Resource
+  /*  @Resource
     private ITSysDicService sysDicService;
 
     @RequestMapping("/test")
@@ -44,5 +44,5 @@ public class TestController {
         dic.setRemark("test");
         return sysDicService.add(dic);
     }
-
+*/
 }

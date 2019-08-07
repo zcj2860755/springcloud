@@ -1,29 +1,30 @@
 package ${basePackage}.service;
 
+import com.zdzc.common.PageList;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
+import ${basePackage}.model.${modelNameUpperCamel};
+
 
 /**
- * Created by ${author} on ${date}.
+ * Author : ${author}
+ * Date : ${date}
  */
 @FeignClient(value = "${feifnClientName}")
 public interface Feign${modelNameUpperCamel}Service {
 
     @GetMapping("${baseRequestMapping}/findById")
-    String findById();
+    ${modelNameUpperCamel} findById(@RequestParam String Id);
 
     @GetMapping("${baseRequestMapping}")
-    String list();
+    PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
 
     @PostMapping("${baseRequestMapping}")
-    String add();
+    int add(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
 
     @DeleteMapping("${baseRequestMapping}")
-    String delete();
+    int delete(@RequestParam String Id);
 
     @PutMapping("${baseRequestMapping}")
-    String put();
+    int update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
 }

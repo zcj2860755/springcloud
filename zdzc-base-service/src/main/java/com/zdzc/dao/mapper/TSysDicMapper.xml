@@ -12,53 +12,54 @@
     <result column="is_enable" jdbcType="INTEGER" property="isEnable" />
     <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <!--<result column="CategoryDirKey" jdbcType="VARCHAR" property="CategoryDirKey" />
+    <result column="CategoryDirValue" jdbcType="VARCHAR" property="CategoryDirValue" />-->
   </resultMap>
 
 
-  <select id="selectSysDicByPKey" resultMap="BaseResultMap">
-    select tsd.*,tsdc.dic_value as categoryName from t_sys_dic_category tsdc inner join t_sys_dic tsd
-          on tsd.category_id=tsdc.id and tsd.is_enable=1 and tsdc.is_enable=1
-      <where>
-        <if test="parentKey!=null">
-          tsdc.dic_key=#{parentKey}
-        </if>
-        <if test="dicKey!=null">
-          and tsd.dic_key=#{dicKey}
-        </if>
-        <if test="categoryId!=null">
-          and tsd.category_id=#{categoryId}
-        </if>
-        <if test="id!=null">
-          and tsd.id=#{id}
-        </if>
-      </where>
-      order by tsd.sort_no desc
-  </select>
+    <select id="selecTSysDicByPrimaryKey" resultMap="BaseResultMap">
+        select tsd.*,tsdc.dic_value as categoryName
+        from t_sys_dic_category tsdc inner join t_sys_dic tsd  on tsd.category_id=tsdc.id and tsd.is_enable=1 and tsdc.is_enable=1
+        <where>
+            <if test="parentKey!=null">
+                tsdc.dic_key=#{parentKey}
+            </if>
+            <if test="dicKey!=null">
+                and tsd.dic_key=#{dicKey}
+            </if>
+            <if test="categoryId!=null">
+                and tsd.category_id=#{categoryId}
+            </if>
+            <if test="id!=null">
+                and tsd.id=#{id}
+            </if>
+        </where>
+        order by tsd.sort_no desc
+    </select>
 
 
+    <select id="selectSysDicByPrimaryKey" resultMap="BaseResultMap">
+        select tsd.*,tsdc.dic_value as categoryName from t_sys_dic_category tsdc inner join t_sys_dic tsd
+        on tsd.category_id=tsdc.id
+        <where>
+            <if test="parentKey!=null">
+                tsdc.dic_key=#{parentKey}
+            </if>
+            <if test="dicKey!=null">
+                and tsd.dic_key=#{dicKey}
+            </if>
+            <if test="categoryId!=null">
+                and tsd.category_id=#{categoryId}
+            </if>
+            <if test="id!=null">
+                and tsd.id=#{id}
+            </if>
+        </where>
+        order by tsd.sort_no desc
+    </select>
 
-  <select id="selectSysDicByPKeyAll" resultMap="BaseResultMap">
-    select tsd.*,tsdc.dic_value as categoryName from t_sys_dic_category tsdc inner join t_sys_dic tsd
-    on tsd.category_id=tsdc.id
-    <where>
-      <if test="parentKey!=null">
-        tsdc.dic_key=#{parentKey}
-      </if>
-      <if test="dicKey!=null">
-        and tsd.dic_key=#{dicKey}
-      </if>
-      <if test="categoryId!=null">
-        and tsd.category_id=#{categoryId}
-      </if>
-      <if test="id!=null">
-        and tsd.id=#{id}
-      </if>
-    </where>
-    order by tsd.sort_no desc
-  </select>
-
-  <!-- 通过字典大类编码获取字典小类详情 -->
-  <select id="getDicListByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!-- 通过字典大类编码获取字典小类详情 -->
+    <select id="getDicListByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
         d.*
     FROM
@@ -68,4 +69,17 @@
     WHERE
         c.dic_key = #{dicKey, jdbcType=VARCHAR} order by d.sort_no
   </select>
+
+
+     <!--条件查询  多个字段有一样的值会不会有影响-->
+    <select id="selectAllDic" resultMap="BaseResultMap">
+        SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
+        from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
+        where a.is_enable =1 and b.is_enable = 1
+          <if test="keyWords != null">
+             (a.dic_key like concat('%',#{keyWords},'%') or a.dic_value like concat('%',#{keyWords},'%') or b.dic_key like concat('%',#{keyWords},'%') or b.dic_value like concat('%',#{keyWords},'%'))
+          </if>
+        order by tsd.sort_no desc
+  </select>
+
 </mapper>

@@ -2,20 +2,14 @@ package com.zdzc.model;
 
 import javax.persistence.*;
 
-@Table(name = "t_sys_dic")
-public class TSysDic {
+@Table(name = "t_sys_dic_category")
+public class TSysDicCategory {
     /**
      * 主键
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-
-    /**
-     * 类别id
-     */
-    @Column(name = "category_id")
-    private String categoryId;
 
     /**
      * 字典key
@@ -27,7 +21,7 @@ public class TSysDic {
      * 字典value
      */
     @Column(name = "dic_value")
-    private Integer dicValue;
+    private String dicValue;
 
     /**
      * 是否启用 1-启用 0-关闭
@@ -42,7 +36,7 @@ public class TSysDic {
     private Integer sortNo;
 
     /**
-     * 备注
+     * 描述
      */
     private String remark;
 
@@ -62,24 +56,6 @@ public class TSysDic {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * 获取类别id
-     *
-     * @return category_id - 类别id
-     */
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    /**
-     * 设置类别id
-     *
-     * @param categoryId 类别id
-     */
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
     }
 
     /**
@@ -105,7 +81,7 @@ public class TSysDic {
      *
      * @return dic_value - 字典value
      */
-    public Integer getDicValue() {
+    public String getDicValue() {
         return dicValue;
     }
 
@@ -114,7 +90,7 @@ public class TSysDic {
      *
      * @param dicValue 字典value
      */
-    public void setDicValue(Integer dicValue) {
+    public void setDicValue(String dicValue) {
         this.dicValue = dicValue;
     }
 
@@ -155,18 +131,18 @@ public class TSysDic {
     }
 
     /**
-     * 获取备注
+     * 获取描述
      *
-     * @return remark - 备注
+     * @return remark - 描述
      */
     public String getRemark() {
         return remark;
     }
 
     /**
-     * 设置备注
+     * 设置描述
      *
-     * @param remark 备注
+     * @param remark 描述
      */
     public void setRemark(String remark) {
         this.remark = remark;

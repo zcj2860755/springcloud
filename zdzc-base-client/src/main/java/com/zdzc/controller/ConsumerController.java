@@ -58,4 +58,12 @@ public class ConsumerController {
         return feignTestService.test(name+", from "+applicationName);
     }
 
+
+
+   /* @GetMapping("/test/body")
+    public void test(TSysParams tSysParams){
+        System.out.println(tSysParams.getId());
+        System.out.println(tSysParams.getRemark());
+    }*/
+
 }

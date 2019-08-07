@@ -1,16 +1,30 @@
 package com.zdzc.service;
 
+
+import com.zdzc.common.BaseRequest;
+import com.zdzc.common.PageList;
 import com.zdzc.model.TSysDic;
 
-import java.util.List;
-
 /**
- * Created by zcj on 2019/08/01.
+ * Author : 李琳青
+ * Date : 2019-08-06 13:41
  */
 public interface ITSysDicService {
 
-    List<TSysDic> findTest();
 
-    int  add(TSysDic test);
+    int insert(TSysDic tSysDic);
+
+    int delete(TSysDic tSysDic);
+
+    int update(TSysDic tSysDic);
+
+    TSysDic findById(String id);
+
+
+    /**
+     * @description：分页查询
+     */
+    PageList<TSysDic> list(TSysDic tSysDic, BaseRequest baseRequest);
+
 
 }

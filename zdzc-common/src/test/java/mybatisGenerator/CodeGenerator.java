@@ -41,13 +41,13 @@ public class CodeGenerator {
     private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的hystrix存放路径
 
 
-    private static final String AUTHOR = "administrator";//@author
-    private static final String FEIGNCLIENTNAME = "";//@FeignClient名称
+    private static final String AUTHOR = "zdzc";//@author
+    private static final String FEIGNCLIENTNAME = "basic-service";//@FeignClient名称
 
-    private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
+    private static final String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("111");
+        genCode("t_sys_params");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
@@ -198,7 +198,6 @@ public class CodeGenerator {
 
             System.out.println(modelNameUpperCamel + "Controller.java 生成成功");
 
-
             File file1 = new File(PROJECT_PATH + FEIGNPATH+ JAVA_PATH + FEIGN_HYSTRIX_PATH + "Feign" + modelNameUpperCamel + "ServiceHystrix.java");
             if (!file1.getParentFile().exists()) {
                 file1.getParentFile().mkdirs();
@@ -215,6 +214,16 @@ public class CodeGenerator {
             cfg.getTemplate("feignService.ftl").process(data,
                     new FileWriter(file2));
             System.out.println(modelNameUpperCamel + "FeignService.java 生成成功");
+
+
+            File file3 = new File(PROJECT_PATH + FEIGNPATH + JAVA_PATH + PACKAGE_PATH_CONTROLLER + modelNameUpperCamel + "Controller.java");
+            if (!file3.getParentFile().exists()) {
+                file3.getParentFile().mkdirs();
+            }
+            cfg.getTemplate("controller-client-restful.ftl").process(data, new FileWriter(file3));
+            //cfg.getTemplate("controller.ftl").process(data, new FileWriter(file));
+
+            System.out.println(modelNameUpperCamel + "clientController.java 生成成功");
         } catch (Exception e) {
             throw new RuntimeException("生成Controller失败", e);
         }

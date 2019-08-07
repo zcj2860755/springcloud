@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysDicCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysDicCategory">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="dic_key" jdbcType="VARCHAR" property="dicKey" />
+    <result column="dic_value" jdbcType="VARCHAR" property="dicValue" />
+    <result column="is_enable" jdbcType="INTEGER" property="isEnable" />
+    <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+</mapper>
