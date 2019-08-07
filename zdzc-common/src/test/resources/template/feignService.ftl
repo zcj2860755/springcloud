@@ -14,7 +14,7 @@ import ${basePackage}.model.${modelNameUpperCamel};
 public interface Feign${modelNameUpperCamel}Service {
 
     @GetMapping("${baseRequestMapping}/findById")
-    ${modelNameUpperCamel} findById(@RequestParam String Id);
+    ${modelNameUpperCamel} findById(@RequestParam("id") String id);
 
     @GetMapping("${baseRequestMapping}")
     PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
@@ -23,7 +23,7 @@ public interface Feign${modelNameUpperCamel}Service {
     int add(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
 
     @DeleteMapping("${baseRequestMapping}")
-    int delete(@RequestParam String Id);
+    int delete(@RequestParam("id") String id);
 
     @PutMapping("${baseRequestMapping}")
     int update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});

@@ -37,8 +37,8 @@ public class ${modelNameUpperCamel}Controller {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
     })
-    public void delete(String Id){
-        feign${modelNameLowerCamel}Service.delete(Id);
+    public void delete(String id){
+        feign${modelNameLowerCamel}Service.delete(id);
     }
 
     @PutMapping
@@ -50,7 +50,7 @@ public class ${modelNameUpperCamel}Controller {
         feign${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
     }
 
-    @GetMapping("findById")
+    @GetMapping("/findById")
     @ApiOperation("获取详情")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")

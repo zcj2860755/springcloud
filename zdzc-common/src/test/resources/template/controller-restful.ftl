@@ -20,23 +20,23 @@ public class ${modelNameUpperCamel}Controller {
     private I${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @PostMapping
-    public void add(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
-        ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
+    public int add(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
+        return ${modelNameLowerCamel}Service.save(${modelNameLowerCamel});
     }
 
     @DeleteMapping
-    public void delete(@RequestParam String Id){
-        ${modelNameLowerCamel}Service.deleteById(Id);
+    public int delete(@RequestParam String Id){
+       return ${modelNameLowerCamel}Service.deleteById(Id);
     }
 
     @PutMapping
-    public void update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
-        ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
+    public int update(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel}){
+       return ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
     }
 
-    @GetMapping("findById")
-    public ${modelNameUpperCamel} detail(@RequestParam String Id){
-        return ${modelNameLowerCamel}Service.findById(Id);
+    @GetMapping("/findById")
+    public ${modelNameUpperCamel} detail(@RequestParam("id") String id){
+        return ${modelNameLowerCamel}Service.findById(id);
     }
 
     @GetMapping
