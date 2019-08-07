@@ -44,8 +44,8 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     }
 
     @Override
-    public int delete(TSysDic tSysDic) {
-        int delete = tSysDicMapper.deleteByPrimaryKey(tSysDic.getId());
+    public int delete(String id) {
+        int delete = tSysDicMapper.deleteByPrimaryKey(id);
         System.out.println(delete);
         return delete;
     }
@@ -65,7 +65,7 @@ public  class TSysDicServiceImpl implements ITSysDicService {
 
     @Override
     public TSysDic findById(String id) {
-        return null;
+        return tSysDicMapper.selectTSysDicWithCatergory(id);
     }
 
     @Override

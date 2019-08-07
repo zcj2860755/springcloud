@@ -15,23 +15,23 @@ public  class FeignTSysDicServiceHystrix implements FeignTSysDicService {
 
 
     @Override
-    public String add(TSysDic tSysDic) {
-        return null;
+    public int add(TSysDic tSysDic) {
+        return 0;
     }
 
     @Override
-    public String delete(TSysDic tSysDic) {
-        return null;
+    public int delete(String id) {
+        return 0;
     }
 
     @Override
-    public String update(TSysDic tSysDic) {
-        return null;
+    public int update(TSysDic tSysDic) {
+        return 0;
     }
 
     @Override
-    public String findById(){
-        return "service has fail!";
+    public TSysDic findById(String id) {
+        return null;
     }
 
     @Override

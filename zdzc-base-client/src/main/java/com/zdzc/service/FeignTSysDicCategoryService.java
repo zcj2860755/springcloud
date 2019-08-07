@@ -14,18 +14,16 @@ import com.zdzc.model.TSysDicCategory;
 public interface FeignTSysDicCategoryService {
 
     @GetMapping("/t/sys/dic/category/findById")
-    //TSysDicCategory findById(@RequestParam String Id);  //启动报错 java.lang.IllegalStateException: RequestParam.value() was empty on parameter 0
-    TSysDicCategory findById(@RequestBody String Id);
+    TSysDicCategory findById(@RequestParam("id") String id);
 
-    @GetMapping("/t/sys/dic/category")
+    @GetMapping("/t/sys/dic/category/findList")
     PageList<TSysDicCategory> list(@RequestBody TSysDicCategory tSysDicCategory);
 
     @PostMapping("/t/sys/dic/category")
     int add(@RequestBody TSysDicCategory tSysDicCategory);
 
     @DeleteMapping("/t/sys/dic/category")
-    //int delete(@RequestParam String Id);
-    int delete(@RequestBody String Id);
+    int delete(@RequestParam("id") String id);
 
     @PutMapping("/t/sys/dic/category")
     int update(@RequestBody TSysDicCategory tSysDicCategory);

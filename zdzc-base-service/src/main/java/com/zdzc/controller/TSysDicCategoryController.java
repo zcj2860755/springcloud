@@ -20,26 +20,26 @@ public class TSysDicCategoryController {
     private ITSysDicCategoryService tSysDicCategoryService;
 
     @PostMapping
-    public void add(@RequestBody TSysDicCategory tSysDicCategory){
-        tSysDicCategoryService.save(tSysDicCategory);
+    public int add(@RequestBody TSysDicCategory tSysDicCategory){
+        return tSysDicCategoryService.save(tSysDicCategory);
     }
 
     @DeleteMapping
-    public void delete(@RequestParam String Id){
-        tSysDicCategoryService.deleteById(Id);
+    public int delete(@RequestParam("id") String Id){
+        return tSysDicCategoryService.deleteById(Id);
     }
 
     @PutMapping
-    public void update(@RequestBody TSysDicCategory tSysDicCategory){
-        tSysDicCategoryService.update(tSysDicCategory);
+    public int update(@RequestBody TSysDicCategory tSysDicCategory){
+        return tSysDicCategoryService.update(tSysDicCategory);
     }
 
-    @GetMapping("findById")
-    public TSysDicCategory detail(@RequestParam String Id){
+    @GetMapping("/findById")  // 去掉注解 报错  load balance
+    public TSysDicCategory detail(@RequestParam("id") String Id){
         return tSysDicCategoryService.findById(Id);
     }
 
-    @GetMapping
+    @GetMapping ("/findList")
     public PageList<TSysDicCategory> list(@RequestBody TSysDicCategory tSysDicCategory,BaseRequest baseRequest) {
         return tSysDicCategoryService.list(tSysDicCategory,baseRequest);
     }

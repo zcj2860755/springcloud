@@ -3,6 +3,7 @@ package com.zdzc.service.impl;
 import com.zdzc.dao.TSysDicCategoryMapper;
 import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicCategoryService;
+import com.zdzc.utils.UUIDUtils;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.zdzc.common.BaseRequest;
@@ -21,22 +22,32 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
 
     @Override
     public int save(TSysDicCategory tSysDicCategory) {
-        return tSysDicCategoryMapper.insertSelective(tSysDicCategory);
+        tSysDicCategory.setId(UUIDUtils.getUUID());
+        int insert = tSysDicCategoryMapper.insertSelective(tSysDicCategory);
+        System.out.println("是否插入成功:"+insert);
+        return insert;
     }
 
-    @Override
-    public int update(TSysDicCategory tSysDicCategory) {
-        return tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
-    }
 
     @Override
     public int deleteById(String id){
         return tSysDicCategoryMapper.deleteByPrimaryKey(id);
     }
 
+
+    @Override
+    public int update(TSysDicCategory tSysDicCategory) {
+        int update = tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
+        System.out.println("是否修改:"+update);
+        return update;
+    }
+
+
     @Override
     public TSysDicCategory findById(String id){
-        return tSysDicCategoryMapper.selectByPrimaryKey(id);
+        TSysDicCategory tSysDicCategory = tSysDicCategoryMapper.selectByPrimaryKey(id);
+        System.out.println(tSysDicCategory);
+        return tSysDicCategory;
     }
 
     @Override
