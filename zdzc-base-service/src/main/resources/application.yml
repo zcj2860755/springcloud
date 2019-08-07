@@ -69,8 +69,16 @@ mybatis:
   mapper-locations: classpath:com/zdzc/dao/mapper/*.xml
 
 
-rabbitmq:
-  host: localhost
-  port: 5672
-  username: guest
-  password: guest
+#rabbitmq:
+#  host: localhost
+#  port: 5672
+#  username: guest
+#  password: guest
+
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
