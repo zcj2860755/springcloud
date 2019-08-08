@@ -40,7 +40,7 @@ eureka:
 
 #是否开启swagger文档 true-开启  false-关闭
 swagger:
-  enable: false
+  enable: true
 
 feign:
   httpclient:
