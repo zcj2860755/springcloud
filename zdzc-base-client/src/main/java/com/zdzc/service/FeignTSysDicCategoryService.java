@@ -13,12 +13,6 @@ import com.zdzc.model.TSysDicCategory;
 @FeignClient(value = "basic-service")
 public interface FeignTSysDicCategoryService {
 
-    @GetMapping("/t/sys/dic/category/findById")
-    TSysDicCategory findById(@RequestParam("id") String id);
-
-    @GetMapping("/t/sys/dic/category/findList")
-    PageList<TSysDicCategory> list(@RequestBody TSysDicCategory tSysDicCategory);
-
     @PostMapping("/t/sys/dic/category")
     int add(@RequestBody TSysDicCategory tSysDicCategory);
 
@@ -27,4 +21,11 @@ public interface FeignTSysDicCategoryService {
 
     @PutMapping("/t/sys/dic/category")
     int update(@RequestBody TSysDicCategory tSysDicCategory);
+
+    @GetMapping("/t/sys/dic/category/findById")
+    TSysDicCategory findById(@RequestParam("id") String id);
+
+    @PostMapping("/t/sys/dic/category/pageList")
+    PageList<TSysDicCategory> pageList(@RequestBody TSysDicCategory tSysDicCategory);
+
 }

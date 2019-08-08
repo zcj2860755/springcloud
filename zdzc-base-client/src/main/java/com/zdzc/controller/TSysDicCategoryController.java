@@ -59,13 +59,15 @@ public class TSysDicCategoryController {
         return feigntSysDicCategoryService.findById(id);
     }
 
-    @GetMapping("/selectAll")
+    //@GetMapping("/pageList")
+    @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query")
+            @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysDicCategory> list(@ApiIgnore TSysDicCategory tSysDicCategory) {
-        return feigntSysDicCategoryService.list(tSysDicCategory);
+    public PageList<TSysDicCategory> pageList(@ApiIgnore TSysDicCategory tSysDicCategory) {
+        return feigntSysDicCategoryService.pageList(tSysDicCategory);
     }
 }

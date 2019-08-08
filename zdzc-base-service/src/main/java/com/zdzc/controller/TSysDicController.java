@@ -50,8 +50,8 @@ public class TSysDicController {
         return tSysDicService.findById(id);
     }
 
-    @GetMapping("/findList")
-    public PageList<TSysDic> list(@RequestBody TSysDic tSysDic, BaseRequest baseRequest) {
+    @PostMapping("/pageList")
+    public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic, BaseRequest baseRequest) {
         return tSysDicService.list(tSysDic,baseRequest);
     }
 

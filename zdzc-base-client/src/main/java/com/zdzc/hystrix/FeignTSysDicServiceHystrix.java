@@ -35,7 +35,7 @@ public  class FeignTSysDicServiceHystrix implements FeignTSysDicService {
     }
 
     @Override
-    public PageList<TSysDic> list(TSysDic tSysDic) {
+    public PageList<TSysDic> pageList(TSysDic tSysDic) {
         return null;
     }
 }
