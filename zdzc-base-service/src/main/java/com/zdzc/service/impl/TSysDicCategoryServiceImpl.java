@@ -1,6 +1,7 @@
 package com.zdzc.service.impl;
 
 import com.zdzc.dao.TSysDicCategoryMapper;
+import com.zdzc.dao.TSysDicMapper;
 import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicCategoryService;
 import com.zdzc.utils.UUIDUtils;
@@ -10,6 +11,7 @@ import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Author : 李琳青
@@ -19,9 +21,19 @@ import javax.annotation.Resource;
 public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
     @Resource
     private TSysDicCategoryMapper tSysDicCategoryMapper;
+    @Resource
+    private TSysDicMapper tSysDicMapper;
 
     @Override
     public int save(TSysDicCategory tSysDicCategory) {
+        //查询出类别表里是否有相同的key  有就返回0,否则返回1
+        List<TSysDicCategory> dicCategories = tSysDicCategoryMapper.select(tSysDicCategory);
+        for (TSysDicCategory dicCategory : dicCategories) {
+           if(dicCategory.getDicKey().equals(tSysDicCategory.getDicKey())){
+               System.out.println("数据库里已经有相同的dic_key");
+                return 0;
+            }
+        }
         tSysDicCategory.setId(UUIDUtils.getUUID());
         int insert = tSysDicCategoryMapper.insertSelective(tSysDicCategory);
         System.out.println("是否插入成功:"+insert);
@@ -53,6 +65,12 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
     @Override
     public PageList<TSysDicCategory> list(TSysDicCategory tSysDicCategory,BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
-        return new PageList<TSysDicCategory>(tSysDicCategoryMapper.select(tSysDicCategory));
+        List<TSysDicCategory> list = tSysDicCategoryMapper.selectDicCategoryList(tSysDicCategory);
+        //查询每一个类别里字典小类数量
+        for (TSysDicCategory category : list) {
+            int count = tSysDicMapper.selectDicCountByCategoryId(category.getId());
+            category.setDicCount(count);
+        }
+        return new PageList<TSysDicCategory>(list);
     }
 }

@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(value = "basic-service")
 public interface FeignTSysDicService {
 
-    @PostMapping("/t/sys/dic")
+    @PostMapping("/dic")
     int add(@RequestBody TSysDic tSysDic);
 
-    @DeleteMapping("/t/sys/dic")
+    @DeleteMapping("/dic")
     int delete(@RequestParam("id") String id);
 
-    @PutMapping("/t/sys/dic")
+    @PutMapping("/dic")
     int update(@RequestBody TSysDic tSysDic);
 
-    @GetMapping("/t/sys/dic/findById")
+    @GetMapping("/dic/findById")
     TSysDic findById(@RequestParam("id") String id);
 
-    @PostMapping("/t/sys/dic/pageList")
+    @PostMapping("/dic/pageList")
     PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic);
 
 }

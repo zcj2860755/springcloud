@@ -22,8 +22,8 @@ import java.util.List;
  * Date : 2019-08-07 16:42
  */
 @RestController
-@RequestMapping("/t/sys/province")
-@Api(description = "接口描述")
+@RequestMapping("/province")
+@Api(description = "省份接口API")
 public class TSysProvinceController {
     @Resource
     private FeignTSysProvinceService feigntSysProvinceService;

@@ -30,17 +30,19 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     private TSysDicCategoryMapper tSysDicCategoryMapper;
 
     @Override
-    @Transactional
     public int insert(TSysDic tSysDic) {
+        List<TSysDic> dicList = tSysDicMapper.select(tSysDic);
+        for (TSysDic sysDic : dicList) {
+           if(sysDic.getDicKey().equals(tSysDic.getDicKey())){
+               System.out.println("数据库里已经有相同的dic_key");
+               return 0;
+           }
+        }
         tSysDic.setId(UUIDUtils.getUUID());
-        tSysDic.setIsEnable(1);
+        //tSysDic.setIsEnable(1);
         int insert = tSysDicMapper.insert(tSysDic);
         System.out.println("是否插入字典表:"+insert);
-        TSysDicCategory tSysDicCategory = tSysDicCategoryMapper.selectByPrimaryKey((tSysDic.getCategoryId()));
-        tSysDicCategory.setDicValue(tSysDic.getCategoryDirValue());
-        int update = tSysDicCategoryMapper.updateByPrimaryKey(tSysDicCategory);
-        System.out.println("是否修改:"+update);
-        return insert+update;
+        return insert;
     }
 
     @Override
@@ -51,16 +53,10 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     }
 
     @Override
-    @Transactional
     public int update(TSysDic tSysDic) {
-        int update1 = tSysDicMapper.updateByPrimaryKey(tSysDic);
-        System.out.println("是否修改了字典表:"+update1);
-        TSysDicCategory category = tSysDicCategoryMapper.selectByPrimaryKey(tSysDic.getCategoryId());
-        category.setDicKey(tSysDic.getCategoryDirKey());
-        category.setDicValue(tSysDic.getCategoryDirValue());
-        int key = tSysDicCategoryMapper.updateByPrimaryKey(category);
-        System.out.println("是否修改类别表:"+key);
-        return update1+key;
+        int update = tSysDicMapper.updateByPrimaryKey(tSysDic);
+        System.out.println("是否修改了字典表:"+update);
+        return update;
     }
 
     @Override

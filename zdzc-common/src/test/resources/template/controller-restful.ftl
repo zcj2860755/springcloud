@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 
 
 /**
+ * Description :
  * Author : ${author}
  * Date : ${date}
  */
@@ -25,8 +26,8 @@ public class ${modelNameUpperCamel}Controller {
     }
 
     @DeleteMapping
-    public int delete(@RequestParam String Id){
-       return ${modelNameLowerCamel}Service.deleteById(Id);
+    public int delete(@RequestParam("id") String id){
+       return ${modelNameLowerCamel}Service.deleteById(id);
     }
 
     @PutMapping

@@ -12,4 +12,20 @@
     <result column="sort_no" jdbcType="INTEGER" property="sortNo" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+
+
+
+  <!-- 条件查询 list -->
+  <select id="selectDicCategoryList" resultMap="BaseResultMap">
+    SELECT id,dic_key,dic_value,is_enable,sort_no,remark
+    from  t_sys_dic_category
+    <where>
+      <if test="keyWords != null">
+         (dic_key like concat('%',#{keyWords},'%') or dic_value like concat('%',#{keyWords},'%') or remark like concat('%',#{keyWords},'%') )
+      </if>
+    </where>
+    order by sort_no desc
+  </select>
+
+
 </mapper>
