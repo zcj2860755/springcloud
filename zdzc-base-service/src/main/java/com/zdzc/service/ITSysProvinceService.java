@@ -57,19 +57,6 @@ public interface ITSysProvinceService {
     List<TSysProvince> provinceList();
 
 
-    /**
-     * @description：查询某省份下的所有城市
-     * @author：李琳青
-     * @date：2019-08-07 16:42
-     */
-    List<TSysCity> selectCityList(Integer provinceId);
-
-    /**
-     * @description：查询某省城市下的所有区
-     * @author：李琳青
-     * @date：2019-08-07 16:42
-     */
-    List<TSysArea> selectAreaList(Integer cityId);
 
 
 }

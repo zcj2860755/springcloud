@@ -9,6 +9,8 @@ import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Author : 李琳青
@@ -21,7 +23,11 @@ public class TSysCityServiceImpl implements ITSysCityService {
 
     @Override
     public int save(TSysCity tSysCity) {
-        return tSysCityMapper.insertSelective(tSysCity);
+        tSysCity.setCreateTime(new Date());
+        int insert = tSysCityMapper.insertSelective(tSysCity);
+        Integer id = tSysCity.getId();
+        System.out.println("id："+id);
+        return insert;
     }
 
     @Override
@@ -44,4 +50,10 @@ public class TSysCityServiceImpl implements ITSysCityService {
         PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
         return new PageList<TSysCity>(tSysCityMapper.select(tSysCity));
     }
+
+    @Override
+    public List<TSysCity> selectCityList(Integer provinceId) {
+        return tSysCityMapper.selectCityList(provinceId);
+    }
+
 }

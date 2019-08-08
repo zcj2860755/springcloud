@@ -18,12 +18,13 @@ import java.util.List;
 
 
 /**
+ * descirption : 区域API接口
  * Author : 李琳青
  * Date : 2019-08-07 16:42
  */
 @RestController
 @RequestMapping("/province")
-@Api(description = "省份接口API")
+@Api(description = "区域接口API")
 public class TSysProvinceController {
     @Resource
     private FeignTSysProvinceService feigntSysProvinceService;
@@ -75,22 +76,12 @@ public class TSysProvinceController {
     }*/
 
 
-    @GetMapping("/selectProvinceList")
-    @ApiOperation("分页查询")
+    @PostMapping("/selectProvinceList")
+    @ApiOperation("省份list")
     public List<TSysProvince> provinceList() {
         return feigntSysProvinceService.provinceList();
     }
 
-    @GetMapping("/selectCityListByProvinceId")
-    @ApiOperation("分页查询")
-    public List<TSysCity> cityList(Integer provinceId) {
-        return feigntSysProvinceService.selectCityList(provinceId);
-    }
 
-    @GetMapping("/selectAreaListByCityId")
-    @ApiOperation("分页查询")
-    public List<TSysArea> areaList(Integer cityId) {
-        return feigntSysProvinceService.selectAreaList(cityId);
-    }
 
 }

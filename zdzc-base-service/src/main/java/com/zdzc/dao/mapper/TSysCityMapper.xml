@@ -6,7 +6,7 @@
       WARNING - @mbg.generated
     -->
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="provide_id" jdbcType="INTEGER" property="provideId" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
@@ -17,7 +17,7 @@
   <!--查询某省下的所有城市-->
   <select id="selectCityList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
      SELECT  *  from  t_sys_city
-     where  enabled =1 and provide_id = #{provinceId}
+     where  enabled =1 and province_id = #{provinceId}
     </select>
 
 </mapper>

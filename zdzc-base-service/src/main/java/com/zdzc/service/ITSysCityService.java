@@ -4,6 +4,8 @@ import com.zdzc.model.TSysCity;
 import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 
+import java.util.List;
+
 /**
  * Author : 李琳青
  * Date : 2019-08-07 18:42
@@ -44,5 +46,13 @@ public interface ITSysCityService {
     * @date：2019-08-07 18:42
     */
     PageList<TSysCity> list(TSysCity tSysCity,BaseRequest baseRequest);
+
+    /**
+     * @description：查询某省份下的所有城市
+     * @author：李琳青
+     * @date：2019-08-07 16:42
+     */
+    List<TSysCity> selectCityList(Integer provinceId);
+
 
 }
