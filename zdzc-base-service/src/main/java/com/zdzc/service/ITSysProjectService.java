@@ -45,7 +45,7 @@ public interface ITSysProjectService {
      * @param tSysProject
      * @return
      */
-    PageList<TSysProject> selectParamsList(TSysProject tSysProject, BaseRequest baseRequest);
+    PageList<TSysProject> selectParamsList(TSysProject tSysProject);
 
     /**
      * 获取项目详情

@@ -61,7 +61,7 @@ public interface ITSysAccountService{
      * @Param [tSysAccount, baseRequest]
      * @return com.zdzc.common.PageList<com.zdzc.model.TSysAccount>
      **/
-    PageList<TSysAccount> selectParamsList(TSysAccount tSysAccount, BaseRequest baseRequest);
+    PageList<TSysAccount> selectParamsList(TSysAccount tSysAccount);
 
     /**
      * @Author  zcj
@@ -86,7 +86,7 @@ public interface ITSysAccountService{
      * @Param [tSysAccount, baseRequest]
      * @return com.zdzc.common.PageList<com.zdzc.model.TSysAccount>
      **/
-    PageList<TSysAccount> selectAccountList(TSysAccount tSysAccount, BaseRequest baseRequest);
+    PageList<TSysAccount> selectAccountPageList(TSysAccount tSysAccount);
 
     List<TSysAccount> selectAccountList(TSysAccount tSysAccount);
 

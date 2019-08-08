@@ -49,7 +49,7 @@ public interface ITSysAuthorityService {
      * @Param [tSysAuthority, baseRequest]
      * @return com.zdzc.common.PageList<com.zdzc.model.TSysAuthority>
      **/
-    PageList<TSysAuthority> selectParamsList(TSysAuthority tSysAuthority, BaseRequest baseRequest);
+    PageList<TSysAuthority> selectParamsList(TSysAuthority tSysAuthority);
 
     /**
      * @Author  zcj
@@ -84,7 +84,7 @@ public interface ITSysAuthorityService {
      * @Param [tSysAuthority, baseRequest]
      * @return com.zdzc.common.PageList<com.zdzc.model.TSysAuthority>
      **/
-    PageList<TSysAuthority> getAllAuthList(TSysAuthority tSysAuthority, BaseRequest baseRequest);
+    PageList<TSysAuthority> getAllAuthList(TSysAuthority tSysAuthority);
 
     /**
      * @Author  zcj

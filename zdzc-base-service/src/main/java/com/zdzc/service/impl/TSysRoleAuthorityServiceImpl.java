@@ -29,6 +29,8 @@ public class TSysRoleAuthorityServiceImpl implements ITSysRoleAuthorityService {
             for (TSysRoleAuthority role : tSysRoleAuthoritys) {
                 roleIds.add(role.getAuthId());
             }
+        }else {
+            roleIds = null ;
         }
 
         return roleIds;

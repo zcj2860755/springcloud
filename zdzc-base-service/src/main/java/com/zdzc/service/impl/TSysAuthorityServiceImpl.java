@@ -69,8 +69,8 @@ public class TSysAuthorityServiceImpl implements ITSysAuthorityService {
     }
 
     @Override
-    public PageList<TSysAuthority> selectParamsList(TSysAuthority tSysAuthority, BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+    public PageList<TSysAuthority> selectParamsList(TSysAuthority tSysAuthority) {
+        PageHelper.startPage(tSysAuthority.getPageNo(),tSysAuthority.getPageSize());
         //List<TSysAuthority>  tSysAuthorityList= tSysAuthorityMapper.selectParamsBySreach(tSysAuthority);
 
         return new PageList<TSysAuthority>(tSysAuthorityMapper.selectParamsBySreach(tSysAuthority));
@@ -115,8 +115,8 @@ public class TSysAuthorityServiceImpl implements ITSysAuthorityService {
     }
 
     @Override
-    public PageList<TSysAuthority> getAllAuthList(TSysAuthority tSysAuthority, BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+    public PageList<TSysAuthority> getAllAuthList(TSysAuthority tSysAuthority) {
+        PageHelper.startPage(tSysAuthority.getPageNo(),tSysAuthority.getPageSize());
         return new PageList<TSysAuthority>(tSysAuthorityMapper.selectAllAuthority(tSysAuthority));
     }
 

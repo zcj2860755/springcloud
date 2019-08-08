@@ -51,14 +51,14 @@ public class TSysRoleController {
             @ApiImplicitParam(name = "status", value = "状态(-1-删除 0-启用 1-冻结)", required = false, paramType = "query"),
             @ApiImplicitParam(name = "isLogin", value = "是否可以登录，0-可以登录，1-不容许", required = false, paramType = "query")
     })
-    public void add(@RequestBody TSysRole tSysRole) {
+    public void add(@ApiIgnore @RequestBody TSysRole tSysRole) {
         tSysRoleService.insertSelective(tSysRole);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @ApiOperation("删除")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键", required = true, paramType = "path")
     })
     public void delete(@PathVariable String id) {
         if(ObjectUtils.isEmpty(id)){
@@ -79,7 +79,7 @@ public class TSysRoleController {
             @ApiImplicitParam(name = "status", value = "状态(-1-删除 0-启用 1-冻结)", required = false, paramType = "query"),
             @ApiImplicitParam(name = "isLogin", value = "是否可以登录，0-可以登录，1-不容许", required = false, paramType = "query")
     })
-    public void update(@RequestBody TSysRole tSysRole) {
+    public void update(@ApiIgnore @RequestBody TSysRole tSysRole) {
         tSysRoleService.updateByPrimaryKeySelective(tSysRole);
     }
 
@@ -134,7 +134,7 @@ public class TSysRoleController {
     @PostMapping("/existRoleSign")
     @ApiOperation("判断角色是否重复")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "roleName", value = "角色名称", required = true, paramType = "path")
+            @ApiImplicitParam(name = "roleName", value = "角色名称", required = true, paramType = "query")
     })
     public void getUserRoleName(@RequestBody TSysRole tSysRole) {
         tSysRole.setDelFlag(CommonStatus.STATUS_NORMAL);

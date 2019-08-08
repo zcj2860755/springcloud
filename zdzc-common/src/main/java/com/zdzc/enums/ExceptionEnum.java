@@ -69,6 +69,7 @@ public enum ExceptionEnum {
     USER_STATUS_NULL(40009,"用户状态不能为空"),
     USER_OLDPASSWORD_NULL(40010,"旧密码不能为空"),
     USER_NEWPASSWORD_NULL(40011,"新密码不能为空"),
+    USER_PHONE_NULL(40012,"用户手机号码不能为空"),
 
     //--------------- 项目相关错误 50000+ --------------------
     PROJECT_ERROR(50001,"[]"),

@@ -173,8 +173,8 @@ public class TSysProjectServiceImpl implements ITSysProjectService {
     }
 
     @Override
-    public PageList<TSysProject> selectParamsList(TSysProject tSysProject, BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+    public PageList<TSysProject> selectParamsList(TSysProject tSysProject) {
+        PageHelper.startPage(tSysProject.getPageNo(),tSysProject.getPageSize());
         return new PageList<TSysProject>(tSysProjectMapper.selectParamsBySreach(tSysProject));
     }
 

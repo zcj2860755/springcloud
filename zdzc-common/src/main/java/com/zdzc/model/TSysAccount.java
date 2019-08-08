@@ -1,5 +1,6 @@
 package com.zdzc.model;
 
+import com.zdzc.common.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 
 @ApiModel
 @Table(name = "t_sys_account")
-public class TSysAccount {
+public class TSysAccount extends BaseRequest {
 
     @ApiModelProperty("主键")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

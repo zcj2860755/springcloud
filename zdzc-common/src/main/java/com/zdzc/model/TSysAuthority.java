@@ -1,5 +1,6 @@
 package com.zdzc.model;
 
+import com.zdzc.common.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @ApiModel
 @Table(name = "t_sys_authority")
-public class TSysAuthority {
+public class TSysAuthority extends BaseRequest {
     /**
      * 主键id
      */

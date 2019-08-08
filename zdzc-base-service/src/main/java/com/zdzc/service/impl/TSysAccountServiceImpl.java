@@ -37,7 +37,7 @@ public class TSysAccountServiceImpl implements ITSysAccountService {
 
 
     @Override
-    public PageList<TSysAccount> selectParamsList(TSysAccount tSysAccount, BaseRequest baseRequest) {
+    public PageList<TSysAccount> selectParamsList(TSysAccount tSysAccount ) {
         return null;
     }
 
@@ -79,9 +79,9 @@ public class TSysAccountServiceImpl implements ITSysAccountService {
     }
 
     @Override
-    public PageList<TSysAccount> selectAccountList(TSysAccount tSysAccount, BaseRequest baseRequest) {
+    public PageList<TSysAccount> selectAccountPageList(TSysAccount tSysAccount) {
 
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+        PageHelper.startPage(tSysAccount.getPageNo(),tSysAccount.getPageSize());
         return new PageList<TSysAccount>(tSysAccountMapper.selectParamsBySreach(tSysAccount));
     }
 
