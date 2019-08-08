@@ -50,7 +50,7 @@ public class TSysRoleController {
     @DeleteMapping("/{id}")
     @ApiOperation("删除")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键", required = true, paramType = "path")
     })
     public void delete(@PathVariable String id) {
         if(ObjectUtils.isEmpty(id)){
@@ -118,9 +118,10 @@ public class TSysRoleController {
     @PostMapping("/existRoleSign")
     @ApiOperation("判断角色是否重复")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "roleName", value = "角色名称", required = true, paramType = "path")
+            @ApiImplicitParam(name = "roleName", value = "角色名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "roleSign", value = "角色标识", required = false, paramType = "query")
     })
-    public void getUserRoleName(@RequestBody TSysRole tSysRole) {
+    public void getUserRoleName(@ApiIgnore  TSysRole tSysRole) {
          feignTSysRoleService.getUserRoleName(tSysRole);
     }
 }

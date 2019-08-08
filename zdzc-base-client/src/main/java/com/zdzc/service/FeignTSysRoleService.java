@@ -27,7 +27,7 @@ public interface FeignTSysRoleService {
      * @Param [id]
      * @return void
      **/
-    @DeleteMapping("/role/{id}")
+    @DeleteMapping("/role/delete/{id}")
     void delete(@PathVariable(value = "id") String id);
     /**
      * @Author  zcj
