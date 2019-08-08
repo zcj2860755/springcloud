@@ -105,8 +105,8 @@ public class TSysRoleController {
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysRole> list(@RequestBody TSysRole tSysRole, BaseRequest baseRequest) {
-        PageList<TSysRole>  pageList = tSysRoleService.selectParamsList(tSysRole,baseRequest);
+    public PageList<TSysRole> list(@ApiIgnore @RequestBody TSysRole tSysRole) {
+        PageList<TSysRole>  pageList = tSysRoleService.selectParamsList(tSysRole);
         return pageList;
     }
 

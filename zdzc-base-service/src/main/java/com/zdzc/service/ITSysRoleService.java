@@ -72,7 +72,7 @@ public interface ITSysRoleService {
     * @Param [Params, baseRequest]
     * @return com.zdzc.common.PageList<com.zdzc.model.TSysRole>
     **/
-    PageList<TSysRole> selectParamsList(TSysRole Params, BaseRequest baseRequest);
+    PageList<TSysRole> selectParamsList(TSysRole Params);
 
     /**
      * @Author  zcj

@@ -106,9 +106,9 @@ public class TSysRoleServiceImpl implements ITSysRoleService {
     }
 
     @Override
-    public PageList<TSysRole> selectParamsList(TSysRole Params, BaseRequest baseRequest) {
+    public PageList<TSysRole> selectParamsList(TSysRole Params) {
         Params.setDelFlag(0);
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+        PageHelper.startPage(Params.getPageNo(),Params.getPageSize());
         return new PageList<TSysRole>(tSysRoleMapper.selectParamsBySreach(Params));
     }
 

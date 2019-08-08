@@ -1,5 +1,6 @@
 package com.zdzc.controller;
 
+import com.zdzc.common.BaseRequest;
 import com.zdzc.common.CommonStatus;
 import com.zdzc.common.PageList;
 import com.zdzc.enums.ExceptionEnum;
@@ -84,7 +85,7 @@ public class TSysRoleController {
         return tSysRole;
     }
 
-    @PostMapping("/pageList")
+    @GetMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),

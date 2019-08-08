@@ -1,14 +1,11 @@
 package com.zdzc.service;
 
 
-import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 import com.zdzc.model.TSysRole;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @FeignClient(value = "basic-service")

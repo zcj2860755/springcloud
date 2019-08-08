@@ -1,5 +1,6 @@
 package com.zdzc.model;
 
+import com.zdzc.common.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -8,7 +9,7 @@ import java.util.Date;
 
 @ApiModel
 @Table(name = "t_sys_role")
-public class TSysRole {
+public class TSysRole extends BaseRequest {
 
     /**
      * 角色禁用状态
