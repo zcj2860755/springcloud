@@ -1,16 +1,19 @@
 package com.zdzc.common;
 
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 public class BaseRequest implements Serializable {
     /**
      * 页数
      */
+    @Transient
     private Integer pageNo = 1;
 
     /**
      * 每页展示条数
      */
+    @Transient
     private Integer pageSize = 20;
 
     public Integer getPageNo() {
