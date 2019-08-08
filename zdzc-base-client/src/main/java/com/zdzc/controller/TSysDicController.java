@@ -14,47 +14,59 @@ import javax.annotation.Resource;
 
 
 /**
+ * descirption : 字典API接口
  * Author : 李琳青
  * Date : 2019-08-06 13:41
  */
 @RestController
-@RequestMapping("/t/sys/dic")
-@Api(description = "字典管理API接口")
+@RequestMapping("/dic")
+@Api(description = "字典API接口")
 public class TSysDicController {
     @Resource
     private FeignTSysDicService feigntSysDicService;
 
-    @PostMapping("/insert")
+    @PostMapping
     @ApiOperation("新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
+            @ApiImplicitParam(name = "categoryId", value = "类别id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "dicKey", value = "字典编码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "dicValue", value = "字典名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "isEnable", value = "是否启用(0-关闭 1-启用)", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "sortNo", value = "排序", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "remark", value = "描述", required = true, paramType = "query"),
     })
-    public void add(@ApiIgnore TSysDic tSysDic){
-        feigntSysDicService.add(tSysDic);
+    public int add(@ApiIgnore TSysDic tSysDic){
+        return feigntSysDicService.add(tSysDic);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping
     @ApiOperation("删除")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
-    public void delete(String id){
-        feigntSysDicService.delete(id);
+    public int delete(String id){
+        return feigntSysDicService.delete(id);
     }
 
-    @PutMapping("/update")     // PutMapping("/update") 报错   这个参数都得传 isEnable  cate..key
+    @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "categoryId", value = "类别id", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "dicKey", value = "字典编码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "dicValue", value = "字典名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "isEnable", value = "是否启用(0-关闭 1-启用)", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "sortNo", value = "排序", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "remark", value = "描述", required = true, paramType = "query"),
     })
-    public void update(@ApiIgnore TSysDic tSysDic){
-        feigntSysDicService.update(tSysDic);
+    public int update(@ApiIgnore TSysDic tSysDic){
+        return feigntSysDicService.update(tSysDic);
     }
 
     @GetMapping("/findById")
     @ApiOperation("获取详情")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public TSysDic detail(String id){
         return feigntSysDicService.findById(id);
@@ -65,7 +77,7 @@ public class TSysDicController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query")
+            @ApiImplicitParam(name = "categoryId", value = "类别id", required = true, paramType = "query")
     })
     public PageList<TSysDic> pageList(@ApiIgnore TSysDic tSysDic) {
         return feigntSysDicService.pageList(tSysDic);

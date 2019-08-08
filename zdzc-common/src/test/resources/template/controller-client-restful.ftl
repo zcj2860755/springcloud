@@ -13,6 +13,7 @@ import com.zdzc.common.PageList;
 
 
 /**
+ * Description :
  * Author : ${author}
  * Date : ${date}
  */
@@ -28,17 +29,17 @@ public class ${modelNameUpperCamel}Controller {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
     })
-    public void add(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
-        feign${modelNameLowerCamel}Service.add(${modelNameLowerCamel});
+    public int add(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
+        return feign${modelNameLowerCamel}Service.add(${modelNameLowerCamel});
     }
 
     @DeleteMapping
     @ApiOperation("删除")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
-    public void delete(String id){
-        feign${modelNameLowerCamel}Service.delete(id);
+    public int delete(String id){
+        return feign${modelNameLowerCamel}Service.delete(id);
     }
 
     @PutMapping
@@ -46,14 +47,14 @@ public class ${modelNameUpperCamel}Controller {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
     })
-    public void update(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
-        feign${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
+    public int update(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
+        return feign${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
     }
 
     @GetMapping("/findById")
     @ApiOperation("获取详情")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public ${modelNameUpperCamel} detail(String id){
         return feign${modelNameLowerCamel}Service.findById(id);

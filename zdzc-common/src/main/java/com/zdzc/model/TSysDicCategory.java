@@ -41,6 +41,32 @@ public class TSysDicCategory implements Serializable {
      */
     private String remark;
 
+
+    /**
+     * 小类的数量
+     */
+    @Transient
+    private Integer DicCount = 0;
+    @Transient
+    private String keyWords;
+
+
+    public Integer getDicCount() {
+        return DicCount;
+    }
+
+    public void setDicCount(Integer dicCount) {
+        DicCount = dicCount;
+    }
+
+    public String getKeyWords() {
+        return keyWords;
+    }
+
+    public void setKeyWords(String keyWords) {
+        this.keyWords = keyWords;
+    }
+
     /**
      * 获取主键
      *

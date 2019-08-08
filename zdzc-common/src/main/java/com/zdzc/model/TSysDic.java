@@ -27,7 +27,7 @@ public class TSysDic {
      * 字典value
      */
     @Column(name = "dic_value")
-    private Integer dicValue;
+    private String dicValue;
 
     /**
      * 是否启用 1-启用 0-关闭
@@ -45,7 +45,6 @@ public class TSysDic {
      * 备注
      */
     private String remark;
-
 
 
     @Transient
@@ -70,13 +69,14 @@ public class TSysDic {
     public void setCategoryDirValue(String categoryDirValue) {
         CategoryDirValue = categoryDirValue;
     }
+
     public String getKeyWords() {
         return keyWords;
     }
+
     public void setKeyWords(String keyWords) {
         this.keyWords = keyWords;
     }
-
 
 
 
@@ -139,7 +139,7 @@ public class TSysDic {
      *
      * @return dic_value - 字典value
      */
-    public Integer getDicValue() {
+    public String getDicValue() {
         return dicValue;
     }
 
@@ -148,7 +148,7 @@ public class TSysDic {
      *
      * @param dicValue 字典value
      */
-    public void setDicValue(Integer dicValue) {
+    public void setDicValue(String dicValue) {
         this.dicValue = dicValue;
     }
 

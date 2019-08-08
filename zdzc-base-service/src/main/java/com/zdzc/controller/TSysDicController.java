@@ -7,6 +7,7 @@ import com.zdzc.service.ITSysDicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -17,40 +18,66 @@ import javax.annotation.Resource;
  * Date : 2019-08-06 13:41
  */
 @RestController
-@RequestMapping("/t/sys/dic")
+@RequestMapping("/dic")
 @Api(description="数据字典接口API")
 public class TSysDicController {
     @Resource
     private ITSysDicService tSysDicService;
 
     @PostMapping
+    @ApiOperation("新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "dicKey", value = "字典key(编号)", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "dicValue", value = "字典value(标签)", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "categoryId", value = "类别id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "dicKey", value = "字典编码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "dicValue", value = "字典名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "isEnable", value = "是否启用(0-关闭 1-启用)", required = true, paramType = "query"),
             @ApiImplicitParam(name = "sortNo", value = "排序", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "categoryId", value = "类型(字典类别的key)", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "CategoryDirValue", value = "类型描述(字典类别的value)", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "remark", value = "描述", required = true, paramType = "query"),
     })
     public int add(@RequestBody TSysDic tSysDic){
         return tSysDicService.insert(tSysDic);
     }
 
     @DeleteMapping
+    @ApiOperation("删除")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
     public int delete(@RequestParam("id") String id){
         return tSysDicService.delete(id);
     }
 
     @PutMapping
+    @ApiOperation("更新")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "categoryId", value = "类别id", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "dicKey", value = "字典编码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "dicValue", value = "字典名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "isEnable", value = "是否启用(0-关闭 1-启用)", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "sortNo", value = "排序", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "remark", value = "描述", required = true, paramType = "query"),
+    })
     public int update(@RequestBody TSysDic tSysDic){
         return tSysDicService.update(tSysDic);
     }
 
     @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
     public TSysDic detail(@RequestParam("id") String id){
         return tSysDicService.findById(id);
     }
 
     @PostMapping("/pageList")
+    @ApiOperation("分页查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "categoryId", value = "类别id", required = true, paramType = "query")
+    })
     public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic, BaseRequest baseRequest) {
         return tSysDicService.list(tSysDic,baseRequest);
     }
