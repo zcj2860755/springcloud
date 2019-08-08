@@ -70,22 +70,23 @@
         c.dic_key = #{dicKey, jdbcType=VARCHAR} order by d.sort_no
   </select>
 
+    <!-- 根据id 查询对象 —— 关联类别 -->
     <select id="selectTSysDicWithCatergory" parameterType="java.lang.String" resultMap="BaseResultMap">
      SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
         from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
         where a.is_enable =1 and b.is_enable = 1 and a.id=#{id}
-  </select>
+    </select>
 
 
-     <!--条件查询  多个字段有一样的值会不会有影响-->
+     <!-- 条件查询  多个字段有一样的值会不会有影响 -->
     <select id="selectAllDic" resultMap="BaseResultMap">
         SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
         from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
         where a.is_enable =1 and b.is_enable = 1
           <if test="keyWords != null">
-             (a.dic_key like concat('%',#{keyWords},'%') or a.dic_value like concat('%',#{keyWords},'%') or b.dic_key like concat('%',#{keyWords},'%') or b.dic_value like concat('%',#{keyWords},'%'))
+            and (a.dic_key like concat('%',#{keyWords},'%') or a.dic_value like concat('%',#{keyWords},'%') or b.dic_key like concat('%',#{keyWords},'%') or b.dic_value like concat('%',#{keyWords},'%'))
           </if>
-        order by tsd.sort_no desc
+        order by a.sort_no desc
   </select>
 
 </mapper>

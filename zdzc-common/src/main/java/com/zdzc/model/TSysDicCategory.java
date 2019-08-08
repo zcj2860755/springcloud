@@ -1,9 +1,10 @@
 package com.zdzc.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "t_sys_dic_category")
-public class TSysDicCategory {
+public class TSysDicCategory implements Serializable {
     /**
      * 主键
      */
