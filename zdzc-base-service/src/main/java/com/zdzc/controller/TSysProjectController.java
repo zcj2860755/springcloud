@@ -53,7 +53,7 @@ public class TSysProjectController extends BaseController{
             @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query")
 
     })
-    public void add(@ApiIgnore TSysProject tSysProject) {
+    public void add(@ApiIgnore @RequestBody TSysProject tSysProject) {
         //新增，获取session里面的数据
        /* if(StringUtils.isEmpty(tSysProject.getParentId()) || tSysProject.getParentId().equals("0")){
             tSysProject.setParentId(getLoginUser().getProId());
@@ -91,7 +91,7 @@ public class TSysProjectController extends BaseController{
             @ApiImplicitParam(name = "userIds", value = "管理员id",allowMultiple = true , required = false, paramType = "query"),
             @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query")
     })
-    public void update(@ApiIgnore TSysProject tSysProject) {
+    public void update(@ApiIgnore @RequestBody TSysProject tSysProject) {
         if(!StringUtils.isEmpty(getLoginUser().getProId())){
             if(getLoginUser().getProId().equals(tSysProject.getId())){
                 throw new BaseException(ExceptionEnum.PROJECT_EDIT_ERROR);
@@ -132,14 +132,14 @@ public class TSysProjectController extends BaseController{
         return sysProject;
     }
 
-    @GetMapping
+    @PostMapping("pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysProject> list(@ApiIgnore TSysProject tSysProject) {
+    public PageList<TSysProject> list(@ApiIgnore @RequestBody TSysProject tSysProject) {
 
         Token token = getLoginUser();
         if(!StringUtils.isEmpty(token.getProId())){
@@ -183,19 +183,19 @@ public class TSysProjectController extends BaseController{
         return pageList;
     }
 
-    @GetMapping("/findList")
-    @ApiOperation("查询所有")
-    public List<TSysProject> findAlllist(@ApiIgnore TSysProject tSysProject) {
+    @PostMapping("/findList")
+    @ApiOperation("查询所有--级联展示")
+    public List<TSysProject> findAlllist(@ApiIgnore @RequestBody TSysProject tSysProject) {
         List<TSysProject>  lists= tSysProjectService.selectByExample(tSysProject);
         return lists;
     }
 
-    @GetMapping("/edit/findList")
+    @PostMapping("/edit/findList")
     @ApiOperation("查询所有")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "项目Id", required = true, paramType = "query")
     })
-    public List<TSysProject> editFindAlllist(@ApiIgnore TSysProject tSysProject) {
+    public List<TSysProject> editFindAlllist(@ApiIgnore @RequestBody TSysProject tSysProject) {
         if(StringUtils.isEmpty(tSysProject.getId())){
             //新增，获取session里面的数据
             if(StringUtils.isEmpty(getLoginUser().getProId())){

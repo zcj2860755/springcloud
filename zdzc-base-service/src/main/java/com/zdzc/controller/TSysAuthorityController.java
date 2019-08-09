@@ -43,7 +43,7 @@ public class TSysAuthorityController {
             @ApiImplicitParam(name = "sortNo", value = "排序", required = false, paramType = "query")
 
     })
-    public void add(@ApiIgnore TSysAuthority tSysAuthority) {
+    public void add(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
         tSysAuthorityService.insertSelective(tSysAuthority);
     }
 
@@ -75,7 +75,7 @@ public class TSysAuthorityController {
             @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query"),
             @ApiImplicitParam(name = "sortNo", value = "排序", required = false, paramType = "query")
     })
-    public void update(@ApiIgnore TSysAuthority tSysAuthority) {
+    public void update(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
         tSysAuthorityService.updateByPrimaryKeySelective(tSysAuthority);
     }
 
@@ -95,7 +95,7 @@ public class TSysAuthorityController {
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysAuthority> list(@ApiIgnore TSysAuthority tSysAuthority) {
+    public PageList<TSysAuthority> list(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
 
         PageList<TSysAuthority> pageList = tSysAuthorityService.selectParamsList(tSysAuthority);
         List<TSysAuthority> authorityList = pageList.getList();
@@ -116,7 +116,7 @@ public class TSysAuthorityController {
     @PostMapping("/getRoleAuth")
     @ApiOperation("查询当前用户的所有权限")
     @ApiImplicitParam(name = "ids", value = "权限主键集合", allowMultiple = true, required = false, paramType = "query")
-    public List<TSysAuthority> getRoleAuthList(@ApiIgnore TSysAuthority tSysAuthority) {
+    public List<TSysAuthority> getRoleAuthList(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
         return tSysAuthorityService.selectListByIds(tSysAuthority);
     }
 
@@ -127,7 +127,7 @@ public class TSysAuthorityController {
     }
 
 
-    @GetMapping("getAllAuthList")
+    @PostMapping("getAllAuthList")
     @ApiOperation("权限列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
@@ -136,23 +136,23 @@ public class TSysAuthorityController {
             @ApiImplicitParam(name = "id", value = "设备主键黑名单", required = false, paramType = "query"),
             @ApiImplicitParam(name = "authTypeBlack", value = "权限类型黑名单", required = false, paramType = "query")
     })
-    public PageList<TSysAuthority> getAllAuthList(@ApiIgnore TSysAuthority tSysAuthority) {
+    public PageList<TSysAuthority> getAllAuthList(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
         return tSysAuthorityService.getAllAuthList(tSysAuthority);
     }
 
 
-    @GetMapping("existAuthSign")
+    @PostMapping("existAuthSign")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "authSign", value = "权限标识", required = false, paramType = "query"),
             @ApiImplicitParam(name = "id", value = "设备主键黑名单", required = false, paramType = "query")
     })
-    public List<TSysAuthority> existAuthSign(@ApiIgnore TSysAuthority tSysAuthority){
+    public List<TSysAuthority> existAuthSign(@ApiIgnore @RequestBody TSysAuthority tSysAuthority){
         return tSysAuthorityService.existAuthSign(tSysAuthority);
     }
 
-    @GetMapping("defaultAuth")
+    @PostMapping("defaultAuth")
     @ApiOperation("查询默认权限列表")
-    public List<String> defaultAuth(@ApiIgnore TSysAuthority tSysAuthority){
+    public List<String> defaultAuth(@ApiIgnore @RequestBody TSysAuthority tSysAuthority){
          List<TSysAuthority>  list = tSysAuthorityService.defaultAuth(tSysAuthority);
          List<String> result = new ArrayList<>();
          if(list.size() > 0 ){

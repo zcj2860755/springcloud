@@ -5,7 +5,6 @@ import com.zdzc.common.PageList;
 import com.zdzc.common.Token;
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysAccount;
-import com.zdzc.model.TSysProject;
 import com.zdzc.model.TSysRole;
 import com.zdzc.model.TSysRoleAuthority;
 import com.zdzc.service.ITSysAccountService;
@@ -59,7 +58,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query")
 
     })
-    public void add(@ApiIgnore TSysAccount tSysAccount){
+    public void add(@ApiIgnore @RequestBody TSysAccount tSysAccount){
         if(StringUtils.isEmpty(tSysAccount.getRealName())){
             throw new BaseException(ExceptionEnum.USER_REALNAME_NULL);
         }
@@ -95,7 +94,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "account", value = "账号", required = true, paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query")
     })
-    public Token login(@ApiIgnore TSysAccount tSysAccount, HttpServletRequest request){
+    public Token login(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request){
         HttpSession session = request.getSession();
         Token token = new Token();
         tSysAccount.setPassword(MD5.getMD5Str(tSysAccount.getPassword()));
@@ -140,7 +139,7 @@ public class TSysAccountController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键", required = false, paramType = "query")
     })
-    public void logout(@ApiIgnore TSysAccount tSysAccount, HttpServletRequest request) {
+    public void logout(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request) {
         clearUser();
     }
 
@@ -177,7 +176,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "state", value = "用户状态（0-启用 1-禁用）", required = true, paramType = "query"),
             @ApiImplicitParam(name = "deviceIds", value = "设备id集",allowMultiple = false ,required = false, paramType = "query")
     })
-    public void update(@ApiIgnore TSysAccount tSysAccount) {
+    public void update(@ApiIgnore @RequestBody TSysAccount tSysAccount) {
         if(StringUtils.isEmpty(tSysAccount.getId())){
             throw new BaseException(ExceptionEnum.USER_ID_NULL);
         }
@@ -236,21 +235,23 @@ public class TSysAccountController extends BaseController {
             throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
         }
         TSysAccount account =  tSysAccountService.selectByPrimaryKey(id);
-        TSysRoleAuthority roleAuthority = new TSysRoleAuthority();
-        roleAuthority.setRoleId(account.getRoleId());
-        Set<String>  authIds = tSysRoleAuthorityService.selectRoleList(roleAuthority);
-        account.setAuthIds(authIds);
+        if(!StringUtils.isEmpty(account)){
+            TSysRoleAuthority roleAuthority = new TSysRoleAuthority();
+            roleAuthority.setRoleId(account.getRoleId());
+            Set<String>  authIds = tSysRoleAuthorityService.selectRoleList(roleAuthority);
+            account.setAuthIds(authIds);
+        }
         return  account;
     }
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysAccount> list(@ApiIgnore TSysAccount tSysAccount) {
+    public PageList<TSysAccount> list(@ApiIgnore @RequestBody TSysAccount tSysAccount) {
         tSysAccount.setDelFlag(0);
         Token token =getLoginUser();
 
@@ -279,12 +280,12 @@ public class TSysAccountController extends BaseController {
         return tSysAccountPageList;
     }
 
-    @GetMapping("/manger")
+    @PostMapping("/manger")
     @ApiOperation("获取该项目下未绑定的用户加项目自身管理员")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "proId", value = "项目", required = false, paramType = "query")
     })
-    public List<TSysAccount> findMangerList(@ApiIgnore TSysAccount tSysAccount) {
+    public List<TSysAccount> findMangerList(@ApiIgnore @RequestBody  TSysAccount tSysAccount) {
         tSysAccount.setDelFlag(0);
         List<TSysAccount> tSysAccountList = new ArrayList<>();
         List<TSysAccount> tSysAccountList2 = new ArrayList<>() ;
@@ -301,12 +302,12 @@ public class TSysAccountController extends BaseController {
         return tSysAccountList;
     }
 
-    @GetMapping("/verifyAccount")
+    @PostMapping("/verifyAccount")
     @ApiOperation("验证用户账号是否存在")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "account", value = "账号", required = true, paramType = "query")
     })
-    public void findverifyAccount(@ApiIgnore TSysAccount tSysAccount) {
+    public void findverifyAccount(@ApiIgnore @RequestBody TSysAccount tSysAccount) {
         tSysAccount.setDelFlag(0);
         List<TSysAccount> tSysAccountList = tSysAccountService.selectAccountList(tSysAccount);
         if(!StringUtils.isEmpty(tSysAccountList) && tSysAccountList.size()>0){
@@ -321,7 +322,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "oldPassword", value = "旧密码", required = true, paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query")
     })
-    public void updatePW(@ApiIgnore TSysAccount tSysAccount, HttpServletRequest request) {
+    public void updatePW(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request) {
         if(StringUtils.isEmpty(tSysAccount.getId())){
             throw new BaseException(ExceptionEnum.USER_ID_NULL);
         }
