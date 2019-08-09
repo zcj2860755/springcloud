@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Author : 李琳青
- * Date : 2019-08-07 19:16
+ * Date : 2019-08-09 11:06
  */
 @FeignClient(value = "basic-service")
 public interface FeignTSysAreaService {
@@ -27,12 +27,20 @@ public interface FeignTSysAreaService {
     @GetMapping("/area/findById")
     TSysArea findById(@RequestParam("id") String id);
 
-    @GetMapping("/area/pageList")
-    PageList<TSysArea> list(@RequestBody TSysArea tSysArea);
+    @PostMapping("/area/pageList")
+    PageList<TSysArea> pageList(@RequestBody TSysArea tSysArea);
 
+    @PostMapping("/area/selectProvinceList")
+    List<TSysArea> selectProvinceList();
+
+    @PostMapping("/area/selectCityList")
+    List<TSysArea> selectCityList(@RequestParam("provinceId") Integer provinceId);
 
     @PostMapping("/area/selectAreaList")
     List<TSysArea> selectAreaList(@RequestParam("cityId") Integer cityId);
+
+    @PostMapping("/area/selectTownList")
+    List<TSysArea> selectTownList(@RequestParam("areaId") Integer areaId);
 
 
 }

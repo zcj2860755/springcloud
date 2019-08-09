@@ -8,54 +8,73 @@ import java.util.List;
 
 /**
  * Author : 李琳青
- * Date : 2019-08-07 19:16
+ * Date : 2019-08-09 11:06
  */
 public interface ITSysAreaService {
 
     /**
     * @description：新增
     * @author：李琳青
-    * @date：2019-08-07 19:16
+    * @date：2019-08-09 11:06
     */
     int save(TSysArea tSysArea);
 
     /**
     * @description：修改
     * @author：李琳青
-    * @date：2019-08-07 19:16
+    * @date：2019-08-09 11:06
     */
     int update(TSysArea tSysArea);
 
     /**
     * @description：删除
     * @author：李琳青
-    * @date：2019-08-07 19:16
+    * @date：2019-08-09 11:06
     */
     int deleteById(String id);
 
     /**
     * @description：根据Id获取详情
     * @author：李琳青
-    * @date：2019-08-07 19:16
+    * @date：2019-08-09 11:06
     */
     TSysArea findById(String id);
 
     /**
     * @description：分页查询
     * @author：李琳青
-    * @date：2019-08-07 19:16
+    * @date：2019-08-09 11:06
     */
-    PageList<TSysArea> list(TSysArea tSysArea,BaseRequest baseRequest);
-
-
-
+    PageList<TSysArea> pageList(TSysArea tSysArea,BaseRequest baseRequest);
 
     /**
-     * @description：查询某省城市下的所有区
+     * @description：省份list
      * @author：李琳青
-     * @date：2019-08-07 16:42
+     * @date：2019-08-09 11:06
+     */
+    List<TSysArea> selectProvinceList();
+
+     /**
+     * @description：城市list
+     * @author：李琳青
+     * @date：2019-08-09 11:06
+     */
+    List<TSysArea> selectCityList(Integer provinceId);
+
+     /**
+     * @description：区域list
+     * @author：李琳青
+     * @date：2019-08-09 11:06
      */
     List<TSysArea> selectAreaList(Integer cityId);
+
+     /**
+     * @description：街道、城镇list
+     * @author：李琳青
+     * @date：2019-08-09 11:06
+     */
+    List<TSysArea> selectTownList(Integer areaId);
+
 
 
 

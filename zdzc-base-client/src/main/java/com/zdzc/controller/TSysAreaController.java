@@ -15,13 +15,13 @@ import java.util.List;
 
 
 /**
- * description : 区域接口API
+ * Description : 省市区API接口
  * Author : 李琳青
- * Date : 2019-08-07 19:16
+ * Date : 2019-08-09 11:06
  */
 @RestController
 @RequestMapping("/area")
-@Api(description = "接口描述")
+@Api(description = "省市区API接口")
 public class TSysAreaController {
     @Resource
     private FeignTSysAreaService feigntSysAreaService;
@@ -29,8 +29,11 @@ public class TSysAreaController {
     @PostMapping
     @ApiOperation("新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cityId", value = "城市id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "parentId", value = "父id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "name", value = "区域名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "shortName", value = "简写名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "level", value = "区域等级", required = true, paramType = "query"),
+            //@ApiImplicitParam(name = "pathIds", value = "父类ids", required = true, paramType = "query"),
     })
     public int add(@ApiIgnore TSysArea tSysArea){
         return feigntSysAreaService.add(tSysArea);
@@ -42,48 +45,74 @@ public class TSysAreaController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
-       return feigntSysAreaService.delete(id);
+        return feigntSysAreaService.delete(id);
     }
 
     @PutMapping
-    @ApiOperation("更新")
+    @ApiOperation("更新")//不支持跨省修改
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "cityId", value = "城市id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "parentId", value = "父id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "name", value = "区域名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "shortName", value = "简写名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "level", value = "区域等级", required = true, paramType = "query"),
+            //@ApiImplicitParam(name = "pathIds", value = "父类ids", required = true, paramType = "query"),
     })
     public int update(@ApiIgnore TSysArea tSysArea){
-         return feigntSysAreaService.update(tSysArea);
+        return feigntSysAreaService.update(tSysArea);
     }
 
     @GetMapping("/findById")
     @ApiOperation("获取详情")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public TSysArea detail(String id){
         return feigntSysAreaService.findById(id);
     }
 
-    @GetMapping
+    @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query")
     })
     public PageList<TSysArea> pageList(@ApiIgnore TSysArea tSysArea) {
-        return feigntSysAreaService.list(tSysArea);
+        return feigntSysAreaService.pageList(tSysArea);
     }
 
+    @PostMapping("/selectProvinceList")
+    @ApiOperation("省份list")
+    public List<TSysArea> selectProvinceList() {
+        return feigntSysAreaService.selectProvinceList();
+    }
 
-
-    @PostMapping("/selectAreaListByCityId")
-    @ApiOperation("select区域list")
+    @PostMapping("/selectCityList")
+    @ApiOperation("select城市list")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "cityId", value = "省份id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "provinceId", value = "省份id", required = true, paramType = "query")
     })
-    public List<TSysArea> areaList(Integer cityId) {
+    public List<TSysArea> selectCityList(Integer provinceId) {
+        return feigntSysAreaService.selectCityList(provinceId);
+    }
+
+    @PostMapping("/selectAreaList")
+    @ApiOperation("区域list")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "cityId", value = "城市id", required = true, paramType = "query")
+    })
+    public List<TSysArea> selectAreaList(Integer cityId) {
         return feigntSysAreaService.selectAreaList(cityId);
     }
+
+    @PostMapping("/selectTownList")
+    @ApiOperation("街道、城镇list")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "areaId", value = "区域id", required = true, paramType = "query")
+    })
+    public List<TSysArea> selectTownList(Integer areaId) {
+        return feigntSysAreaService.selectTownList(areaId);
+    }
+
 
 }
