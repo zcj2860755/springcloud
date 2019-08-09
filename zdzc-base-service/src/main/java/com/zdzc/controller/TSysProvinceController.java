@@ -47,19 +47,14 @@ public class TSysProvinceController {
         return tSysProvinceService.list(tSysProvince,baseRequest);
     }*/
 
-    @GetMapping("/selectProvinceList")
+    @PostMapping("/selectProvinceList")
     public List<TSysProvince> provinceList() {
         return tSysProvinceService.provinceList();
     }
-    @GetMapping("/selectCityList")
-    public List<TSysCity> selectCityList(@RequestParam("provinceId") Integer provinceId) {
-        return tSysProvinceService.selectCityList(provinceId);
-    }
 
-    @GetMapping("/selectAreaList")
-    public List<TSysArea> selectAreaList(@RequestParam("cityId") Integer cityId) {
-        return tSysProvinceService.selectAreaList(cityId);
-    }
+
+
+
 
 
 }

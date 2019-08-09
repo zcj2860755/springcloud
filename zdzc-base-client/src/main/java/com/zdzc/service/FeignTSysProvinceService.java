@@ -34,13 +34,12 @@ public interface FeignTSysProvinceService {
     PageList<TSysProvince> list(@RequestBody TSysProvince tSysProvince);
 */
 
-    @GetMapping("/t/sys/province/selectProvinceList")
+    @PostMapping("/t/sys/province/selectProvinceList")
     List<TSysProvince> provinceList();
 
-    @GetMapping("/t/sys/province/selectCityList")  //掉不通到service 就是少注解  报错405
-    List<TSysCity> selectCityList(@RequestParam("provinceId") Integer provinceId);
 
-    @GetMapping("/t/sys/province/selectAreaList")  //selectAreaList 跟service不一样 就是名称不一致 报500
+
+    @PostMapping("/t/sys/province/selectAreaList")  //selectAreaList 跟service不一样 就是名称不一致 报500
     List<TSysArea> selectAreaList(@RequestParam("cityId") Integer cityId);
 
 

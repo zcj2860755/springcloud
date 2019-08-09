@@ -16,12 +16,13 @@ import java.util.List;
 
 
 /**
+ * description : 城市接口API
  * Author : 李琳青
  * Date : 2019-08-07 18:42
  */
 @RestController
-@RequestMapping("/t/sys/city")
-@Api(description = "接口描述")
+@RequestMapping("/city")
+@Api(description = "城市接口API")
 public class TSysCityController {
     @Resource
     private FeignTSysCityService feigntSysCityService;
@@ -29,29 +30,46 @@ public class TSysCityController {
     @PostMapping
     @ApiOperation("新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
+            @ApiImplicitParam(name = "provinceId", value = "省份id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "name", value = "城市名称", required = true, paramType = "query"),
     })
-    public void add(@ApiIgnore TSysCity tSysCity){
-        feigntSysCityService.add(tSysCity);
+    public int add(@ApiIgnore TSysCity tSysCity){
+        return feigntSysCityService.add(tSysCity);
     }
 
     @DeleteMapping
     @ApiOperation("删除")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
-    public void delete(String id){
-        feigntSysCityService.delete(id);
+    public int delete(String id){
+          return feigntSysCityService.delete(id);
     }
 
     @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "provinceId", value = "省份id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "name", value = "城市名称", required = true, paramType = "query"),
     })
-    public void update(@ApiIgnore TSysCity tSysCity){
-        feigntSysCityService.update(tSysCity);
+    public int update(@ApiIgnore TSysCity tSysCity){
+         return feigntSysCityService.update(tSysCity);
     }
+
+    @PostMapping("/selectCityListByProvinceId")
+    @ApiOperation("select城市list")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "provinceId", value = "省份id", required = true, paramType = "query")
+    })
+    public List<TSysCity> cityList(Integer provinceId) {
+        return feigntSysCityService.selectCityList(provinceId);
+    }
+
+
+
+
+
 
     @GetMapping("/findById")
     @ApiOperation("获取详情")
@@ -73,10 +91,6 @@ public class TSysCityController {
     }
 
 
-    @GetMapping("/selectCityListByProvinceId")
-    @ApiOperation("分页查询")
-    public List<TSysCity> cityList(Integer provinceId) {
-        return feigntSysCityService.selectCityList(provinceId);
-    }
+
 
 }

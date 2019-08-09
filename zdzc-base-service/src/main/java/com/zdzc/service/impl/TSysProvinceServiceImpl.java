@@ -59,13 +59,6 @@ public class TSysProvinceServiceImpl implements ITSysProvinceService {
         return tSysProvinceMapper.selectProvinceList();
     }
 
-    @Override
-    public List<TSysCity> selectCityList(Integer provinceId) {
-        return tSysCityMapper.selectCityList(provinceId);
-    }
 
-    @Override
-    public List<TSysArea> selectAreaList(Integer cityId) {
-        return tSysAreaMapper.selectAreaList(cityId);
-    }
+
 }

@@ -15,22 +15,22 @@ import java.util.List;
 @FeignClient(value = "basic-service")
 public interface FeignTSysCityService {
 
-    @PostMapping("/t/sys/city")
+    @PostMapping("/city")
     int add(@RequestBody TSysCity tSysCity);
 
-    @DeleteMapping("/t/sys/city")
+    @DeleteMapping("/city")
     int delete(@RequestParam("id") String id);
 
-    @PutMapping("/t/sys/city")
+    @PutMapping("/city")
     int update(@RequestBody TSysCity tSysCity);
 
-    @GetMapping("/t/sys/city/findById")
+    @GetMapping("/city/findById")
     TSysCity findById(@RequestParam("id") String id);
 
-    @GetMapping("/t/sys/city")
+    @GetMapping("/city")
     PageList<TSysCity> list(@RequestBody TSysCity tSysCity);
 
-    @GetMapping("/t/sys/province/selectCityList")
-    List<TSysCity> selectCityList(Integer provinceId);
+    @PostMapping("/city/selectCityList")  //掉不通到service 就是少注解  报错405
+    List<TSysCity> selectCityList(@RequestParam("provinceId") Integer provinceId);
 
 }

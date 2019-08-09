@@ -9,6 +9,8 @@ import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Author : 李琳青
@@ -21,7 +23,10 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
 
     @Override
     public int save(TSysArea tSysArea) {
-        return tSysAreaMapper.insertSelective(tSysArea);
+        tSysArea.setCreateTime(new Date());
+        int insert = tSysAreaMapper.insertSelective(tSysArea);
+        System.out.println(tSysArea);
+        return insert;
     }
 
     @Override
@@ -44,4 +49,10 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
         PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
         return new PageList<TSysArea>(tSysAreaMapper.select(tSysArea));
     }
+
+    @Override
+    public List<TSysArea> selectAreaList(Integer cityId) {
+        return tSysAreaMapper.selectAreaList(cityId);
+    }
+
 }

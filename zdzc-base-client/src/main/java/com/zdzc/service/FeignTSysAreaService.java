@@ -5,6 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import com.zdzc.model.TSysArea;
 
+import java.util.List;
+
 
 /**
  * Author : 李琳青
@@ -13,20 +15,24 @@ import com.zdzc.model.TSysArea;
 @FeignClient(value = "basic-service")
 public interface FeignTSysAreaService {
 
-    @PostMapping("/t/sys/area")
+    @PostMapping("/area")
     int add(@RequestBody TSysArea tSysArea);
 
-    @DeleteMapping("/t/sys/area")
+    @DeleteMapping("/area")
     int delete(@RequestParam("id") String id);
 
-    @PutMapping("/t/sys/area")
+    @PutMapping("/area")
     int update(@RequestBody TSysArea tSysArea);
 
-    @GetMapping("/t/sys/area/findById")
+    @GetMapping("/area/findById")
     TSysArea findById(@RequestParam("id") String id);
 
-    @GetMapping("/t/sys/area")
+    @GetMapping("/area/pageList")
     PageList<TSysArea> list(@RequestBody TSysArea tSysArea);
+
+
+    @PostMapping("/area/selectAreaList")
+    List<TSysArea> selectAreaList(@RequestParam("cityId") Integer cityId);
 
 
 }

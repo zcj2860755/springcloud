@@ -15,8 +15,8 @@ public class TSysCity {
     /**
      * 省id
      */
-    @Column(name = "provide_id")
-    private Integer provideId;
+    @Column(name = "province_id")
+    private Integer provinceId;
 
     /**
      * 市名
@@ -61,19 +61,19 @@ public class TSysCity {
     /**
      * 获取省id
      *
-     * @return provide_id - 省id
+     * @return province_id - 省id
      */
-    public Integer getProvideId() {
-        return provideId;
+    public Integer getProvinceId() {
+        return provinceId;
     }
 
     /**
      * 设置省id
      *
-     * @param provideId 省id
+     * @param provinceId 省id
      */
-    public void setProvideId(Integer provideId) {
-        this.provideId = provideId;
+    public void setProvinceId(Integer provinceId) {
+        this.provinceId = provinceId;
     }
 
     /**

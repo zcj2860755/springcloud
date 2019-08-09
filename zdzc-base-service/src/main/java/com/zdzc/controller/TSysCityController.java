@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
  * Date : 2019-08-07 18:42
  */
 @RestController
-@RequestMapping("/t/sys/city")
+@RequestMapping("/city")
 public class TSysCityController {
     @Resource
     private ITSysCityService tSysCityService;
@@ -25,7 +26,7 @@ public class TSysCityController {
     }
 
     @DeleteMapping
-    public int delete(@RequestParam String Id){
+    public int delete(@RequestParam("id") String Id){
        return tSysCityService.deleteById(Id);
     }
 
@@ -43,4 +44,10 @@ public class TSysCityController {
     public PageList<TSysCity> list(@RequestBody TSysCity tSysCity,BaseRequest baseRequest) {
         return tSysCityService.list(tSysCity,baseRequest);
     }
+
+    @PostMapping("/selectCityList")
+    public List<TSysCity> selectCityList(@RequestParam("provinceId") Integer provinceId) {
+        return tSysCityService.selectCityList(provinceId);
+    }
+
 }
