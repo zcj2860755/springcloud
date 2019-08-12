@@ -35,7 +35,7 @@ public interface FeignTSysProjectService {
      * @return void
      **/
     @DeleteMapping("/project/{id}")
-    void delete(@PathVariable String id);
+    void delete(@PathVariable(value = "id") String id);
     /**
      * @Author  zcj
      * @Description //更新
@@ -53,7 +53,7 @@ public interface FeignTSysProjectService {
      * @return com.zdzc.model.TSysProject
      **/
     @GetMapping("/project/{id}")
-    TSysProject detail(@PathVariable String id);
+    TSysProject detail(@PathVariable(value = "id") String id);
     /**
      * @Author  zcj
      * @Description 分页查询

@@ -4,13 +4,16 @@ import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 import com.zdzc.model.TSysDic;
 import com.zdzc.service.ITSysDicService;
+import com.zdzc.utils.OSS.OSSUnit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 
 
 /**
@@ -81,5 +84,19 @@ public class TSysDicController {
     public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic, BaseRequest baseRequest) {
         return tSysDicService.list(tSysDic,baseRequest);
     }
+    @PostMapping("/test")
+    public int kkkk (@RequestBody MultipartFile image) {
+        String imgName = "images";
+        String OSS_FILE_DIR = "test";
 
+        try {
+            StringBuffer imgUrl = OSSUnit.getImgUrl(image, imgName, OSS_FILE_DIR);
+            String toString = imgUrl.toString();
+            System.out.println("图片路径为:"+toString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 }
