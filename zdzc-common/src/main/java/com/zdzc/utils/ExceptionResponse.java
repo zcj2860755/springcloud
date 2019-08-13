@@ -3,6 +3,7 @@ package com.zdzc.utils;
 
 
 import com.zdzc.enums.ExceptionEnum;
+import lombok.Data;
 
 import java.io.Serializable;
 

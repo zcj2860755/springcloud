@@ -10,17 +10,19 @@ public class BaseException extends RuntimeException{
     /**
      * 异常枚举类
      */
-    private ExceptionEnum exceptionEnum;
+    private ExceptionEnum exceptionEnum=ExceptionEnum.SYSTEM_ERROR;
 
     private int code;
 
     private String data;
 
     public BaseException(ExceptionEnum exceptionEnum){
+        super(exceptionEnum.getCode()+":"+exceptionEnum.getMsg());
         this.exceptionEnum=exceptionEnum;
     }
 
     public BaseException(int code ,String data){
+        super(code+":"+data);
         this.code=code;
         this.data=data;
     }
