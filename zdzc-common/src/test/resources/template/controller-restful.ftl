@@ -40,7 +40,7 @@ public class ${modelNameUpperCamel}Controller {
         return ${modelNameLowerCamel}Service.findById(id);
     }
 
-    @GetMapping
+    @PostMapping("/pageList")
     public PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
         return ${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},baseRequest);
     }

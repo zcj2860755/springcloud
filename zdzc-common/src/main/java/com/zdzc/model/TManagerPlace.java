@@ -3,8 +3,8 @@ package com.zdzc.model;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "place_info")
-public class PlaceInfo {
+@Table(name = "t_manager_place")
+public class TManagerPlace {
     /**
      * 主键id
      */
@@ -13,14 +13,14 @@ public class PlaceInfo {
     private Integer id;
 
     /**
-     * 场所名称
-     */
-    private String name;
-
-    /**
      * 场所编号
      */
     private String code;
+
+    /**
+     * 场所名称
+     */
+    private String name;
 
     /**
      * 场所地址
@@ -148,6 +148,7 @@ public class PlaceInfo {
     }
 
 
+
     /**
      * 获取主键id
      *
@@ -167,24 +168,6 @@ public class PlaceInfo {
     }
 
     /**
-     * 获取场所名称
-     *
-     * @return name - 场所名称
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * 设置场所名称
-     *
-     * @param name 场所名称
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * 获取场所编号
      *
      * @return code - 场所编号
@@ -200,6 +183,24 @@ public class PlaceInfo {
      */
     public void setCode(String code) {
         this.code = code;
+    }
+
+    /**
+     * 获取场所名称
+     *
+     * @return name - 场所名称
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置场所名称
+     *
+     * @param name 场所名称
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

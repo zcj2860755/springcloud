@@ -1,13 +1,13 @@
 package com.zdzc.model;
 
-import io.swagger.models.auth.In;
-
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "unit_info")
-public class UnitInfo {
-
+@Table(name = "t_manager_unit")
+public class TManagerUnit {
+    /**
+     * 主键id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -60,7 +60,7 @@ public class UnitInfo {
     private String logoUrl;
 
     /**
-     * 冻结状态
+     * 冻结状态  0.未冻结  1.冻结
      */
     @Column(name = "freeze_status")
     private Integer freezeStatus;
@@ -123,7 +123,6 @@ public class UnitInfo {
     @Transient
     private Integer mark;
 
-
     public String getKeyWords() {
         return keyWords;
     }
@@ -141,14 +140,18 @@ public class UnitInfo {
     }
 
     /**
-     * @return id
+     * 获取主键id
+     *
+     * @return id - 主键id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * @param id
+     * 设置主键id
+     *
+     * @param id 主键id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -313,18 +316,18 @@ public class UnitInfo {
     }
 
     /**
-     * 获取冻结状态
+     * 获取冻结状态  0.未冻结  1.冻结
      *
-     * @return freeze_status - 冻结状态
+     * @return freeze_status - 冻结状态  0.未冻结  1.冻结
      */
     public Integer getFreezeStatus() {
         return freezeStatus;
     }
 
     /**
-     * 设置冻结状态
+     * 设置冻结状态  0.未冻结  1.冻结
      *
-     * @param freezeStatus 冻结状态
+     * @param freezeStatus 冻结状态  0.未冻结  1.冻结
      */
     public void setFreezeStatus(Integer freezeStatus) {
         this.freezeStatus = freezeStatus;

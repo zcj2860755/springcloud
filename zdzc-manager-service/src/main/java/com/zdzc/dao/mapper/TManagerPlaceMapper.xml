@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zdzc.dao.PlaceInfoMapper">
-  <resultMap id="BaseResultMap" type="com.zdzc.model.PlaceInfo">
+<mapper namespace="com.zdzc.dao.TManagerPlaceMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TManagerPlace">
     <!--
       WARNING - @mbg.generated
     -->
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="manager" jdbcType="VARCHAR" property="manager" />
@@ -37,9 +37,9 @@
 
 
   <!-- 条件查询 list -->
-  <select id="selectPlaceInfoList" resultMap="BaseResultMap">
+  <select id="selectPlaceList" resultMap="BaseResultMap">
     SELECT *
-    from  place_info
+    from  t_manager_place
     <where>
       <if test=" mark == 0">
         (name like concat('%',#{keyWords},'%') or code like concat('%',#{keyWords},'%'))
@@ -59,6 +59,7 @@
     </where>
     order by create_time desc
   </select>
+
 
 
 </mapper>

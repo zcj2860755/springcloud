@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zdzc.dao.UnitInfoMapper">
-  <resultMap id="BaseResultMap" type="com.zdzc.model.UnitInfo">
+<mapper namespace="com.zdzc.dao.TManagerUnitMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TManagerUnit">
     <!--
       WARNING - @mbg.generated
     -->
@@ -33,10 +33,11 @@
     <result column="admin_area_id" jdbcType="VARCHAR" property="adminAreaId" />
   </resultMap>
 
+
   <!-- 条件查询 list -->
   <select id="selectUnitList" resultMap="BaseResultMap">
     SELECT *
-    from  unit_info
+    from  t_manager_unit
     <where>
       <if test=" mark == 0">
         (name like concat('%',#{keyWords},'%') or code like concat('%',#{keyWords},'%'))

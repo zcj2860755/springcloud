@@ -1,8 +1,7 @@
 package com.zdzc.controller;
 
-import com.zdzc.model.PlaceInfo;
-import com.zdzc.service.FeignPlaceInfoService;
-import io.swagger.models.auth.In;
+import com.zdzc.model.TManagerPlace;
+import com.zdzc.service.FeignTManagerPlaceService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import io.swagger.annotations.Api;
@@ -16,14 +15,14 @@ import com.zdzc.common.PageList;
 /**
  * Description : 场所管理API接口
  * Author : 李琳青
- * Date : 2019-08-12 19:47
+ * Date : 2019-08-13 16:17
  */
 @RestController
-@RequestMapping("/place/info")
+@RequestMapping("/manager/place")
 @Api(description = "场所管理API接口")
-public class PlaceInfoController {
+public class TManagerPlaceController {
     @Resource
-    private FeignPlaceInfoService feignplaceInfoService;
+    private FeignTManagerPlaceService feigntManagerPlaceService;
 
     @PostMapping
     @ApiOperation("新增")
@@ -51,8 +50,8 @@ public class PlaceInfoController {
             @ApiImplicitParam(name = "adcode", value = "区编码", required = true, paramType = "query"),
             @ApiImplicitParam(name = "createUser", value = "创建者", required = false, paramType = "query"),
     })
-    public int add(@ApiIgnore PlaceInfo placeInfo){
-        return feignplaceInfoService.add(placeInfo);
+    public int add(@ApiIgnore TManagerPlace tManagerPlace){
+        return feigntManagerPlaceService.add(tManagerPlace);
     }
 
     @DeleteMapping
@@ -61,7 +60,7 @@ public class PlaceInfoController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
-        return feignplaceInfoService.delete(id);
+        return feigntManagerPlaceService.delete(id);
     }
 
     @PutMapping
@@ -91,10 +90,9 @@ public class PlaceInfoController {
             @ApiImplicitParam(name = "code", value = "场所编号", required = true, paramType = "query"),
             @ApiImplicitParam(name = "updateUser", value = "编辑者", required = false, paramType = "query"),
     })
-    public int update(@ApiIgnore PlaceInfo placeInfo){
-        return feignplaceInfoService.update(placeInfo);
+    public int update(@ApiIgnore TManagerPlace tManagerPlace){
+        return feigntManagerPlaceService.update(tManagerPlace);
     }
-
 
     @PutMapping("/updateFreezeStatus")
     @ApiOperation("冻结/解冻")
@@ -102,7 +100,7 @@ public class PlaceInfoController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
     })
     public int updateFreezeStatus(@ApiIgnore Integer id){
-        return feignplaceInfoService.updateFreezeStatus(id);
+        return feigntManagerPlaceService.updateFreezeStatus(id);
     }
 
 
@@ -111,8 +109,8 @@ public class PlaceInfoController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
-    public PlaceInfo detail(String id){
-        return feignplaceInfoService.findById(id);
+    public TManagerPlace detail(String id){
+        return feigntManagerPlaceService.findById(id);
     }
 
     @PostMapping("/pageList")
@@ -125,7 +123,7 @@ public class PlaceInfoController {
             @ApiImplicitParam(name = "type", value = "场所性质", required = false, paramType = "query"),
             @ApiImplicitParam(name = "unitId", value = "所属单位", required = false, paramType = "query"),
     })
-    public PageList<PlaceInfo> pageList(@ApiIgnore PlaceInfo placeInfo) {
-        return feignplaceInfoService.pageList(placeInfo);
+    public PageList<TManagerPlace> pageList(@ApiIgnore TManagerPlace tManagerPlace) {
+        return feigntManagerPlaceService.pageList(tManagerPlace);
     }
 }

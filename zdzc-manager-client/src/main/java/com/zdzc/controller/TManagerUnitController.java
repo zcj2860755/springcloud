@@ -1,7 +1,7 @@
 package com.zdzc.controller;
 
-import com.zdzc.model.UnitInfo;
-import com.zdzc.service.FeignUnitInfoService;
+import com.zdzc.model.TManagerUnit;
+import com.zdzc.service.FeignTManagerUnitService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import io.swagger.annotations.Api;
@@ -13,16 +13,16 @@ import com.zdzc.common.PageList;
 
 
 /**
- * Description :
+ * Description : 单位管理API接口
  * Author : 李琳青
- * Date : 2019-08-13 10:21
+ * Date : 2019-08-13 16:18
  */
 @RestController
-@RequestMapping("/unit/info")
-@Api(description = "接口描述")
-public class UnitInfoController {
+@RequestMapping("/manager/unit")
+@Api(description = "单位管理API接口")
+public class TManagerUnitController {
     @Resource
-    private FeignUnitInfoService feignunitInfoService;
+    private FeignTManagerUnitService feigntManagerUnitService;
 
     @PostMapping
     @ApiOperation("新增")
@@ -45,8 +45,8 @@ public class UnitInfoController {
             @ApiImplicitParam(name = "lat", value = "单位坐标-lat纬度", required = false, paramType = "query"),
             @ApiImplicitParam(name = "createUser", value = "创建者", required = false, paramType = "query"),
     })
-    public int add(@ApiIgnore UnitInfo unitInfo){
-        return feignunitInfoService.add(unitInfo);
+    public int add(@ApiIgnore TManagerUnit tManagerUnit){
+        return feigntManagerUnitService.add(tManagerUnit);
     }
 
     @DeleteMapping
@@ -55,7 +55,7 @@ public class UnitInfoController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
-        return feignunitInfoService.delete(id);
+        return feigntManagerUnitService.delete(id);
     }
 
     @PutMapping
@@ -80,8 +80,8 @@ public class UnitInfoController {
             @ApiImplicitParam(name = "lat", value = "单位坐标-lat纬度", required = false, paramType = "query"),
             @ApiImplicitParam(name = "updateUser", value = "创建者", required = false, paramType = "query"),
     })
-    public int update(@ApiIgnore UnitInfo unitInfo){
-        return feignunitInfoService.update(unitInfo);
+    public int update(@ApiIgnore TManagerUnit tManagerUnit){
+        return feigntManagerUnitService.update(tManagerUnit);
     }
 
     @GetMapping("/findById")
@@ -89,8 +89,8 @@ public class UnitInfoController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
-    public UnitInfo detail(String id){
-        return feignunitInfoService.findById(id);
+    public TManagerUnit detail(String id){
+        return feigntManagerUnitService.findById(id);
     }
 
     @PostMapping("/pageList")
@@ -101,7 +101,7 @@ public class UnitInfoController {
             @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query"),
             @ApiImplicitParam(name = "mark", value = "0.查询所有 1.按照单位编号 2.按单位名称", required = true, paramType = "query"),
     })
-    public PageList<UnitInfo> pageList(@ApiIgnore UnitInfo unitInfo) {
-        return feignunitInfoService.pageList(unitInfo);
+    public PageList<TManagerUnit> pageList(@ApiIgnore TManagerUnit tManagerUnit) {
+        return feigntManagerUnitService.pageList(tManagerUnit);
     }
 }
