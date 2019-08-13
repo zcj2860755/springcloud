@@ -128,6 +128,8 @@ public class PlaceInfo {
 
     @Transient
     private String keyWords;
+    @Transient
+    private Integer mark;
 
     public String getKeyWords() {
         return keyWords;
@@ -137,7 +139,13 @@ public class PlaceInfo {
         this.keyWords = keyWords;
     }
 
+    public Integer getMark() {
+        return mark;
+    }
 
+    public void setMark(Integer mark) {
+        this.mark = mark;
+    }
 
 
     /**

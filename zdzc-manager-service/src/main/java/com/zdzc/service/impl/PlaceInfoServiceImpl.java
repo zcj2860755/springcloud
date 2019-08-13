@@ -24,6 +24,7 @@ public class PlaceInfoServiceImpl implements IPlaceInfoService {
     @Override
     public int save(PlaceInfo placeInfo) {
         placeInfo.setCreateTime(new Date());
+        placeInfo.setCode("暂时先写死");
         return placeInfoMapper.insertSelective(placeInfo);
     }
 
