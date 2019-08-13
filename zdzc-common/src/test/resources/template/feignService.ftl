@@ -26,7 +26,7 @@ public interface Feign${modelNameUpperCamel}Service {
     ${modelNameUpperCamel} findById(@RequestParam("id") String id);
 
     @GetMapping("${baseRequestMapping}")
-    PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
+    PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel});
 
 
 }

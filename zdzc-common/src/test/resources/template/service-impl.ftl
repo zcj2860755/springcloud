@@ -40,7 +40,7 @@ public class ${modelNameUpperCamel}ServiceImpl implements I${modelNameUpperCamel
     }
 
     @Override
-    public PageList<${modelNameUpperCamel}> list(${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
+    public PageList<${modelNameUpperCamel}> pageList(${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
         PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
         return new PageList<${modelNameUpperCamel}>(${modelNameLowerCamel}Mapper.select(${modelNameLowerCamel}));
     }

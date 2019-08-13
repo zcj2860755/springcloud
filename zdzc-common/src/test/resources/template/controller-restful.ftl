@@ -41,7 +41,7 @@ public class ${modelNameUpperCamel}Controller {
     }
 
     @GetMapping
-    public PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
-        return ${modelNameLowerCamel}Service.list(${modelNameLowerCamel},baseRequest);
+    public PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
+        return ${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},baseRequest);
     }
 }

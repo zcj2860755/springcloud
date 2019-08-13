@@ -43,6 +43,6 @@ public interface I${modelNameUpperCamel}Service {
     * @author：${author}
     * @date：${date}
     */
-    PageList<${modelNameUpperCamel}> list(${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest);
+    PageList<${modelNameUpperCamel}> pageList(${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest);
 
 }

@@ -16,6 +16,8 @@
         <module>zdzc-zipkin</module>
         <module>zdzc-config-server</module>
         <module>zdzc-config-client</module>
+        <module>zdzc-manager-client</module>
+        <module>zdzc-manager-service</module>
     </modules>
 
     <name>zdzc</name>
