@@ -7,7 +7,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
-/*@ComponentScan("com.zenchn.commmon.swagger")*/
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 //启用服务注册与发现
 @EnableDiscoveryClient
