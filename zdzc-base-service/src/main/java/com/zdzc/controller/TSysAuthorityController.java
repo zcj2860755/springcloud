@@ -88,7 +88,7 @@ public class TSysAuthorityController {
         return tSysAuthorityService.selectByPrimaryKey(id);
     }
 
-    @GetMapping
+    @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),

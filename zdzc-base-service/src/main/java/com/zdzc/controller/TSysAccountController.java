@@ -1,17 +1,20 @@
 package com.zdzc.controller;
 
 import com.zdzc.common.CommonStatus;
+import com.zdzc.common.KeyUtil;
 import com.zdzc.common.PageList;
 import com.zdzc.common.Token;
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysAccount;
 import com.zdzc.model.TSysRole;
 import com.zdzc.model.TSysRoleAuthority;
+import com.zdzc.redis.RedisService;
 import com.zdzc.service.ITSysAccountService;
 import com.zdzc.service.ITSysProjectService;
 import com.zdzc.service.ITSysRoleAuthorityService;
 import com.zdzc.service.ITSysRoleService;
 import com.zdzc.utils.BaseException;
+import com.zdzc.utils.EncryUtil;
 import com.zdzc.utils.ObjectUtils;
 import com.zdzc.utils.rsa.MD5;
 import io.swagger.annotations.Api;
@@ -46,7 +49,9 @@ public class TSysAccountController extends BaseController {
     private ITSysRoleService sysRoleService;
 
     @Resource
-    private ITSysProjectService tSysProjectService;
+    private RedisService redisService;
+
+
 
     @PostMapping()
     @ApiOperation("新增")
@@ -55,10 +60,15 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "password", value = "密码", required = false, paramType = "query"),
             @ApiImplicitParam(name = "realName", value = "用户名", required = true, paramType = "query"),
             @ApiImplicitParam(name = "tel", value = "联系电话", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
+
 
     })
     public void add(@ApiIgnore @RequestBody TSysAccount tSysAccount){
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
         if(StringUtils.isEmpty(tSysAccount.getRealName())){
             throw new BaseException(ExceptionEnum.USER_REALNAME_NULL);
         }
@@ -82,7 +92,7 @@ public class TSysAccountController extends BaseController {
             passWord = MD5.getMD5Str(tSysAccount.getPassword());
         }
         tSysAccount.setPassword(passWord);
-        tSysAccount.setProId(getLoginUser().getProId());
+        tSysAccount.setProId(getLoginUser(tSysAccount.getUuid()).getProId());
         int result = tSysAccountService.insert(tSysAccount);
         if(result == -1){
             throw new BaseException(ExceptionEnum.SYSTEM_ADD_ERROR_RESON);
@@ -92,7 +102,8 @@ public class TSysAccountController extends BaseController {
     @ApiOperation("用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "account", value = "账号", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query")
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "timestamp", value = "当前时间戳", required = false, paramType = "query")
     })
     public Token login(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -111,25 +122,30 @@ public class TSysAccountController extends BaseController {
         }
         if(result.get("isLogin").equals(0)){
             TSysAccount userInfo=(TSysAccount)result.get("userInfo");
-            session.setMaxInactiveInterval(-1);
-            token.setUuid(session.getId());
-            token.setUserId(userInfo.getId());
-            token.setRealName(userInfo.getRealName());
-            token.setProId(userInfo.getProId());
-            token.setRoleId(userInfo.getRoleId());
-            TSysAccount account = new TSysAccount();
-            account.setId(userInfo.getId());
-            account.setLastloginTime(new Date());
-            tSysAccountService.updateByPrimaryKey(account);
-            //根据用户角色,获取权限集合
-            TSysRoleAuthority roleAuthority = new TSysRoleAuthority();
-            roleAuthority.setRoleId(userInfo.getRoleId());
-            Set<String>  authIds = tSysRoleAuthorityService.selectRoleList(roleAuthority);
-            if(authIds == null || authIds.size()==0){
-                throw new BaseException(ExceptionEnum.USER_ROLE_NOPOWER);
+            //查询redis是否有数据
+            String accessToken =generateAccessToken(userInfo.getId(),CommonStatus.ZDZCACCOUNT,tSysAccount.getTimestamp());//生成access_token;
+            if(redisService.exists(accessToken)){
+                 token= (Token)redisService.get(accessToken);
+            }else {
+                token.setUuid(accessToken);
+                token.setUserId(userInfo.getId());
+                token.setRealName(userInfo.getRealName());
+                token.setProId(userInfo.getProId());
+                token.setRoleId(userInfo.getRoleId());
+                TSysAccount account = new TSysAccount();
+                account.setId(userInfo.getId());
+                account.setLastloginTime(new Date());
+                tSysAccountService.updateByPrimaryKey(account);
+                //根据用户角色,获取权限集合
+                TSysRoleAuthority roleAuthority = new TSysRoleAuthority();
+                roleAuthority.setRoleId(userInfo.getRoleId());
+                Set<String> authIds = tSysRoleAuthorityService.selectRoleList(roleAuthority);
+                if (authIds == null || authIds.size() == 0) {
+                    throw new BaseException(ExceptionEnum.USER_ROLE_NOPOWER);
+                }
+                token.setSignSet(authIds);
+                redisService.set("accessToken",token);
             }
-            token.setSignSet(authIds);
-            session.setAttribute(CommonStatus.ACCOUNT,token);
         }
         return token;
     }
@@ -137,15 +153,20 @@ public class TSysAccountController extends BaseController {
     @PostMapping("/logout")
     @ApiOperation("用户退出")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", required = false, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public void logout(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request) {
-        clearUser();
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
+        clearUser(tSysAccount.getUuid());
     }
 
     @DeleteMapping("/deleteAccount")
     @ApiOperation("删除")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "uuid", value = "主键", required = true, paramType = "query"),
             @ApiImplicitParam(name = "ids", value = "用户主键",allowMultiple = true, required = true, paramType = "query")
     })
     public void delete(@RequestParam(value="ids[]",required = false) String[] ids, @RequestParam(value="ids",required = false)String[] id)  {
@@ -166,6 +187,7 @@ public class TSysAccountController extends BaseController {
     @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query"),
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),
             @ApiImplicitParam(name = "account", value = "账号", required = true, paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = false, paramType = "query"),
@@ -177,6 +199,10 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "deviceIds", value = "设备id集",allowMultiple = false ,required = false, paramType = "query")
     })
     public void update(@ApiIgnore @RequestBody TSysAccount tSysAccount) {
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
+
         if(StringUtils.isEmpty(tSysAccount.getId())){
             throw new BaseException(ExceptionEnum.USER_ID_NULL);
         }
@@ -210,17 +236,17 @@ public class TSysAccountController extends BaseController {
         TSysAccount account = tSysAccountService.selectByPrimaryKey(tSysAccount.getId());
         tSysAccountService.updateByPrimaryKeySelective(tSysAccount);
         //当用户修改自身的角色和账号时，需要清空session
-        if(tSysAccount.getId().equals(getLoginUser().getUserId()) && (
+        if(tSysAccount.getId().equals(getLoginUser(tSysAccount.getUuid()).getUserId()) && (
             (!StringUtils.isEmpty(tSysAccount.getAccount()) && !tSysAccount.getAccount().equals(account.getAccount())) ||
             (!StringUtils.isEmpty(tSysAccount.getRoleId()) && !tSysAccount.getRoleId().equals(account.getRoleId()))
             )){
-            clearUser();
+            clearUser(tSysAccount.getUuid());
             throw new BaseException(ExceptionEnum.USER_UPDATE_NEEDLOGIN);
         }
-        Token token = getLoginUser();
+        //Token token = getLoginUser(tSysAccount.getUuid());
         //冻结自身用户清空session
-        if(tSysAccount.getId().equals(getLoginUser().getUserId()) && 1 == tSysAccount.getStatus()){
-            clearUser();
+        if(tSysAccount.getId().equals(getLoginUser(tSysAccount.getUuid()).getUserId()) && 1 == tSysAccount.getStatus()){
+            clearUser(tSysAccount.getUuid());
             throw new BaseException(ExceptionEnum.USER_UPDATE_NEEDLOGIN);
         }
     }
@@ -249,13 +275,17 @@ public class TSysAccountController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
+            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public PageList<TSysAccount> list(@ApiIgnore @RequestBody TSysAccount tSysAccount) {
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
         tSysAccount.setDelFlag(0);
-        Token token =getLoginUser();
+        Token token =getLoginUser(tSysAccount.getUuid());
 
-        Map<String,Object> map = getManageProjectIds();
+        Map<String,Object> map = getManageProjectIds(tSysAccount.getUuid());
         String userType = map.get(CommonStatus.USER_TYPE).toString();
         List<String> list = (List<String>) map.get(CommonStatus.PROJECTIDS);
         if(CommonStatus.USER_MANAGER.equals(userType)){
@@ -283,9 +313,13 @@ public class TSysAccountController extends BaseController {
     @PostMapping("/manger")
     @ApiOperation("获取该项目下未绑定的用户加项目自身管理员")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "proId", value = "项目", required = false, paramType = "query")
+            @ApiImplicitParam(name = "proId", value = "项目", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public List<TSysAccount> findMangerList(@ApiIgnore @RequestBody  TSysAccount tSysAccount) {
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
         tSysAccount.setDelFlag(0);
         List<TSysAccount> tSysAccountList = new ArrayList<>();
         List<TSysAccount> tSysAccountList2 = new ArrayList<>() ;
@@ -296,7 +330,7 @@ public class TSysAccountController extends BaseController {
         }
         //获取未绑定
         tSysAccount.setIsbind(0);
-        tSysAccount.setProId(getLoginUser().getProId());
+        tSysAccount.setProId(getLoginUser(tSysAccount.getUuid()).getProId());
         tSysAccountList2 = tSysAccountService.selectAccountList(tSysAccount);
         tSysAccountList.addAll(tSysAccountList2);
         return tSysAccountList;
@@ -320,9 +354,15 @@ public class TSysAccountController extends BaseController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),
             @ApiImplicitParam(name = "oldPassword", value = "旧密码", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query")
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
+
     })
     public void updatePW(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request) {
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
+
         if(StringUtils.isEmpty(tSysAccount.getId())){
             throw new BaseException(ExceptionEnum.USER_ID_NULL);
         }
@@ -342,19 +382,23 @@ public class TSysAccountController extends BaseController {
         }else{
             throw new BaseException(ExceptionEnum.SYSTEM_UPDATE_ERROR_RESON);
         }
-        clearUser();
+        clearUser(tSysAccount.getUuid());
         tSysAccountService.updateByPrimaryKeySelective(tSysAccount);
     }
 
     @GetMapping("/ableUserList")
     @ApiOperation("查询启用的用户")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "projectId", value = "项目Id", required = false, paramType = "query")
+            @ApiImplicitParam(name = "projectId", value = "项目Id", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
-    public List<TSysAccount> list(String projectId) {
-        Token token = getLoginUser();
+    public List<TSysAccount> list(String projectId,String uuid) {
+        if(StringUtils.isEmpty(uuid)){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
+        Token token = getLoginUser(uuid);
         TSysAccount tSysAccount = new TSysAccount();
-        Map<String,Object> map = getManageProjectIds();
+        Map<String,Object> map = getManageProjectIds(uuid);
         String userType = map.get(CommonStatus.USER_TYPE).toString();
         List<String> list = (List<String>) map.get(CommonStatus.PROJECTIDS);
         //设备编辑时，查询启用的用户

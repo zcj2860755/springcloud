@@ -21,9 +21,7 @@ public class RedisService {
     public void setRedisTemplate(RedisTemplate redisTemplate) {
         StringRedisSerializer stringSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringSerializer);
-//        redisTemplate.setValueSerializer(stringSerializer);
         redisTemplate.setHashKeySerializer(stringSerializer);
-//        redisTemplate.setHashValueSerializer(stringSerializer);
         this.redisTemplate = redisTemplate;
     }
 

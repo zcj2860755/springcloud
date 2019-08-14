@@ -1,5 +1,7 @@
 package com.zdzc.common;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @Author: zcj
  * @Description: 记录一些公共的标识
@@ -9,9 +11,20 @@ package com.zdzc.common;
 public  class CommonStatus {
 
     /**
-     * session用户信息Key
+     * redis 用户标识
      */
-    public static final String ACCOUNT = "account";
+    public static final String ZDZCACCOUNT = "zdzc_base";
+
+    /**
+     * token的有效时长
+     */
+    public static final Long EXPIRETIME = 60 * 24 * 7L;
+
+    /**
+     * 有效时长单位
+     */
+    public TimeUnit timeUnit = TimeUnit.MINUTES;
+
 
     /**
      * 正常状态
@@ -29,22 +42,8 @@ public  class CommonStatus {
      */
     public static final String DEFAULTPASSWORD="123456";
 
-    /**
-     * 瑞眼同步默认的项目key
-     */
-    public static final String RYPROJECT="RYPROJECT";
 
 
-
-    /**
-     * 机动车
-     */
-    public static final String [] DEVICE_TYPE_MOTOR={"3","4"};
-
-    /**
-     * 手持
-     */
-    public static final String [] DEVICE_TYPE_HAND={"1","2"};
 
     /**
      * 项目ID串标识
@@ -76,11 +75,6 @@ public  class CommonStatus {
      */
     public static final String USER_COMMON = "3";
 
-
-    public static String getResultMsg(String parm){
-        String msg = "该用户" +parm+ "有绑定设备，无法绑定该项目，请解绑设备后重试";
-        return msg;
-    }
 
     /**
      * 浙大正呈精度

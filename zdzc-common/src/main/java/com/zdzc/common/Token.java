@@ -7,8 +7,12 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * Created by Administrator on 2017/8/14.
- */
+ * @Author  zcj
+ * @Description  用户token
+ * @Date 15:33 2019/8/12
+ * @Param
+ * @return
+ **/
 public class Token implements Serializable {
 
     private static final long serialVersionUID = -7195818219149330529L;
@@ -17,7 +21,7 @@ public class Token implements Serializable {
     private String userId;
     @ApiModelProperty("session Id")
     private String uuid;
-    @ApiModelProperty("角色 Id")
+    @ApiModelProperty("角色Id")
     private String roleId;
     @ApiModelProperty("用户名称")
     private String realName;
@@ -29,9 +33,12 @@ public class Token implements Serializable {
     public Token() {
     }
 
-    public Token(String userId, String uuid, Set<String> signSet) {
+    public Token(String userId, String uuid, String roleId, String realName, String proId, Set<String> signSet) {
         this.userId = userId;
         this.uuid = uuid;
+        this.roleId = roleId;
+        this.realName = realName;
+        this.proId = proId;
         this.signSet = signSet;
     }
 
