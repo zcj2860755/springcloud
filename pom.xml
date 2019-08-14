@@ -16,6 +16,8 @@
         <module>zdzc-zipkin</module>
         <module>zdzc-config-server</module>
         <module>zdzc-config-client</module>
+        <module>zdzc-manager-client</module>
+        <module>zdzc-manager-service</module>
     </modules>
 
     <name>zdzc</name>
@@ -50,6 +52,7 @@
         <zdzc.common.version>1.0-SNAPSHOT</zdzc.common.version>
         <pagehelper.version>1.2.9</pagehelper.version>
         <lombok.version>1.18.2</lombok.version>
+        <oss.version>2.8.3</oss.version>
     </properties>
 
     <dependencies>

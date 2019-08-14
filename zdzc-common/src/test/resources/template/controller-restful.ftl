@@ -5,7 +5,7 @@ import ${basePackage}.model.${modelNameUpperCamel};
 import ${basePackage}.service.I${modelNameUpperCamel}Service;
 import org.springframework.web.bind.annotation.*;
 import com.zdzc.common.PageList;
-
+import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 
 
@@ -27,7 +27,10 @@ public class ${modelNameUpperCamel}Controller {
 
     @DeleteMapping
     public int delete(@RequestParam("id") String id){
-       return ${modelNameLowerCamel}Service.deleteById(id);
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        return ${modelNameLowerCamel}Service.deleteById(id);
     }
 
     @PutMapping
@@ -37,11 +40,15 @@ public class ${modelNameUpperCamel}Controller {
 
     @GetMapping("/findById")
     public ${modelNameUpperCamel} detail(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return ${modelNameLowerCamel}Service.findById(id);
     }
 
-    @GetMapping
-    public PageList<${modelNameUpperCamel}> list(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
-        return ${modelNameLowerCamel}Service.list(${modelNameLowerCamel},baseRequest);
+    @PostMapping("/pageList")
+    public PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},
+        @RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        return ${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},pageNo,pageSize);
     }
 }

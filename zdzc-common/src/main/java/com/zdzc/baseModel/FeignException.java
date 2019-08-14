@@ -20,7 +20,7 @@ public class FeignException {
     /**
      * 错误类型
      */
-    private String exception;
+    private String trace;
 
     /**
      * 错误信息
@@ -56,12 +56,12 @@ public class FeignException {
         this.error = error;
     }
 
-    public String getException() {
-        return exception;
+    public String getTrace() {
+        return trace;
     }
 
-    public void setException(String exception) {
-        this.exception = exception;
+    public void setTrace(String trace) {
+        this.trace = trace.split(":")[0];
     }
 
     public String getMessage() {
@@ -78,17 +78,5 @@ public class FeignException {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-    @Override
-    public String toString() {
-        return "FeignException{" +
-                "timestamp='" + timestamp + '\'' +
-                ", status='" + status + '\'' +
-                ", error='" + error + '\'' +
-                ", exception='" + exception + '\'' +
-                ", message='" + message + '\'' +
-                ", path='" + path + '\'' +
-                '}';
     }
 }

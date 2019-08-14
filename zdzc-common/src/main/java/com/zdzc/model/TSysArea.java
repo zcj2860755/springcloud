@@ -1,198 +1,195 @@
 package com.zdzc.model;
 
-import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "t_sys_area")
 public class TSysArea {
     /**
-     * 区id
+     * 主键id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /**
-     * 省id
-     */
-    @Column(name = "province_id")
-    private Integer provinceId;
+    @Column(name = "parent_id")
+    private Integer parentId;
 
     /**
-     * 市id
-     */
-    @Column(name = "city_id")
-    private Integer cityId;
-
-    /**
-     * 区名
+     * 地区名称
      */
     private String name;
 
     /**
-     * 创建时间
+     * 简写名称
      */
-    @Column(name = "create_time")
-    private Date createTime;
+    @Column(name = "short_name")
+    private String shortName;
 
     /**
-     * 修改时间
+     * 经度
      */
-    @Column(name = "modify_time")
-    private Date modifyTime;
+    private Double longitude;
 
     /**
-     * 创建者
+     * 纬度
      */
-    @Column(name = "create_user")
-    private String createUser;
+    private Double latitude;
 
     /**
-     * 是否有效 0.无效  1.有效
+     * 城市级别 1.省 2.市 3.区 4.街道、镇
      */
-    private Integer enabled;
+    private Integer level;
+
+    @Column(name = "path_ids")
+    private String pathIds;
+
+    @Transient
+    private String GroupName;
+
+
+
+
+    public String getGroupName() {
+        return GroupName;
+    }
+
+    public void setGroupName(String groupName) {
+        GroupName = groupName;
+    }
 
     /**
-     * 获取区id
+     * 获取主键id
      *
-     * @return id - 区id
+     * @return id - 主键id
      */
     public Integer getId() {
         return id;
     }
 
     /**
-     * 设置区id
+     * 设置主键id
      *
-     * @param id 区id
+     * @param id 主键id
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * 获取省id
-     *
-     * @return province_id - 省id
+     * @return parent_id
      */
-    public Integer getProvinceId() {
-        return provinceId;
+    public Integer getParentId() {
+        return parentId;
     }
 
     /**
-     * 设置省id
-     *
-     * @param provinceId 省id
+     * @param parentId
      */
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     /**
-     * 获取市id
+     * 获取地区名称
      *
-     * @return city_id - 市id
-     */
-    public Integer getCityId() {
-        return cityId;
-    }
-
-    /**
-     * 设置市id
-     *
-     * @param cityId 市id
-     */
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
-
-    /**
-     * 获取区名
-     *
-     * @return name - 区名
+     * @return name - 地区名称
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 设置区名
+     * 设置地区名称
      *
-     * @param name 区名
+     * @param name 地区名称
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * 获取创建时间
+     * 获取简写名称
      *
-     * @return create_time - 创建时间
+     * @return short_name - 简写名称
      */
-    public Date getCreateTime() {
-        return createTime;
+    public String getShortName() {
+        return shortName;
     }
 
     /**
-     * 设置创建时间
+     * 设置简写名称
      *
-     * @param createTime 创建时间
+     * @param shortName 简写名称
      */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
     /**
-     * 获取修改时间
+     * 获取经度
      *
-     * @return modify_time - 修改时间
+     * @return longitude - 经度
      */
-    public Date getModifyTime() {
-        return modifyTime;
+    public Double getLongitude() {
+        return longitude;
     }
 
     /**
-     * 设置修改时间
+     * 设置经度
      *
-     * @param modifyTime 修改时间
+     * @param longitude 经度
      */
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     /**
-     * 获取创建者
+     * 获取纬度
      *
-     * @return create_user - 创建者
+     * @return latitude - 纬度
      */
-    public String getCreateUser() {
-        return createUser;
+    public Double getLatitude() {
+        return latitude;
     }
 
     /**
-     * 设置创建者
+     * 设置纬度
      *
-     * @param createUser 创建者
+     * @param latitude 纬度
      */
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
     /**
-     * 获取是否有效 0.无效  1.有效
+     * 获取城市级别 1.省 2.市 3.区 4.街道、镇
      *
-     * @return enabled - 是否有效 0.无效  1.有效
+     * @return level - 城市级别 1.省 2.市 3.区 4.街道、镇
      */
-    public Integer getEnabled() {
-        return enabled;
+    public Integer getLevel() {
+        return level;
     }
 
     /**
-     * 设置是否有效 0.无效  1.有效
+     * 设置城市级别 1.省 2.市 3.区 4.街道、镇
      *
-     * @param enabled 是否有效 0.无效  1.有效
+     * @param level 城市级别 1.省 2.市 3.区 4.街道、镇
      */
-    public void setEnabled(Integer enabled) {
-        this.enabled = enabled;
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    /**
+     * @return path
+     */
+    public String getPathIds() {
+        return pathIds;
+    }
+
+    /**
+     * @param pathIds
+     */
+    public void setPathIds(String pathIds) {
+        this.pathIds = pathIds;
     }
 }

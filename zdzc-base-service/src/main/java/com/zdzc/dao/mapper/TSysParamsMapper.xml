@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TSysParamsMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysParams">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="params_name" jdbcType="VARCHAR" property="paramsName" />
+    <result column="params_key" jdbcType="VARCHAR" property="paramsKey" />
+    <result column="params_value" jdbcType="VARCHAR" property="paramsValue" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdzc.dao.TManagerAreaMapper">
+  <resultMap id="BaseResultMap" type="com.zdzc.model.TManagerArea">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    <result column="parent_ids" jdbcType="VARCHAR" property="parentIds" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
+  </resultMap>
+
+
+  <!-- 条件查询 list -->
+  <select id="selectAreaList" resultMap="BaseResultMap">
+    SELECT *
+    from  t_manager_area
+    <where>
+      <if test=" keyWords != null">
+        name like concat('%',#{keyWords},'%')
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+
+  <select id="selectCountByParentId" resultType="integer">
+    SELECT count(0)
+    from  t_manager_area
+    where parent_id = #{parentId} and del_flag = 0
+  </select>
+
+
+</mapper>

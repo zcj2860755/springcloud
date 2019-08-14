@@ -36,7 +36,7 @@ public interface FeignTSysAuthorithService {
      **/
     @DeleteMapping("/authority/{id}")
     @ApiOperation("删除")
-    void delete(@PathVariable String id) ;
+    void delete(@PathVariable(value = "id") String id) ;
     /**
     *
      * @Author  zcj
@@ -58,7 +58,7 @@ public interface FeignTSysAuthorithService {
      **/
     @GetMapping("/authority/{id}")
     @ApiOperation("获取详情")
-    TSysAuthority detail(@PathVariable String id);
+    TSysAuthority detail(@PathVariable(value = "id") String id);
     /**
     *
      * @Author  zcj

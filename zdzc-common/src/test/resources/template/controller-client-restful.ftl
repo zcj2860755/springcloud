@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 import com.zdzc.common.PageList;
+import org.springframework.util.StringUtils;
 
 
 /**
@@ -27,7 +28,7 @@ public class ${modelNameUpperCamel}Controller {
     @PostMapping
     @ApiOperation("新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
+            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query"),
     })
     public int add(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
         return feign${modelNameLowerCamel}Service.add(${modelNameLowerCamel});
@@ -39,13 +40,16 @@ public class ${modelNameUpperCamel}Controller {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feign${modelNameLowerCamel}Service.delete(id);
     }
 
     @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query")
+            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query"),
     })
     public int update(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
         return feign${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
@@ -57,16 +61,20 @@ public class ${modelNameUpperCamel}Controller {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public ${modelNameUpperCamel} detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feign${modelNameLowerCamel}Service.findById(id);
     }
 
-    @GetMapping
+    @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query")
+            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query"),
     })
-    public PageList<${modelNameUpperCamel}> list(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}) {
-        return feign${modelNameLowerCamel}Service.list(${modelNameLowerCamel});
+    public PageList<${modelNameUpperCamel}> pageList(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel},
+        @RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        return feign${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},pageNo,pageSize);
     }
 }

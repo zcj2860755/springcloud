@@ -82,7 +82,7 @@ public interface FeignTSysAccountService {
      * @return com.zdzc.model.TSysAccount
      **/
     @GetMapping("/account/{id}")
-    TSysAccount detail(@PathVariable String id) ;
+    TSysAccount detail(@PathVariable(value = "id") String id) ;
 
 
     /**
@@ -145,7 +145,7 @@ public interface FeignTSysAccountService {
      * @return java.util.List<com.zdzc.model.TSysAccount>
      **/
     @GetMapping("/account/ableUserList")
-    List<TSysAccount> list(String projectId);
+    List<TSysAccount> list(@RequestParam("projectId") String projectId);
 
 
 }
