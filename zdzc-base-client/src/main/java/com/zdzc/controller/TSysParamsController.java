@@ -67,6 +67,9 @@ public class TSysParamsController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feigntSysParamsService.delete(id);
     }
 
@@ -93,6 +96,9 @@ public class TSysParamsController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public TSysParams detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feigntSysParamsService.findById(id);
     }
 
@@ -107,3 +113,4 @@ public class TSysParamsController {
         return feigntSysParamsService.pageList(tSysParams,pageNo,pageSize);
     }
 }
+

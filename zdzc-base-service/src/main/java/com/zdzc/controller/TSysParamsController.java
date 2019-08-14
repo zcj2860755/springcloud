@@ -52,6 +52,9 @@ public class TSysParamsController {
 
     @DeleteMapping
     public int delete(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
        return tSysParamsService.deleteById(id);
     }
 
@@ -66,6 +69,9 @@ public class TSysParamsController {
 
     @GetMapping("/findById")
     public TSysParams detail(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return tSysParamsService.findById(id);
     }
 

@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 import com.zdzc.common.PageList;
+import org.springframework.util.StringUtils;
 
 
 /**
@@ -39,6 +40,9 @@ public class ${modelNameUpperCamel}Controller {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feign${modelNameLowerCamel}Service.delete(id);
     }
 
@@ -57,6 +61,9 @@ public class ${modelNameUpperCamel}Controller {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public ${modelNameUpperCamel} detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feign${modelNameLowerCamel}Service.findById(id);
     }
 
