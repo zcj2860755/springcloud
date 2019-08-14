@@ -31,7 +31,7 @@ public class TSysParamsController {
     @ApiOperation("新增")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "paramsName", value = "参数名称", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "paramsKey", value = "参数key", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "paramsKey", value = "参数key", required = true, paramType = "query"),
             @ApiImplicitParam(name = "paramsValue", value = "参数值", required = true, paramType = "query"),
             @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query")
     })
@@ -73,9 +73,16 @@ public class TSysParamsController {
     @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "paramsName", value = "参数名称", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "paramsKey", value = "参数key", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "paramsValue", value = "参数值", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query")
     })
     public int update(@ApiIgnore TSysParams tSysParams){
+        if(StringUtils.isEmpty(tSysParams.getId())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         checkParams(tSysParams);
         return feigntSysParamsService.update(tSysParams);
     }

@@ -41,7 +41,8 @@ public class ${modelNameUpperCamel}Controller {
     }
 
     @PostMapping("/pageList")
-    public PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},BaseRequest baseRequest) {
-        return ${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},baseRequest);
+    public PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},
+        @RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        return ${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},pageNo,pageSize);
     }
 }

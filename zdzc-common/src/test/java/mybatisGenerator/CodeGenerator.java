@@ -41,7 +41,7 @@ public class CodeGenerator {
     private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的hystrix存放路径
 
 
-    private static final String AUTHOR = "zdzc";//@author
+    private static final String AUTHOR = "zhuqilong";//@author
     private static final String FEIGNCLIENTNAME = "basic-service";//@FeignClient名称
 
     private static final String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());//@date

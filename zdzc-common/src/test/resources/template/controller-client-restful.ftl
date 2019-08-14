@@ -66,7 +66,8 @@ public class ${modelNameUpperCamel}Controller {
             @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query"),
     })
-    public PageList<${modelNameUpperCamel}> pageList(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}) {
-        return feign${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel});
+    public PageList<${modelNameUpperCamel}> pageList(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel},
+        @RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        return feign${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},pageNo,pageSize);
     }
 }
