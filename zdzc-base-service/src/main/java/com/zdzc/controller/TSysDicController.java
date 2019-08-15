@@ -4,7 +4,7 @@ import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 import com.zdzc.model.TSysDic;
 import com.zdzc.service.ITSysDicService;
-import com.zdzc.utils.OSS.OSSUnit;
+import com.zdzc.utils.oss.OSSUnit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
