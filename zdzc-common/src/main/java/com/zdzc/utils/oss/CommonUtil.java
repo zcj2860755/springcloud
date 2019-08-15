@@ -1,4 +1,4 @@
-package com.zdzc.utils.OSS;
+package com.zdzc.utils.oss;
 
 /**
  * 工具类
