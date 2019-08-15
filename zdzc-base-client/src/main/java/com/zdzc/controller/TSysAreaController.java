@@ -1,7 +1,10 @@
 package com.zdzc.controller;
 
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysArea;
 import com.zdzc.service.FeignTSysAreaService;
+import com.zdzc.utils.BaseException;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import io.swagger.annotations.Api;
@@ -45,6 +48,9 @@ public class TSysAreaController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.USER_PHONE_NULL);
+        }
         return feigntSysAreaService.delete(id);
     }
 

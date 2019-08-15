@@ -28,7 +28,9 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
     public int save(TSysArea tSysArea) {
         Integer parentId = tSysArea.getParentId();
         TSysArea area = tSysAreaMapper.selectByPrimaryKey(parentId);
-        tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");
+        if(area != null){ //添加省份校验
+            tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");
+        }
         return tSysAreaMapper.insertSelective(tSysArea);
     }
 
