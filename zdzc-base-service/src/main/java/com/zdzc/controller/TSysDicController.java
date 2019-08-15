@@ -65,15 +65,6 @@ public class TSysDicController {
         return tSysDicService.update(tSysDic);
     }
 
-    @GetMapping("/findById")
-    @ApiOperation("获取详情")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
-    })
-    public TSysDic detail(@RequestParam("id") String id){
-        return tSysDicService.findById(id);
-    }
-
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
@@ -81,9 +72,12 @@ public class TSysDicController {
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "categoryId", value = "类别id", required = true, paramType = "query")
     })
-    public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic, BaseRequest baseRequest) {
-        return tSysDicService.list(tSysDic,baseRequest);
+    public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic,@RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        return tSysDicService.list(tSysDic,pageNo,pageSize);
     }
+
+
+
     @PostMapping("/test")
     public int kkkk (@RequestBody MultipartFile image) {
         String imgName = "images";

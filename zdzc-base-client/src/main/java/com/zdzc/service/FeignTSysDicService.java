@@ -22,10 +22,7 @@ public interface FeignTSysDicService {
     @PutMapping("/dic")
     int update(@RequestBody TSysDic tSysDic);
 
-    @GetMapping("/dic/findById")
-    TSysDic findById(@RequestParam("id") String id);
-
     @PostMapping("/dic/pageList")
-    PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic);
+    PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
 
 }

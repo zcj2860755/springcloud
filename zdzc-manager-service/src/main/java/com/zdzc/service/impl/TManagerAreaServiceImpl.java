@@ -7,7 +7,7 @@ import com.zdzc.model.TManagerArea;
 import com.zdzc.model.TManagerPlace;
 import com.zdzc.model.TManagerUnit;
 import com.zdzc.service.ITManagerAreaService;
-import com.zdzc.utils.TreeUtils.TreeUtil;
+import com.zdzc.utils.treeUtils.TreeUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

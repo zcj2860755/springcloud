@@ -18,13 +18,10 @@ public interface ITSysDicService {
 
     int update(TSysDic tSysDic);
 
-    TSysDic findById(String id);
-
-
     /**
      * @description：分页查询
      */
-    PageList<TSysDic> list(TSysDic tSysDic, BaseRequest baseRequest);
+    PageList<TSysDic> list(TSysDic tSysDic,Integer pageNo,Integer pageSize);
 
 
 }

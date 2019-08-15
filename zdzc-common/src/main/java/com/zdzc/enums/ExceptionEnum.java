@@ -77,6 +77,20 @@ public enum ExceptionEnum {
     PROJECT_UPDATE_ERROR(50002,"父子级关系错误，请重新编辑"),
     PROJECT_EDIT_ERROR(50003,"该用户没有权限，只能查看，不能编辑"),
     PROJECT_NAME_EXIST(50004,"项目已存在"),
+
+    //--------------数据字典相关错误 60000+ --------------------
+    PARAM_ID_NULL(60001,"参数id不能为空"),
+    DIC_CATEGORY_NULL(60001,"字典类别不能为空"),
+    DIC_KEY_NULL(60001,"字典编码不能为空"),
+    DIC_VABLE_NULL(60001,"字典名称不能为空"),
+    DIC_ENABLE_NULL(60001,"字典是否启动不能为空"),
+    DIC_SORT_NULL(60001,"字典排序不能为空"),
+
+
+    DIC_KEY_NAMEEXIST(60001,"新增失败,数据字典编码已存在"),
+
+
+
     ;
 
 

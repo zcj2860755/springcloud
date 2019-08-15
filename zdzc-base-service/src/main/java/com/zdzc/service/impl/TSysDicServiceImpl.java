@@ -7,9 +7,11 @@ import com.zdzc.dao.TSysDicCategoryMapper;
 import com.zdzc.dao.TSysDicMapper;
 
 
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDic;
 import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicService;
+import com.zdzc.utils.BaseException;
 import com.zdzc.utils.UUIDUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,47 +28,32 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     @Resource
     private TSysDicMapper tSysDicMapper;
 
-    @Resource
-    private TSysDicCategoryMapper tSysDicCategoryMapper;
-
     @Override
     public int insert(TSysDic tSysDic) {
-        List<TSysDic> dicList = tSysDicMapper.select(tSysDic);
-        for (TSysDic sysDic : dicList) {
-           if(sysDic.getDicKey().equals(tSysDic.getDicKey())){
-               System.out.println("数据库里已经有相同的dic_key");
-               return 0;
-           }
+        //categoryId + key查询是否有数据
+        List<TSysDic> list = tSysDicMapper.selectListBykeyAndCategory(tSysDic);
+        if(list != null && list.size() > 0 ){
+            throw new BaseException(ExceptionEnum.DIC_KEY_NAMEEXIST);
         }
         tSysDic.setId(UUIDUtils.getUUID());
-        //tSysDic.setIsEnable(1);
-        int insert = tSysDicMapper.insert(tSysDic);
-        System.out.println("是否插入字典表:"+insert);
-        return insert;
+        return tSysDicMapper.insert(tSysDic);
     }
 
     @Override
     public int delete(String id) {
         int delete = tSysDicMapper.deleteByPrimaryKey(id);
-        System.out.println(delete);
         return delete;
     }
 
     @Override
     public int update(TSysDic tSysDic) {
         int update = tSysDicMapper.updateByPrimaryKey(tSysDic);
-        System.out.println("是否修改了字典表:"+update);
         return update;
     }
 
     @Override
-    public TSysDic findById(String id) {
-        return tSysDicMapper.selectTSysDicWithCatergory(id);
-    }
-
-    @Override
-    public PageList<TSysDic> list(TSysDic tSysDic, BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+    public PageList<TSysDic> list(TSysDic tSysDic, Integer pageNo,Integer pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
         List<TSysDic> tSysDicList = tSysDicMapper.selectAllDic(tSysDic);
         return new PageList<TSysDic>(tSysDicList);
     }
