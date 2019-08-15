@@ -195,7 +195,7 @@ public class TSysAccountController {
 
     }
 
-    @PutMapping("/updatePW")
+    @PutMapping("/updatePW/{id}")
     @ApiOperation("修改密码")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),
@@ -215,7 +215,7 @@ public class TSysAccountController {
         if(StringUtils.isEmpty(tSysAccount.getPassword())){
             throw new BaseException(ExceptionEnum.USER_NEWPASSWORD_NULL);
         }
-        feignTSysAccountService.updatePW(tSysAccount);
+        feignTSysAccountService.updatePW(tSysAccount.getId(),tSysAccount);
 
 
     }
