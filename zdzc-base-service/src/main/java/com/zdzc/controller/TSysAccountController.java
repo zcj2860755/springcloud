@@ -144,7 +144,7 @@ public class TSysAccountController extends BaseController {
                     throw new BaseException(ExceptionEnum.USER_ROLE_NOPOWER);
                 }
                 token.setSignSet(authIds);
-                redisService.set("accessToken",token);
+                redisService.set(accessToken,token,CommonStatus.EXPIRETIME);
             }
         }
         return token;

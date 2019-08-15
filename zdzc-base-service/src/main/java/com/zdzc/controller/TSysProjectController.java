@@ -50,15 +50,19 @@ public class TSysProjectController extends BaseController{
             @ApiImplicitParam(name = "orders", value = "排序字段", required = false, paramType = "query"),
             @ApiImplicitParam(name = "accountId", value = "创建人", required = false, paramType = "query"),
             @ApiImplicitParam(name = "userIds", value = "管理员id集合",allowMultiple = true , required = false, paramType = "query"),
-            @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query")
+            @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
 
     })
     public void add(@ApiIgnore @RequestBody TSysProject tSysProject) {
         //新增，获取session里面的数据
-       /* if(StringUtils.isEmpty(tSysProject.getParentId()) || tSysProject.getParentId().equals("0")){
-            tSysProject.setParentId(getLoginUser().getProId());
-            tSysProject.setCascadeId(getLoginUser().getProId());
-        }*/
+        if(StringUtils.isEmpty(tSysProject.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
+        if(StringUtils.isEmpty(tSysProject.getParentId()) || tSysProject.getParentId().equals("0")){
+            tSysProject.setParentId(getLoginUser(tSysProject.getUuid()).getProId());
+            tSysProject.setCascadeId(getLoginUser(tSysProject.getUuid()).getProId());
+        }
         tSysProjectService.insertSelective(tSysProject);
     }
 
@@ -89,17 +93,21 @@ public class TSysProjectController extends BaseController{
             @ApiImplicitParam(name = "orders", value = "排序字段", required = false, paramType = "query"),
             @ApiImplicitParam(name = "accountId", value = "创建人", required = false, paramType = "query"),
             @ApiImplicitParam(name = "userIds", value = "管理员id",allowMultiple = true , required = false, paramType = "query"),
-            @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query")
+            @ApiImplicitParam(name = "remark", value = "备注", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public void update(@ApiIgnore @RequestBody TSysProject tSysProject) {
-        if(!StringUtils.isEmpty(getLoginUser().getProId())){
-            if(getLoginUser().getProId().equals(tSysProject.getId())){
+        if(StringUtils.isEmpty(tSysProject.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
+        if(!StringUtils.isEmpty(getLoginUser(tSysProject.getUuid()).getProId())){
+            if(getLoginUser(tSysProject.getUuid()).getProId().equals(tSysProject.getId())){
                 throw new BaseException(ExceptionEnum.PROJECT_EDIT_ERROR);
             }
         }
         if(StringUtils.isEmpty(tSysProject.getParentId()) || tSysProject.getParentId().equals("0")){
-            tSysProject.setParentId(getLoginUser().getProId());
-            tSysProject.setCascadeId(getLoginUser().getProId());
+            tSysProject.setParentId(getLoginUser(tSysProject.getUuid()).getProId());
+            tSysProject.setCascadeId(getLoginUser(tSysProject.getUuid()).getProId());
         }
         tSysProjectService.updateByPrimaryKeySelective(tSysProject);
     }
@@ -137,13 +145,17 @@ public class TSysProjectController extends BaseController{
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
+            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public PageList<TSysProject> list(@ApiIgnore @RequestBody TSysProject tSysProject) {
+        if(StringUtils.isEmpty(tSysProject.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
 
-        Token token = getLoginUser();
+        Token token = getLoginUser(tSysProject.getUuid());
         if(!StringUtils.isEmpty(token.getProId())){
-            TSysAccount tSysAccount = tSysAccountService.selectByPrimaryKey(getLoginUser().getUserId());
+            TSysAccount tSysAccount = tSysAccountService.selectByPrimaryKey(getLoginUser(tSysProject.getUuid()).getUserId());
             if(tSysAccount.getIsbind() == 0){
                 tSysProject.setId(token.getProId());
             }else if (tSysAccount.getIsbind() == 1){
@@ -193,17 +205,21 @@ public class TSysProjectController extends BaseController{
     @PostMapping("/edit/findList")
     @ApiOperation("查询所有")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "项目Id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "项目Id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public List<TSysProject> editFindAlllist(@ApiIgnore @RequestBody TSysProject tSysProject) {
         if(StringUtils.isEmpty(tSysProject.getId())){
             //新增，获取session里面的数据
-            if(StringUtils.isEmpty(getLoginUser().getProId())){
+            if(StringUtils.isEmpty(tSysProject.getUuid())){
+                throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+            }
+            if(StringUtils.isEmpty(getLoginUser(tSysProject.getUuid()).getProId())){
                 tSysProject.setId(null);
             }
 
         }
-        tSysProject.setCascadeId(getLoginUser().getProId());
+        tSysProject.setCascadeId(getLoginUser(tSysProject.getUuid()).getProId());
         List<TSysProject>  lists= tSysProjectService.selectByExample(tSysProject);
         return lists;
     }
