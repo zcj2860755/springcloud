@@ -46,7 +46,8 @@ public class TSysArea {
     @Transient
     private String GroupName;
 
-
+    @Transient
+    private Integer mark;
 
 
     public String getGroupName() {
@@ -55,6 +56,14 @@ public class TSysArea {
 
     public void setGroupName(String groupName) {
         GroupName = groupName;
+    }
+
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
     }
 
     /**

@@ -40,5 +40,13 @@
     where parent_id = #{parentId} and del_flag = 0
   </select>
 
+  <select id="selectListByParentId" resultMap="BaseResultMap">
+    SELECT *
+    from  t_manager_area
+    where parent_id = #{parentId}
+  </select>
+
+
+
 
 </mapper>

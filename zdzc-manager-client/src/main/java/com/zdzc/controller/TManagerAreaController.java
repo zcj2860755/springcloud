@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 import com.zdzc.common.PageList;
 
+import java.util.List;
+
 
 /**
  * Description : 区域管理API接口
@@ -69,13 +71,8 @@ public class TManagerAreaController {
     }
 
     @PostMapping("/pageList")
-    @ApiOperation("分页查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query"),
-    })
-    public PageList<TManagerArea> pageList(@ApiIgnore TManagerArea tManagerArea) {
-        return feigntManagerAreaService.pageList(tManagerArea);
+    @ApiOperation("查询-模糊查询前端做")
+    public List<TManagerArea> pageList() {
+        return feigntManagerAreaService.pageList();
     }
 }

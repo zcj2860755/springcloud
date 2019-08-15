@@ -1,13 +1,11 @@
 package com.zdzc.controller;
 
-import com.zdzc.common.BaseRequest;
 import com.zdzc.model.TSysArea;
 import com.zdzc.service.ITSysAreaService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -47,7 +45,7 @@ public class TSysAreaController {
     }
 
     @PutMapping
-    @ApiOperation("更新")//不支持跨省修改
+    @ApiOperation("更新") // --跨省修改有问题,提升地区等级也会有问题 子类level不变  一般不会操作
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "parentId", value = "父id", required = true, paramType = "query"),
@@ -60,44 +58,17 @@ public class TSysAreaController {
        return tSysAreaService.update(tSysArea);
     }
 
-    @GetMapping("/findById")
-    public TSysArea detail(@RequestParam("id") String id){
-        return tSysAreaService.findById(id);
-    }
 
-    @PostMapping("/pageList")
-    public PageList<TSysArea> pageList(@RequestBody TSysArea tSysArea,BaseRequest baseRequest) {
-        return tSysAreaService.pageList(tSysArea,baseRequest);
-    }
 
-    @PostMapping("/selectProvinceList")
-    public List<TSysArea> selectProvinceList() {
-        return tSysAreaService.selectProvinceList();
-    }
-
-    @PostMapping("/selectCityList")
+    @PostMapping("/selectProvinceCityAreaList")
+    @ApiOperation("多级类别查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "provinceId", value = "省份id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "省份/城市/区id", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "mark", value = "标记 1.省份 2.城市 3.区域 4.镇、街道 ", required = true, paramType = "query"),
     })
-    public List<TSysArea> selectCityList(@RequestParam("provinceId") Integer provinceId) {
-        return tSysAreaService.selectCityList(provinceId);
+    public List<TSysArea> selectProvinceCityAreaList(@RequestBody TSysArea tSysArea){
+        return tSysAreaService.selectProvinceCityAreaList(tSysArea);
     }
 
-    @PostMapping("/selectAreaList")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "cityId", value = "城市id", required = true, paramType = "query")
-    })
-    public List<TSysArea> selectAreaList(@RequestParam("cityId") Integer cityId) {
-        return tSysAreaService.selectAreaList(cityId);
-    }
-
-    @PostMapping("/selectTownList")
-    @ApiOperation("街道、城镇list")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "areaId", value = "区域id", required = true, paramType = "query")
-    })
-    public List<TSysArea> selectTownList(@RequestParam("areaId") Integer areaId) {
-        return tSysAreaService.selectTownList(areaId);
-    }
 
 }

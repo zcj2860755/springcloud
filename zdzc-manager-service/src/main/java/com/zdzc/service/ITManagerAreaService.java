@@ -4,6 +4,8 @@ import com.zdzc.model.TManagerArea;
 import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
 
+import java.util.List;
+
 /**
  * Author : 李琳青
  * Date : 2019-08-13 17:48
@@ -39,10 +41,13 @@ public interface ITManagerAreaService {
     TManagerArea findById(String id);
 
     /**
-    * @description：分页查询
+    * @description：查询
     * @author：李琳青
     * @date：2019-08-13 17:48
     */
-    PageList<TManagerArea> pageList(TManagerArea tManagerArea,BaseRequest baseRequest);
+    List<TManagerArea> pageList();
+
+
+
 
 }

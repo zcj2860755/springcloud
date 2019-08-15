@@ -20,4 +20,8 @@ public interface TManagerAreaMapper extends Mapper<TManagerArea> {
      int selectCountByParentId(@Param("parentId") String parentId);
 
 
+     List<TManagerArea> selectListByParentId(@Param("parentId") String parentId);
+
+
+
 }

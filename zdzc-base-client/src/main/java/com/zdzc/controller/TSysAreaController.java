@@ -1,7 +1,10 @@
 package com.zdzc.controller;
 
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysArea;
 import com.zdzc.service.FeignTSysAreaService;
+import com.zdzc.utils.BaseException;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import io.swagger.annotations.Api;
@@ -45,11 +48,14 @@ public class TSysAreaController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.USER_PHONE_NULL);
+        }
         return feigntSysAreaService.delete(id);
     }
 
     @PutMapping
-    @ApiOperation("更新")//不支持跨省修改
+    @ApiOperation("更新")// --跨省修改有问题,提升地区等级也会有问题 子类level不变  一般不会操作
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "parentId", value = "父id", required = true, paramType = "query"),
@@ -62,57 +68,18 @@ public class TSysAreaController {
         return feigntSysAreaService.update(tSysArea);
     }
 
-    @GetMapping("/findById")
-    @ApiOperation("获取详情")
+
+
+    @PostMapping("/selectProvinceCityAreaList")
+    @ApiOperation("省市区查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "省份/城市/区id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "mark", value = "标记 1.省份 2.城市 3.区域 4.镇、街道 ", required = true, paramType = "query"),
     })
-    public TSysArea detail(String id){
-        return feigntSysAreaService.findById(id);
+    public List<TSysArea> selectProvinceCityAreaList(@ApiIgnore TSysArea tSysArea) {
+        return feigntSysAreaService.selectProvinceCityAreaList(tSysArea);
     }
 
-    @PostMapping("/pageList")
-    @ApiOperation("分页查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query")
-    })
-    public PageList<TSysArea> pageList(@ApiIgnore TSysArea tSysArea) {
-        return feigntSysAreaService.pageList(tSysArea);
-    }
-
-    @PostMapping("/selectProvinceList")
-    @ApiOperation("省份list")
-    public List<TSysArea> selectProvinceList() {
-        return feigntSysAreaService.selectProvinceList();
-    }
-
-    @PostMapping("/selectCityList")
-    @ApiOperation("select城市list")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "provinceId", value = "省份id", required = true, paramType = "query")
-    })
-    public List<TSysArea> selectCityList(Integer provinceId) {
-        return feigntSysAreaService.selectCityList(provinceId);
-    }
-
-    @PostMapping("/selectAreaList")
-    @ApiOperation("区域list")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "cityId", value = "城市id", required = true, paramType = "query")
-    })
-    public List<TSysArea> selectAreaList(Integer cityId) {
-        return feigntSysAreaService.selectAreaList(cityId);
-    }
-
-    @PostMapping("/selectTownList")
-    @ApiOperation("街道、城镇list")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "areaId", value = "区域id", required = true, paramType = "query")
-    })
-    public List<TSysArea> selectTownList(Integer areaId) {
-        return feigntSysAreaService.selectTownList(areaId);
-    }
 
 
 }

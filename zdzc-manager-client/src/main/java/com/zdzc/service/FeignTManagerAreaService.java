@@ -4,6 +4,9 @@ import com.zdzc.common.PageList;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import com.zdzc.model.TManagerArea;
+import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.List;
 
 
 /**
@@ -26,7 +29,7 @@ public interface FeignTManagerAreaService {
     TManagerArea findById(@RequestParam("id") String id);
 
     @PostMapping("/manager/area/pageList")
-    PageList<TManagerArea> pageList(@RequestBody TManagerArea tManagerArea);
+    List<TManagerArea> pageList();
 
 
 }
