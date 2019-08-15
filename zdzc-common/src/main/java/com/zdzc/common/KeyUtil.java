@@ -69,11 +69,11 @@ public class KeyUtil {
      * 测试方法
      * @param args 参数
      */
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         System.out.println("appId= " + generateAppId());
         System.out.println("appKey= " + generateAppKey());
         System.out.println("appKey= " + generateAccessToken("873bbedd7dc94afbbb05a27c9dd823d8"));
 
-    }
+    }*/
 }
 

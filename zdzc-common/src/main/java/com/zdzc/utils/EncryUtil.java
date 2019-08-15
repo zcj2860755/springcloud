@@ -215,10 +215,10 @@ public class EncryUtil {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
-    /**
+   /* *//**
      * 测试函数
      * @param args 参数
-     */
+     *//*
     public static void main(String[] args) {
         String code = "ErB9Q2QPa5D8BWFv6j9hEpxguZ09fcJn";
         String key = "ErB9Q2QPa5D8BWFv6j9hEpxguZ09fcJn";
@@ -228,10 +228,10 @@ public class EncryUtil {
         //System.out.println("timestamp=" + timestamp);
         System.out.println("token=" + token);
 
-        /*String appId = "ecd6b7ed";
+        *//*String appId = "ecd6b7ed";
         String appKey = "28e57302167d";
         String timestamp = "1500290442";
         String token = generateAppToken(appId, appKey, timestamp);
-        System.out.println("token="+token+"&appid="+appId+"&timestamp="+timestamp);*/
-    }
+        System.out.println("token="+token+"&appid="+appId+"&timestamp="+timestamp);*//*
+    }*/
 }
