@@ -1,4 +1,4 @@
-package com.zdzc.utils.OSS;
+package com.zdzc.utils.oss;
 
 import com.aliyun.oss.ClientConfiguration;
 import com.aliyun.oss.ClientException;
@@ -10,7 +10,7 @@ import com.aliyun.oss.model.Bucket;
 import com.aliyun.oss.model.OSSObject;
 import com.aliyun.oss.model.ObjectMetadata;
 import com.aliyun.oss.model.PutObjectResult;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Logger;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
@@ -29,9 +29,8 @@ import java.util.List;
  * version :1.0.0
  */
 
-@Slf4j
 public class OSSUnit {
-
+     private static Logger logger = Logger.getLogger(OSSUnit.class);
 
   /*  *//**
      * 阿里云API的内或外网域名
@@ -117,30 +116,30 @@ public class OSSUnit {
             return resultStr;
         } catch (OSSException oe) {
             oe.printStackTrace();
-            log.info("Caught an OSSException, which means your request made it to OSS, "
+            logger.info("Caught an OSSException, which means your request made it to oss, "
                     + "but was rejected with an error response for some reason.");
-            log.info("Error Message: " + oe.getErrorCode());
-            log.info("Error Code:       " + oe.getErrorCode());
-            log.info("Request ID:      " + oe.getRequestId());
-            log.info("Host ID:           " + oe.getHostId());
+            logger.info("Error Message: " + oe.getErrorCode());
+            logger.info("Error Code:       " + oe.getErrorCode());
+            logger.info("Request ID:      " + oe.getRequestId());
+            logger.info("Host ID:           " + oe.getHostId());
             return resultStr;
         } catch (ClientException ce) {
             ce.printStackTrace();
-            log.info("Caught an ClientException, which means the client encountered "
-                    + "a serious internal problem while trying to communicate with OSS, "
+            logger.info("Caught an ClientException, which means the client encountered "
+                    + "a serious internal problem while trying to communicate with oss, "
                     + "such as not being able to access the network.");
-            log.info("Error Message: " + ce.getMessage());
+            logger.info("Error Message: " + ce.getMessage());
             return resultStr;
         } catch (Exception e) {
             e.printStackTrace();
-            log.error("上传阿里云OSS服务器异常." + e.getMessage(), e);
+            logger.error("上传阿里云OSS服务器异常." + e.getMessage(), e);
             return resultStr;
         } finally {
             if (instream != null) {
                 try {
                     instream.close();
                 } catch (IOException e) {
-                    log.info("关闭输入流失败");
+                    logger.info("关闭输入流失败");
                     e.printStackTrace();
                 }
             }
@@ -165,7 +164,7 @@ public class OSSUnit {
      */
     public final void deleteBucket(OSSClient client, String bucketName) {
         client.deleteBucket(bucketName);
-        log.info("删除" + bucketName + "Bucket成功");
+        logger.info("删除" + bucketName + "Bucket成功");
     }
 
     /**
@@ -191,7 +190,7 @@ public class OSSUnit {
      */
     public void deleteFile(OSSClient client, String bucketName, String diskName, String key) {
         client.deleteObject(bucketName, diskName + key);
-        log.info("删除" + bucketName + "下的文件" + diskName + key + "成功");
+        logger.info("删除" + bucketName + "下的文件" + diskName + key + "成功");
     }
 
     /**
@@ -305,7 +304,7 @@ public class OSSUnit {
     }
 
     /**
-     * @author: zhoujiong
+     * @author: zhouj
      * @description: 将;拼接的img长链接拆分
      * @date: 2018/11/10 11:24
      * @param: [imgs]
@@ -361,7 +360,7 @@ public class OSSUnit {
         return imgUrl;
     }
 
-    //刘会
+    //liuhui
     public static StringBuffer getDBImgUrlWithWH(MultipartFile[] imgs, String imgName, String fileDir)  throws IOException{
 
         StringBuffer imgUrl = new StringBuffer();
