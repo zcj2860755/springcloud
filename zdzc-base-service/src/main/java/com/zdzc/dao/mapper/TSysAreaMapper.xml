@@ -1,60 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zdzc.dao.TSysAreaMapper">
-  <resultMap id="BaseResultMap" type="com.zdzc.model.TSysArea">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="short_name" jdbcType="VARCHAR" property="shortName" />
-    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
-    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
-    <result column="level" jdbcType="INTEGER" property="level" />
-    <result column="path_ids" jdbcType="VARCHAR" property="pathIds" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.zdzc.model.TSysArea">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="short_name" jdbcType="VARCHAR" property="shortName"/>
+        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="path_ids" jdbcType="VARCHAR" property="pathIds"/>
+    </resultMap>
 
 
-  <!--查询所有的省份-->
-  <select id="selectProvinceList"  resultMap="BaseResultMap">
+    <!--查询所有的省份-->
+    <select id="selectProvinceList" resultMap="BaseResultMap">
      SELECT  *  from  t_sys_area
      where  level =1
     </select>
 
-  <!--查询某省下的所有城市-->
-  <select id="selectCityList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- byParentId 查询 -->
+    <select id="selectAreaListByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
      SELECT  *  from  t_sys_area
-     where  level = 2  and parent_id = #{provinceId}
+     where   parent_id = #{parentId}
     </select>
 
-  <!--查询某城市下所有的区-->
-  <select id="selectAreaList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--根据id查询市、区、街道-->
+    <select id="selectProvinceCityAreaList" resultMap="BaseResultMap">
      SELECT  *  from  t_sys_area
-     where  level = 3  and parent_id = #{cityId}
+     where level = #{mark} and parent_id = #{id}
     </select>
-
-  <!--查询某区下所有的 街道/城镇-->
-  <select id="selectTownList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-     SELECT  *  from  t_sys_area
-     where  level = 4  and parent_id = #{areaId}
-    </select>
-
- <!--删除 大类和所属小类的数据 -->
-  <delete id="deleteByParentIdAndLevel" >
-     DELETE FROM t_sys_area WHERE level = #{level} and parent_id =#{parentId}
-  </delete>
-
-  <!-- byParentId 查询 -->
-  <select id="selectAreaListByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-  SELECT  *  from  t_sys_area
-  where   parent_id = #{parentId}
- </select>
-
-
-  <delete id="deleteByIds" parameterType="string" >
-     DELETE FROM t_sys_area WHERE id in (#{ids})
-  </delete>
 
 
 </mapper>

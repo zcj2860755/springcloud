@@ -33,47 +33,14 @@ public interface ITSysAreaService {
     */
     int deleteById(String id);
 
-    /**
-    * @description：根据Id获取详情
-    * @author：李琳青
-    * @date：2019-08-09 11:06
-    */
-    TSysArea findById(String id);
-
-    /**
-    * @description：分页查询
-    * @author：李琳青
-    * @date：2019-08-09 11:06
-    */
-    PageList<TSysArea> pageList(TSysArea tSysArea,BaseRequest baseRequest);
-
-    /**
-     * @description：省份list
-     * @author：李琳青
-     * @date：2019-08-09 11:06
-     */
-    List<TSysArea> selectProvinceList();
 
      /**
      * @description：城市list
      * @author：李琳青
      * @date：2019-08-09 11:06
      */
-    List<TSysArea> selectCityList(Integer provinceId);
+    List<TSysArea> selectProvinceCityAreaList(TSysArea tSysArea);
 
-     /**
-     * @description：区域list
-     * @author：李琳青
-     * @date：2019-08-09 11:06
-     */
-    List<TSysArea> selectAreaList(Integer cityId);
-
-     /**
-     * @description：街道、城镇list
-     * @author：李琳青
-     * @date：2019-08-09 11:06
-     */
-    List<TSysArea> selectTownList(Integer areaId);
 
 
 

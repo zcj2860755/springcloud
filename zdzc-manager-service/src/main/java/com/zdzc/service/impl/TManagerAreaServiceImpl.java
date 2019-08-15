@@ -7,10 +7,8 @@ import com.zdzc.model.TManagerArea;
 import com.zdzc.model.TManagerPlace;
 import com.zdzc.model.TManagerUnit;
 import com.zdzc.service.ITManagerAreaService;
+import com.zdzc.utils.TreeUtils.TreeUtil;
 import org.springframework.stereotype.Service;
-import com.github.pagehelper.PageHelper;
-import com.zdzc.common.BaseRequest;
-import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -76,9 +74,14 @@ public class TManagerAreaServiceImpl implements ITManagerAreaService {
     }
 
     @Override
-    public PageList<TManagerArea> pageList(TManagerArea tManagerArea,BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
-        List<TManagerArea> list = tManagerAreaMapper.selectAreaList(tManagerArea);
-        return new PageList<TManagerArea>(list);
+    public List<TManagerArea> pageList() {
+        List<TManagerArea> areaList = tManagerAreaMapper.selectAll();
+        TManagerArea area  =tManagerAreaMapper.selectListByParentId(String.valueOf("0")).get(0);
+        List<TManagerArea> list =TreeUtil.build(areaList,String.valueOf(area.getId()));
+        return list;
     }
+
+
+
+
 }

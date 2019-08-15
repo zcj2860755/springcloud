@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -59,13 +60,10 @@ public class TManagerAreaController {
         return tManagerAreaService.findById(id);
     }
 
-    @PostMapping("/pageList")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query"),
-    })
-    public PageList<TManagerArea> pageList(@RequestBody TManagerArea tManagerArea,BaseRequest baseRequest) {
-        return tManagerAreaService.pageList(tManagerArea,baseRequest);
+    @PostMapping("/pageList") //前端做模糊查询
+    public List<TManagerArea> pageList() {
+        return tManagerAreaService.pageList();
     }
+
+
 }

@@ -24,23 +24,9 @@ public interface FeignTSysAreaService {
     @PutMapping("/area")
     int update(@RequestBody TSysArea tSysArea);
 
-    @GetMapping("/area/findById")
-    TSysArea findById(@RequestParam("id") String id);
+    @PostMapping("/area/selectProvinceCityAreaList")
+    List<TSysArea> selectProvinceCityAreaList(@RequestBody TSysArea tSysArea);
 
-    @PostMapping("/area/pageList")
-    PageList<TSysArea> pageList(@RequestBody TSysArea tSysArea);
-
-    @PostMapping("/area/selectProvinceList")
-    List<TSysArea> selectProvinceList();
-
-    @PostMapping("/area/selectCityList")
-    List<TSysArea> selectCityList(@RequestParam("provinceId") Integer provinceId);
-
-    @PostMapping("/area/selectAreaList")
-    List<TSysArea> selectAreaList(@RequestParam("cityId") Integer cityId);
-
-    @PostMapping("/area/selectTownList")
-    List<TSysArea> selectTownList(@RequestParam("areaId") Integer areaId);
 
 
 }

@@ -1,10 +1,13 @@
 package com.zdzc.model;
 
-import java.util.Date;
+import com.zdzc.utils.TreeUtils.TreeNode;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Table(name = "t_manager_area")
-public class TManagerArea {
+public class TManagerArea extends TreeNode<TManagerArea> implements Serializable {
     /**
      * 主键id
      */
@@ -324,5 +327,25 @@ public class TManagerArea {
      */
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
+    }
+
+    @Override
+    public String toString() {
+        return "TManagerArea{" +
+                "id=" + id +
+                ", parentId='" + parentId + '\'' +
+                ", parentIds='" + parentIds + '\'' +
+                ", name='" + name + '\'' +
+                ", sort=" + sort +
+                ", code='" + code + '\'' +
+                ", type=" + type +
+                ", createUser='" + createUser + '\'' +
+                ", createTime=" + createTime +
+                ", updateUser='" + updateUser + '\'' +
+                ", updateDate=" + updateDate +
+                ", remark='" + remark + '\'' +
+                ", delFlag='" + delFlag + '\'' +
+                ", keyWords='" + keyWords + '\'' +
+                '}';
     }
 }

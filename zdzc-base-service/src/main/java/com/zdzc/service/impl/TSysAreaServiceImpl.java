@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -25,72 +26,55 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
 
     @Override
     public int save(TSysArea tSysArea) {
-
-        /*Integer parentId = tSysArea.getParentId();
+        Integer parentId = tSysArea.getParentId();
         TSysArea area = tSysAreaMapper.selectByPrimaryKey(parentId);
-        tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");*/
-
-       /* Integer parentId1 = tSysArea.getParentId();
-        String[] splits = String.valueOf(parentId1).split("&");
-        System.out.println("ids数组是:"+splits);*/
+        tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");
         return tSysAreaMapper.insertSelective(tSysArea);
     }
 
     @Override
     public int update(TSysArea tSysArea) {
+        Integer parentId = tSysArea.getParentId();
+        TSysArea area = tSysAreaMapper.selectByPrimaryKey(parentId);
+        tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");
         return tSysAreaMapper.updateByPrimaryKeySelective(tSysArea);
     }
 
     @Override
-    public int deleteById(String id){
+    public int deleteById(String id) {
         int key = tSysAreaMapper.deleteByPrimaryKey(id);
-        deleteAreas(Integer.valueOf(id));
+        deleteChildrenAreas(Integer.valueOf(id));
         return key;
     }
 
     /**
      * @description：递归删除所有子类别
      */
-    public void deleteAreas(Integer id){
+    public void deleteChildrenAreas(Integer id) {
         List<TSysArea> tSysAreas = tSysAreaMapper.selectAreaListByParentId(id);
         //判断id是否存在下级id   无判断就ok
-            for (TSysArea tSysArea : tSysAreas) {
-                int delete = tSysAreaMapper.deleteByPrimaryKey(tSysArea.getId());
-                deleteAreas(tSysArea.getId());
-            }
+        for (TSysArea tSysArea : tSysAreas) {
+            int delete = tSysAreaMapper.deleteByPrimaryKey(tSysArea.getId());
+            deleteChildrenAreas(tSysArea.getId());
         }
-
-
-
-    @Override
-    public TSysArea findById(String id){
-        return tSysAreaMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public PageList<TSysArea> pageList(TSysArea tSysArea,BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
-        return new PageList<TSysArea>(tSysAreaMapper.select(tSysArea));
+    public List<TSysArea> selectProvinceCityAreaList(TSysArea tSysArea) {
+        Integer id = tSysArea.getId();
+        Integer mark = tSysArea.getMark();
+        int type = 0;
+        if (mark == 1) {
+                return tSysAreaMapper.selectProvinceList();
+        } else if (mark == 2) {
+            type = 2;
+        } else if (mark == 3) {
+            type = 3;
+        } else if (mark == 4) {
+            type = 4;
+        }
+        return tSysAreaMapper.selectProvinceCityAreaList(id, type);
     }
 
-    @Override
-    public List<TSysArea> selectProvinceList() {
-        List<TSysArea> provinceList = tSysAreaMapper.selectProvinceList();
-        return provinceList;
-    }
 
-    @Override
-    public List<TSysArea> selectCityList(Integer provinceId) {
-        return tSysAreaMapper.selectCityList(provinceId);
-    }
-
-    @Override
-    public List<TSysArea> selectAreaList(Integer cityId) {
-        return tSysAreaMapper.selectAreaList(cityId);
-    }
-
-    @Override
-    public List<TSysArea> selectTownList(Integer areaId) {
-        return tSysAreaMapper.selectTownList(areaId);
-    }
 }
