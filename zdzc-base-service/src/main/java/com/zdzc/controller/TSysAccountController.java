@@ -346,7 +346,7 @@ public class TSysAccountController extends BaseController {
         }
     }
 
-    @PutMapping("/updatePW")
+    @PutMapping("/updatePW/{id}")
     @ApiOperation("修改密码")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),
