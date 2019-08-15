@@ -1,5 +1,7 @@
 package com.zdzc.common;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Transient;
 import java.io.Serializable;
 
@@ -39,5 +41,16 @@ public class BaseRequest implements Serializable {
         }else{
             this.pageSize=20;
         }
+    }
+
+    @Transient
+    private String uuid;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

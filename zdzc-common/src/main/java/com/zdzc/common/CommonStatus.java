@@ -16,14 +16,11 @@ public  class CommonStatus {
     public static final String ZDZCACCOUNT = "zdzc_base";
 
     /**
-     * token的有效时长
+     * token的有效时长 单位S 7天
      */
-    public static final Long EXPIRETIME = 60 * 24 * 7L;
+    public static final Long EXPIRETIME = 60 *60* 24 * 7L;
 
-    /**
-     * 有效时长单位
-     */
-    public TimeUnit timeUnit = TimeUnit.MINUTES;
+
 
 
     /**
