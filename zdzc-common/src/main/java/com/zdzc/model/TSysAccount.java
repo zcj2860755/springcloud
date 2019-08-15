@@ -3,8 +3,10 @@ package com.zdzc.model;
 import com.zdzc.common.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -161,6 +163,12 @@ public class TSysAccount extends BaseRequest {
     @ApiModelProperty("父级Id")
     @Transient
     private List<String> projectIds;
+
+    @ApiModelProperty("当前时间戳")
+    @Transient
+    private String timestamp;
+
+
 
     /**
      * 获取主键
@@ -494,5 +502,14 @@ public class TSysAccount extends BaseRequest {
 
     public void setProjectIds(List<String> projectIds) {
         this.projectIds = projectIds;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+
+        this.timestamp = timestamp;
     }
 }
