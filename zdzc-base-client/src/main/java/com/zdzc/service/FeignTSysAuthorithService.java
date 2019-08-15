@@ -16,7 +16,7 @@ import java.util.List;
 public interface FeignTSysAuthorithService {
 
     /**
-    *
+     *
      * @Author  zcj
      * @Description 新增
      * @Date 10:36 2019/8/9
@@ -27,7 +27,7 @@ public interface FeignTSysAuthorithService {
     @ApiOperation("新增")
     void add(@ApiIgnore TSysAuthority tSysAuthority);
     /**
-    *
+     *
      * @Author  zcj
      * @Description 删除
      * @Date 10:37 2019/8/9
@@ -38,7 +38,7 @@ public interface FeignTSysAuthorithService {
     @ApiOperation("删除")
     void delete(@PathVariable(value = "id") String id) ;
     /**
-    *
+     *
      * @Author  zcj
      * @Description 更新
      * @Date 10:38 2019/8/9
@@ -49,7 +49,7 @@ public interface FeignTSysAuthorithService {
     @ApiOperation("更新")
     void update(@ApiIgnore TSysAuthority tSysAuthority);
     /**
-    *
+     *
      * @Author  zcj
      * @Description 获取详情
      * @Date 10:38 2019/8/9
@@ -60,14 +60,14 @@ public interface FeignTSysAuthorithService {
     @ApiOperation("获取详情")
     TSysAuthority detail(@PathVariable(value = "id") String id);
     /**
-    *
+     *
      * @Author  zcj
      * @Description 分页查询
      * @Date 10:38 2019/8/9
      * @Param [tSysAuthority]
      * @return com.zdzc.common.PageList<com.zdzc.model.TSysAuthority>
      **/
-    @PostMapping("/authority")
+    @PostMapping("/authority/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
@@ -76,7 +76,7 @@ public interface FeignTSysAuthorithService {
     })
     PageList<TSysAuthority> list(@RequestBody TSysAuthority tSysAuthority);
     /**
-    *
+     *
      * @Author  zcj
      * @Description 查询当前用户的所有权限
      * @Date 10:39 2019/8/9
@@ -88,7 +88,7 @@ public interface FeignTSysAuthorithService {
     List<TSysAuthority> getRoleAuthList(@RequestBody TSysAuthority tSysAuthority);
 
     /**
-    *
+     *
      * @Author  zcj
      * @Description 查询所有权限
      * @Date 10:39 2019/8/9
@@ -100,7 +100,7 @@ public interface FeignTSysAuthorithService {
     List<TSysAuthority> getAuthList();
 
     /**
-    *
+     *
      * @Author  zcj
      * @Description 权限列表
      * @Date 10:40 2019/8/9
@@ -112,9 +112,9 @@ public interface FeignTSysAuthorithService {
     PageList<TSysAuthority> getAllAuthList(@RequestBody TSysAuthority tSysAuthority);
 
     /**
-    *
+     *
      * @Author  zcj
-     * @Description //TODO
+     * @Description //黑白名单
      * @Date 10:41 2019/8/9
      * @Param [tSysAuthority]
      * @return java.util.List<com.zdzc.model.TSysAuthority>
@@ -123,7 +123,7 @@ public interface FeignTSysAuthorithService {
     List<TSysAuthority> existAuthSign(@RequestBody TSysAuthority tSysAuthority);
 
     /**
-    *
+     *
      * @Author  zcj
      * @Description 查询默认权限列表
      * @Date 10:42 2019/8/9
