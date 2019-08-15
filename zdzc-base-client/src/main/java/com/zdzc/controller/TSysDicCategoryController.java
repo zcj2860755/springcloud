@@ -71,7 +71,7 @@ public class TSysDicCategoryController {
     })
     public void delete(String id){
         if(StringUtils.isEmpty(id)){
-            throw new BaseException(ExceptionEnum.PARAM_ID_NULL);
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
         }
          feigntSysDicCategoryService.delete(id);
     }
@@ -87,6 +87,10 @@ public class TSysDicCategoryController {
             @ApiImplicitParam(name = "remark", value = "描述(类别)", required = false, paramType = "query"),
     })
     public int update(@ApiIgnore TSysDicCategory tSysDicCategory){
+        if(StringUtils.isEmpty(tSysDicCategory.getId())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        checkParams(tSysDicCategory);
         return feigntSysDicCategoryService.update(tSysDicCategory);
     }
 

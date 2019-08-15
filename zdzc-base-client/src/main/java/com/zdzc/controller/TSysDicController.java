@@ -46,7 +46,6 @@ public class TSysDicController {
 
 
     /**
-     * @Author : 李琳青
      * @Description : 参数校验
      */
     public void checkParams(TSysDic tSysDic){
@@ -74,7 +73,7 @@ public class TSysDicController {
     })
     public int delete(String id){
         if(StringUtils.isEmpty(id)){
-            throw new BaseException(ExceptionEnum.PARAM_ID_NULL);
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
         }
         return feigntSysDicService.delete(id);
     }
@@ -92,7 +91,7 @@ public class TSysDicController {
     })
     public void update(@ApiIgnore TSysDic tSysDic){
         if(StringUtils.isEmpty(tSysDic.getId())){
-            throw new BaseException(ExceptionEnum.PARAM_ID_NULL);
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
         }
         checkParams(tSysDic);
         feigntSysDicService.update(tSysDic);

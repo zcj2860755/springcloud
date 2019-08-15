@@ -33,7 +33,7 @@ public  class TSysDicServiceImpl implements ITSysDicService {
         //categoryId + key查询是否有数据
         List<TSysDic> list = tSysDicMapper.selectListBykeyAndCategory(tSysDic);
         if(list != null && list.size() > 0 ){
-            throw new BaseException(ExceptionEnum.DIC_KEY_NAMEEXIST);
+            throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDic.setId(UUIDUtils.getUUID());
         return tSysDicMapper.insert(tSysDic);

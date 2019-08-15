@@ -79,15 +79,18 @@ public enum ExceptionEnum {
     PROJECT_NAME_EXIST(50004,"项目已存在"),
 
     //--------------数据字典相关错误 60000+ --------------------
-    PARAM_ID_NULL(60001,"参数id不能为空"),
     DIC_CATEGORY_NULL(60001,"字典类别不能为空"),
-    DIC_KEY_NULL(60001,"字典编码不能为空"),
-    DIC_VABLE_NULL(60001,"字典名称不能为空"),
-    DIC_ENABLE_NULL(60001,"字典是否启动不能为空"),
-    DIC_SORT_NULL(60001,"字典排序不能为空"),
+    DIC_KEY_NULL(60002,"字典编码不能为空"),
+    DIC_VABLE_NULL(60003,"字典名称不能为空"),
+    DIC_ENABLE_NULL(60004,"字典是否启动不能为空"),
+    DIC_SORT_NULL(60005,"字典排序不能为空"),
+    //省市区
+    PARENT_ID_NULL(60006,"父级id不能为空"),
+    AREA_NAME_NULL(60007,"区域名称不能为空"),
+    SHOT_AREA_NAME_NULL(60008,"简写名称不能为空"),
+    AREA_LEVEL_NULL(60009,"区域等级不能为空"),
+    AREA_TYPE_NULL(600010,"类型不能为空"),
 
-
-    DIC_KEY_NAMEEXIST(60001,"新增失败,数据字典编码已存在"),
 
 
 

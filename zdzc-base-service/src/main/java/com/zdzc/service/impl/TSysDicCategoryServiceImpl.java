@@ -32,7 +32,7 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
         //判断字典编码是否重复
         List<TSysDicCategory> list = tSysDicCategoryMapper.selectListByDicKey(tSysDicCategory);
         if(list != null && list.size() > 0 ){
-            throw new BaseException(ExceptionEnum.DIC_KEY_NAMEEXIST);
+            throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDicCategory.setId(UUIDUtils.getUUID());
         return tSysDicCategoryMapper.insertSelective(tSysDicCategory);
@@ -51,9 +51,7 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
 
     @Override
     public int update(TSysDicCategory tSysDicCategory) {
-        int update = tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
-        System.out.println("是否修改:"+update);
-        return update;
+        return tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
     }
 
 
