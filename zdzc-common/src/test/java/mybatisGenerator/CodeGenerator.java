@@ -31,9 +31,9 @@ public class CodeGenerator {
     private static final String JAVA_PATH = "/src/main/java"; //java文件路径
     private static final String RESOURCES_PATH = "/src/main/resources";//资源文件路径
 
-    private static final String BIZPROJECT="/zdzc-base-service";    //服务端   服务端业务逻辑
+    private static final String BIZPROJECT="/zdzc-manager-service";    //服务端   服务端业务逻辑
     private static final String COMMONPROJECT="/zdzc-common";  //公共模块   实体类
-    private static final String FEIGNPATH="/zdzc-base-client";  //客户端   Feign项目模块
+    private static final String FEIGNPATH="/zdzc-manager-client";  //客户端   Feign项目模块
 
     private static final String PACKAGE_PATH_SERVICE = packageConvertPath(SERVICE_PACKAGE);//生成的Service存放路径
     private static final String PACKAGE_PATH_SERVICE_IMPL = packageConvertPath(SERVICE_IMPL_PACKAGE);//生成的Service实现存放路径
@@ -41,13 +41,13 @@ public class CodeGenerator {
     private static final String FEIGN_HYSTRIX_PATH = packageConvertPath(FEIGN_HYSTRIX_PACKAGE);//生成的hystrix存放路径
 
 
-    private static final String AUTHOR = "zhuqilong";//@author
-    private static final String FEIGNCLIENTNAME = "basic-service";//@FeignClient名称
+    private static final String AUTHOR = "李琳青";//@author
+    private static final String FEIGNCLIENTNAME = "manager-service";//@FeignClient名称
 
     private static final String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("t_sys_params");
+        genCode("t_manager_area");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
