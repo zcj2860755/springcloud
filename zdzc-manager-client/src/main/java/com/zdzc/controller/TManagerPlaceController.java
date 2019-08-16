@@ -1,7 +1,11 @@
 package com.zdzc.controller;
 
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TManagerPlace;
+import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.FeignTManagerPlaceService;
+import com.zdzc.utils.BaseException;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import io.swagger.annotations.Api;
@@ -10,7 +14,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 import com.zdzc.common.PageList;
-
 
 /**
  * Description : 场所管理API接口
@@ -28,38 +31,35 @@ public class TManagerPlaceController {
     @ApiOperation("新增")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "场所名称", required = true, paramType = "query"),
-            //@ApiImplicitParam(name = "code", value = "场所编号", required = true, paramType = "query"), //场所编号是生成的？
             @ApiImplicitParam(name = "type", value = "场所性质", required = true, paramType = "query"),
             @ApiImplicitParam(name = "address", value = "场所地址", required = true, paramType = "query"),
             @ApiImplicitParam(name = "areaId", value = "所属区域", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "longAddress", value = "所属行政区域", required = true, paramType = "query"),
             @ApiImplicitParam(name = "unitId", value = "所属单位", required = true, paramType = "query"),
             @ApiImplicitParam(name = "areaSize", value = "场所面积", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "manager", value = "负责人", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "manager", value = "负责人id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "managerTelephone", value = "负责人电话", required = true, paramType = "query"),
             @ApiImplicitParam(name = "fireTelephone", value = "消防室电话", required = true, paramType = "query"),
             @ApiImplicitParam(name = "isMain", value = "是否独立主机 0.是 1.否", required = true, paramType = "query"),
             @ApiImplicitParam(name = "lon", value = "场所坐标-lon经度", required = true, paramType = "query"),
             @ApiImplicitParam(name = "lat", value = "场所坐标-lat纬度", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "adminAreaId", value = "", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "code", value = "场所编号", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "province", value = "省份", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "city", value = "城市", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "district", value = "区", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "cityCode", value = "城市编码", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "adcode", value = "区编码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "adminAreaId", value = "adminAreaId", required = true, paramType = "query"),
             @ApiImplicitParam(name = "createUser", value = "创建者", required = false, paramType = "query"),
     })
     public int add(@ApiIgnore TManagerPlace tManagerPlace){
+        checkParams(tManagerPlace);
         return feigntManagerPlaceService.add(tManagerPlace);
     }
 
+
     @DeleteMapping
-    @ApiOperation("删除")
+    @ApiOperation("删除")  //场所下有设备不允许删除？？
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feigntManagerPlaceService.delete(id);
     }
 
@@ -71,27 +71,35 @@ public class TManagerPlaceController {
             @ApiImplicitParam(name = "type", value = "场所性质", required = true, paramType = "query"),
             @ApiImplicitParam(name = "address", value = "场所地址", required = true, paramType = "query"),
             @ApiImplicitParam(name = "areaId", value = "所属区域", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "longAddress", value = "所属行政区域", required = true, paramType = "query"),
             @ApiImplicitParam(name = "unitId", value = "所属单位", required = true, paramType = "query"),
             @ApiImplicitParam(name = "areaSize", value = "场所面积", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "manager", value = "负责人", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "manager", value = "负责人id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "managerTelephone", value = "负责人电话", required = true, paramType = "query"),
             @ApiImplicitParam(name = "fireTelephone", value = "消防室电话", required = true, paramType = "query"),
             @ApiImplicitParam(name = "isMain", value = "是否独立主机 0.是 1.否", required = true, paramType = "query"),
             @ApiImplicitParam(name = "lon", value = "场所坐标-lon经度", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "lat", value = "是否可以登录，0-可以登录，1-不容许", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "adminAreaId", value = "", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "code", value = "场所编号", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "province", value = "省份", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "city", value = "城市", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "district", value = "区", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "cityCode", value = "城市编码", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "adcode", value = "场所编号", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "code", value = "场所编号", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "lat", value = "场所坐标-lat纬度", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "adminAreaId", value = "adminAreaId", required = true, paramType = "query"),
             @ApiImplicitParam(name = "updateUser", value = "编辑者", required = false, paramType = "query"),
     })
     public int update(@ApiIgnore TManagerPlace tManagerPlace){
+        if(StringUtils.isEmpty(tManagerPlace.getId())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        checkParams(tManagerPlace);
         return feigntManagerPlaceService.update(tManagerPlace);
+    }
+
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TManagerPlace detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        return feigntManagerPlaceService.findById(id);
     }
 
     @PutMapping("/updateFreezeStatus")
@@ -100,18 +108,12 @@ public class TManagerPlaceController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query"),
     })
     public int updateFreezeStatus(@ApiIgnore Integer id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return feigntManagerPlaceService.updateFreezeStatus(id);
     }
 
-
-    @GetMapping("/findById")
-    @ApiOperation("获取详情")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
-    })
-    public TManagerPlace detail(String id){
-        return feigntManagerPlaceService.findById(id);
-    }
 
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
@@ -123,7 +125,61 @@ public class TManagerPlaceController {
             @ApiImplicitParam(name = "type", value = "场所性质", required = false, paramType = "query"),
             @ApiImplicitParam(name = "unitId", value = "所属单位", required = false, paramType = "query"),
     })
-    public PageList<TManagerPlace> pageList(@ApiIgnore TManagerPlace tManagerPlace) {
-        return feigntManagerPlaceService.pageList(tManagerPlace);
+    public PageList<TManagerPlace> pageList(@ApiIgnore TManagerPlace tManagerPlace,@RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        if(StringUtils.isEmpty(tManagerPlace.getMark())){
+            throw new BaseException(ExceptionEnum.PARAM_IS_NOT_NULL);
+        }
+        return feigntManagerPlaceService.pageList(tManagerPlace,pageNo,pageSize);
     }
+
+
+
+    /**
+     * @Description : 参数校验
+     */
+    public void checkParams(TManagerPlace tManagerPlace){
+        if(StringUtils.isEmpty(tManagerPlace.getName())){
+            throw new BaseException(ExceptionEnum.PLACE_NAME_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getType())){
+            throw new BaseException(ExceptionEnum.PLACE_TYPE_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getAddress())){
+            throw new BaseException(ExceptionEnum.PLACE_ADDRESS_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getAreaId())){
+            throw new BaseException(ExceptionEnum.PLACE_OF_AREA_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getUnitId())){
+            throw new BaseException(ExceptionEnum.PLACE_UNIT_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getAreaSize())){
+            throw new BaseException(ExceptionEnum.PLACE_MM_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getManager())){
+            throw new BaseException(ExceptionEnum.MANAGER_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getManagerTelephone())){
+            throw new BaseException(ExceptionEnum.MANAGER_TEL_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getFireTelephone())){
+            throw new BaseException(ExceptionEnum.FIRE_TEL_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getIsMain())){
+            throw new BaseException(ExceptionEnum.IS_MAIN_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getLon())){
+            throw new BaseException(ExceptionEnum.PLACE_LON_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getLat())){
+            throw new BaseException(ExceptionEnum.PLACE_LAT_NULL);
+        }
+        if(StringUtils.isEmpty(tManagerPlace.getAdminAreaId())){
+            throw new BaseException(ExceptionEnum.ADMIN_AREA_ID_MULL);
+        }
+    }
+
+
+
+
 }

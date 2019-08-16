@@ -32,10 +32,10 @@ public interface ITManagerUnitService {
     int deleteById(String id);
 
     /**
-    * @description：根据Id获取详情
-    * @author：李琳青
-    * @date：2019-08-13 16:18
-    */
+     * @description：根据Id获取详情
+     * @author：李琳青
+     * @date：2019-08-13 16:18
+     */
     TManagerUnit findById(String id);
 
     /**
@@ -43,6 +43,6 @@ public interface ITManagerUnitService {
     * @author：李琳青
     * @date：2019-08-13 16:18
     */
-    PageList<TManagerUnit> pageList(TManagerUnit tManagerUnit,BaseRequest baseRequest);
+    PageList<TManagerUnit> pageList(TManagerUnit tManagerUnit,Integer pageNo,Integer pageSize);
 
 }
