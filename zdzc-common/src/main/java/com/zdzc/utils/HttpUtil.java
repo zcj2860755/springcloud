@@ -16,10 +16,10 @@ import java.util.Map;
  
 public class HttpUtil {
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
         //发送 GET 请求
-        /*String s=HttpUtil.sendGet("http://v.qq.com/x/cover/kvehb7okfxqstmc.html?vid=e01957zem6o", "");
-        System.out.println(s);*/
+        *//*String s=HttpUtil.sendGet("http://v.qq.com/x/cover/kvehb7okfxqstmc.html?vid=e01957zem6o", "");
+        System.out.println(s);*//*
         System.out.println("____________________________");
  
 //        //发送 POST 请求
@@ -47,7 +47,7 @@ public class HttpUtil {
         System.out.println(district);
 
 
-    }
+    }*/
  
     /**
      * 向指定URL发送GET方法的请求
