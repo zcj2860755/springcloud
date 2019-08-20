@@ -35,7 +35,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         if(excludInterceptor.contains(request.getRequestURI())){
             return true;
         }
-         /*if(!redisService.exists(request.getHeader("uuid"))){
+         /*if(!redisService.exists(request.getHeader("token"))){
             throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
         }*/
         while (names.hasMoreElements())
