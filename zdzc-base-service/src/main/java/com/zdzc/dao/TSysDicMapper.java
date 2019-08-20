@@ -29,5 +29,12 @@ public interface TSysDicMapper extends Mapper<TSysDic> {
      */
     int selectDicCountByCategoryId(@Param("categoryId") String categoryId);
 
+    /**
+     * @description： categoryId + key 查询
+     * @author：李琳青
+     * @date：2019-08-07 13:18
+     */
+    List<TSysDic> selectListBykeyAndCategory(TSysDic tSysDic);
+
 
 }

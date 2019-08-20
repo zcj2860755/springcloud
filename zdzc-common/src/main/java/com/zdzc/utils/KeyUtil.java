@@ -1,4 +1,4 @@
-package com.zdzc.common;
+package com.zdzc.utils;
 
 import java.util.UUID;
 

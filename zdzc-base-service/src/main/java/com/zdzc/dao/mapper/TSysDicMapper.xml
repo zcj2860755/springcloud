@@ -38,6 +38,10 @@
         where category_id = #{categoryId}
     </select>
 
-
+    <select id="selectListBykeyAndCategory" resultMap="BaseResultMap">
+        SELECT *
+        from t_sys_dic
+        where category_id = #{categoryId} and dic_key= #{dicKey}
+    </select>
 
 </mapper>

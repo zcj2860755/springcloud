@@ -1,8 +1,10 @@
 package com.zdzc.service.impl;
 
 import com.zdzc.dao.TSysAreaMapper;
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysArea;
 import com.zdzc.service.ITSysAreaService;
+import com.zdzc.utils.BaseException;
 import io.swagger.models.auth.In;
 import javafx.scene.input.InputMethodTextRun;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,10 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
 
     @Override
     public int deleteById(String id) {
+        List<TSysArea> list = tSysAreaMapper.selectAreaListByParentId(Integer.valueOf(id));
+        if(list != null && list.size() >0 ){
+            throw new BaseException(ExceptionEnum.POWER_CHILD_EXIST);
+        }
         int key = tSysAreaMapper.deleteByPrimaryKey(id);
         deleteChildrenAreas(Integer.valueOf(id));
         return key;

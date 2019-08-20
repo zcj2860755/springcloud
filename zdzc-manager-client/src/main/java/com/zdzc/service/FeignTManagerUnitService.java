@@ -26,7 +26,7 @@ public interface FeignTManagerUnitService {
     TManagerUnit findById(@RequestParam("id") String id);
 
     @PostMapping("/manager/unit/pageList")
-    PageList<TManagerUnit> pageList(@RequestBody TManagerUnit tManagerUnit);
+    PageList<TManagerUnit> pageList(@RequestBody TManagerUnit tManagerUnit,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
 
 
 }

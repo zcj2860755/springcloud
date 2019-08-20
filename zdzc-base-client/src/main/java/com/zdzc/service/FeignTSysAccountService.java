@@ -132,8 +132,8 @@ public interface FeignTSysAccountService {
      * @Param [tSysAccount]
      * @return void
      **/
-    @PutMapping("/account/updatePW")
-    void updatePW(@RequestBody TSysAccount tSysAccount);
+    @PutMapping("/account/updatePW/{id}")
+    void updatePW(@PathVariable(value = "id") String id,@RequestBody TSysAccount tSysAccount);
 
 
     /**
@@ -145,7 +145,7 @@ public interface FeignTSysAccountService {
      * @return java.util.List<com.zdzc.model.TSysAccount>
      **/
     @GetMapping("/account/ableUserList")
-    List<TSysAccount> list(@RequestParam("projectId") String projectId);
+    List<TSysAccount> list(@RequestParam("projectId") String projectId,@RequestParam("uuid") String uuid);
 
 
 }

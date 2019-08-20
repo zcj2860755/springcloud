@@ -30,12 +30,7 @@ public  class FeignTSysDicServiceHystrix implements FeignTSysDicService {
     }
 
     @Override
-    public TSysDic findById(String id) {
-        return null;
-    }
-
-    @Override
-    public PageList<TSysDic> pageList(TSysDic tSysDic) {
+    public PageList<TSysDic> pageList(TSysDic tSysDic, Integer pageNo, Integer pageSize) {
         return null;
     }
 }

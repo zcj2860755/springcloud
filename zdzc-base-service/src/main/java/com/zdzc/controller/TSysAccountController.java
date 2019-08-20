@@ -1,7 +1,6 @@
 package com.zdzc.controller;
 
 import com.zdzc.common.CommonStatus;
-import com.zdzc.common.KeyUtil;
 import com.zdzc.common.PageList;
 import com.zdzc.common.Token;
 import com.zdzc.enums.ExceptionEnum;
@@ -10,11 +9,9 @@ import com.zdzc.model.TSysRole;
 import com.zdzc.model.TSysRoleAuthority;
 import com.zdzc.redis.RedisService;
 import com.zdzc.service.ITSysAccountService;
-import com.zdzc.service.ITSysProjectService;
 import com.zdzc.service.ITSysRoleAuthorityService;
 import com.zdzc.service.ITSysRoleService;
 import com.zdzc.utils.BaseException;
-import com.zdzc.utils.EncryUtil;
 import com.zdzc.utils.ObjectUtils;
 import com.zdzc.utils.rsa.MD5;
 import io.swagger.annotations.Api;
@@ -349,7 +346,7 @@ public class TSysAccountController extends BaseController {
         }
     }
 
-    @PutMapping("/updatePW")
+    @PutMapping("/updatePW/{id}")
     @ApiOperation("修改密码")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),

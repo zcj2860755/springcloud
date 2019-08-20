@@ -2,8 +2,11 @@ package com.zdzc.service.impl;
 
 import com.zdzc.dao.TSysDicCategoryMapper;
 import com.zdzc.dao.TSysDicMapper;
+import com.zdzc.enums.ExceptionEnum;
+import com.zdzc.model.TSysDic;
 import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicCategoryService;
+import com.zdzc.utils.BaseException;
 import com.zdzc.utils.UUIDUtils;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
@@ -26,45 +29,35 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
 
     @Override
     public int save(TSysDicCategory tSysDicCategory) {
-        //查询出类别表里是否有相同的key  有就返回0,否则返回1
-        List<TSysDicCategory> dicCategories = tSysDicCategoryMapper.select(tSysDicCategory);
-        for (TSysDicCategory dicCategory : dicCategories) {
-           if(dicCategory.getDicKey().equals(tSysDicCategory.getDicKey())){
-               System.out.println("数据库里已经有相同的dic_key");
-                return 0;
-            }
+        //判断字典编码是否重复
+        List<TSysDicCategory> list = tSysDicCategoryMapper.selectListByDicKey(tSysDicCategory);
+        if(list != null && list.size() > 0 ){
+            throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDicCategory.setId(UUIDUtils.getUUID());
-        int insert = tSysDicCategoryMapper.insertSelective(tSysDicCategory);
-        System.out.println("是否插入成功:"+insert);
-        return insert;
+        return tSysDicCategoryMapper.insertSelective(tSysDicCategory);
     }
 
 
     @Override
     public int deleteById(String id){
+        int count = tSysDicMapper.selectDicCountByCategoryId(id);
+        if(count !=0){
+            throw new BaseException(ExceptionEnum.POWER_CHILD_EXIST);
+        }
         return tSysDicCategoryMapper.deleteByPrimaryKey(id);
     }
 
 
     @Override
     public int update(TSysDicCategory tSysDicCategory) {
-        int update = tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
-        System.out.println("是否修改:"+update);
-        return update;
+        return tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
     }
 
 
     @Override
-    public TSysDicCategory findById(String id){
-        TSysDicCategory tSysDicCategory = tSysDicCategoryMapper.selectByPrimaryKey(id);
-        System.out.println(tSysDicCategory);
-        return tSysDicCategory;
-    }
-
-    @Override
-    public PageList<TSysDicCategory> list(TSysDicCategory tSysDicCategory,BaseRequest baseRequest) {
-        PageHelper.startPage(baseRequest.getPageNo(),baseRequest.getPageSize());
+    public PageList<TSysDicCategory> list(TSysDicCategory tSysDicCategory,Integer pageNo,Integer pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
         List<TSysDicCategory> list = tSysDicCategoryMapper.selectDicCategoryList(tSysDicCategory);
         //查询每一个类别里字典小类数量
         for (TSysDicCategory category : list) {

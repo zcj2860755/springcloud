@@ -88,12 +88,12 @@ public class TManagerUnit {
     /**
      * 经度
      */
-    private Double lon;
+    private String lon;
 
     /**
      * 纬度
      */
-    private Double lat;
+    private String lat;
 
     private String province;
 
@@ -112,8 +112,8 @@ public class TManagerUnit {
      */
     private String adcode;
 
-    @Column(name = "long_address")
-    private String longAddress;
+    @Column(name = "formatted_address")
+    private String formattedAddress;
 
     @Column(name = "admin_area_id")
     private String adminAreaId;
@@ -122,6 +122,9 @@ public class TManagerUnit {
     private String keyWords;
     @Transient
     private Integer mark;
+
+    @Transient
+    private String areaName;
 
     public String getKeyWords() {
         return keyWords;
@@ -137,6 +140,14 @@ public class TManagerUnit {
 
     public void setMark(Integer mark) {
         this.mark = mark;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     /**
@@ -426,7 +437,7 @@ public class TManagerUnit {
      *
      * @return lon - 经度
      */
-    public Double getLon() {
+    public String getLon() {
         return lon;
     }
 
@@ -435,7 +446,7 @@ public class TManagerUnit {
      *
      * @param lon 经度
      */
-    public void setLon(Double lon) {
+    public void setLon(String lon) {
         this.lon = lon;
     }
 
@@ -444,7 +455,7 @@ public class TManagerUnit {
      *
      * @return lat - 纬度
      */
-    public Double getLat() {
+    public String getLat() {
         return lat;
     }
 
@@ -453,7 +464,7 @@ public class TManagerUnit {
      *
      * @param lat 纬度
      */
-    public void setLat(Double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
@@ -536,17 +547,17 @@ public class TManagerUnit {
     }
 
     /**
-     * @return long_address
+     * @return formatted_address
      */
-    public String getLongAddress() {
-        return longAddress;
+    public String getFormattedAddress() {
+        return formattedAddress;
     }
 
     /**
      * @param longAddress
      */
-    public void setLongAddress(String longAddress) {
-        this.longAddress = longAddress;
+    public void setFormattedAddress(String longAddress) {
+        this.formattedAddress = formattedAddress;
     }
 
     /**

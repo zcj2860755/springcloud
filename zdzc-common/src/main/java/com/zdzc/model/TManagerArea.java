@@ -1,6 +1,6 @@
 package com.zdzc.model;
 
-import com.zdzc.utils.TreeUtils.TreeNode;
+import com.zdzc.utils.treeUtils.TreeNode;
 
 import javax.persistence.*;
 import java.io.Serializable;

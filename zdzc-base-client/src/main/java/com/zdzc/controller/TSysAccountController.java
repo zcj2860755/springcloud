@@ -39,10 +39,14 @@ public class TSysAccountController {
             @ApiImplicitParam(name = "password", value = "密码", required = false, paramType = "query"),
             @ApiImplicitParam(name = "realName", value = "用户名", required = true, paramType = "query"),
             @ApiImplicitParam(name = "tel", value = "联系电话", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query")
+            @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
 
     })
     public void add(@ApiIgnore TSysAccount tSysAccount){
+        if(StringUtils.isEmpty(tSysAccount.getUuid())){
+            throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
+        }
         if(StringUtils.isEmpty(tSysAccount.getRealName())){
             throw new BaseException(ExceptionEnum.USER_REALNAME_NULL);
         }
@@ -53,6 +57,7 @@ public class TSysAccountController {
 
         if(StringUtils.isEmpty(tSysAccount.getRoleId())){
             throw new BaseException(ExceptionEnum.USER_ROLEID_NULL);
+
         }
 
         if(StringUtils.isEmpty(tSysAccount.getTel())){
@@ -65,7 +70,8 @@ public class TSysAccountController {
     @ApiOperation("用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "account", value = "账号", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query")
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "timestamp", value = "当前时间戳", required = false, paramType = "query")
     })
     public Token login(@ApiIgnore TSysAccount tSysAccount, HttpServletRequest request){
         return feignTSysAccountService.login(tSysAccount);
@@ -74,7 +80,8 @@ public class TSysAccountController {
     @PostMapping("/logout")
     @ApiOperation("用户退出")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键", required = false, paramType = "query")
+            @ApiImplicitParam(name = "id", value = "主键", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public void logout(@ApiIgnore TSysAccount tSysAccount, HttpServletRequest request) {
         feignTSysAccountService.logout(tSysAccount);
@@ -96,6 +103,7 @@ public class TSysAccountController {
     @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query"),
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),
             @ApiImplicitParam(name = "account", value = "账号", required = true, paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", required = false, paramType = "query"),
@@ -159,7 +167,8 @@ public class TSysAccountController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
+            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public PageList<TSysAccount> list(@ApiIgnore TSysAccount tSysAccount) {
         return feignTSysAccountService.list(tSysAccount);
@@ -168,7 +177,8 @@ public class TSysAccountController {
     @GetMapping("/manger")
     @ApiOperation("获取该项目下未绑定的用户加项目自身管理员")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "proId", value = "项目", required = false, paramType = "query")
+            @ApiImplicitParam(name = "proId", value = "项目", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public List<TSysAccount> findMangerList(@ApiIgnore TSysAccount tSysAccount) {
 
@@ -185,12 +195,13 @@ public class TSysAccountController {
 
     }
 
-    @PutMapping("/updatePW")
+    @PutMapping("/updatePW/{id}")
     @ApiOperation("修改密码")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path"),
             @ApiImplicitParam(name = "oldPassword", value = "旧密码", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query")
+            @ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
     public void updatePW(@ApiIgnore TSysAccount tSysAccount, HttpServletRequest request) {
         if(StringUtils.isEmpty(tSysAccount.getId())){
@@ -204,7 +215,7 @@ public class TSysAccountController {
         if(StringUtils.isEmpty(tSysAccount.getPassword())){
             throw new BaseException(ExceptionEnum.USER_NEWPASSWORD_NULL);
         }
-        feignTSysAccountService.updatePW(tSysAccount);
+        feignTSysAccountService.updatePW(tSysAccount.getId(),tSysAccount);
 
 
     }
@@ -212,10 +223,11 @@ public class TSysAccountController {
     @GetMapping("/ableUserList")
     @ApiOperation("查询启用的用户")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "projectId", value = "项目Id", required = false, paramType = "query")
+            @ApiImplicitParam(name = "projectId", value = "项目Id", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
     })
-    public List<TSysAccount> list(String projectId) {
-        return feignTSysAccountService.list(projectId);
+    public List<TSysAccount> list(String projectId,String uuid) {
+        return feignTSysAccountService.list(projectId,uuid);
     }
 
 }

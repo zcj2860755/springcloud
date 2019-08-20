@@ -59,15 +59,6 @@ public class TSysDicCategoryController {
         return tSysDicCategoryService.update(tSysDicCategory);
     }
 
-    @GetMapping("/findById")
-    @ApiOperation("获取详情")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query")
-    })
-    public TSysDicCategory detail(@RequestParam("id") String Id){
-        return tSysDicCategoryService.findById(Id);
-    }
-
 
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
@@ -76,7 +67,7 @@ public class TSysDicCategoryController {
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysDicCategory> pageList(@RequestBody TSysDicCategory tSysDicCategory,BaseRequest baseRequest) {
-        return tSysDicCategoryService.list(tSysDicCategory,baseRequest);
+    public PageList<TSysDicCategory> pageList(@RequestBody TSysDicCategory tSysDicCategory,@RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        return tSysDicCategoryService.list(tSysDicCategory,pageNo,pageSize);
     }
 }
