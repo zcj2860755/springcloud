@@ -40,6 +40,10 @@ public class TSysAuthority extends BaseRequest {
     @Column(name = "auth_url")
     private String authUrl;
 
+    @ApiModelProperty("实际文件路径")
+    @Column(name = "auth_filePath")
+    private String authFilePath;
+
     /**
      * 上级ID
      */
@@ -329,5 +333,13 @@ public class TSysAuthority extends BaseRequest {
 
     public void setAuthTypeBlack(String authTypeBlack) {
         this.authTypeBlack = authTypeBlack;
+    }
+
+    public String getAuthFilePath() {
+        return authFilePath;
+    }
+
+    public void setAuthFilePath(String authFilePath) {
+        this.authFilePath = authFilePath;
     }
 }

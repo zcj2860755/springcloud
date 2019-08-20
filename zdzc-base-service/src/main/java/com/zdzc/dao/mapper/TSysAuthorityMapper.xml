@@ -9,6 +9,7 @@
     <result column="auth_name" jdbcType="VARCHAR" property="authName" />
     <result column="auth_sign" jdbcType="VARCHAR" property="authSign" />
     <result column="auth_url" jdbcType="VARCHAR" property="authUrl" />
+    <result column="auth_filePath" jdbcType="VARCHAR" property="authFilePath" />
     <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="auth_type" jdbcType="INTEGER" property="authType" />
@@ -18,7 +19,7 @@
     <result column="parentName" jdbcType="VARCHAR" property="parentName" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id,auth_name,auth_sign,auth_url,parent_id,icon,auth_type,remark,create_time,sort_no
+    id,auth_name,auth_sign,auth_url,parent_id,icon,auth_type,remark,create_time,sort_no,auth_filePath
   </sql>
 
   <select id="selectParamsBySreach" resultMap="BaseResultMap">
