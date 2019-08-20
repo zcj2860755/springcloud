@@ -39,7 +39,8 @@ public class TSysParamsServiceImpl implements ITSysParamsService {
         //系统参数修改后，保证系统参数的Key唯一
         TSysParams temp = new TSysParams();
         temp.setParamsKey(tSysParams.getParamsKey());
-        if(tSysParamsMapper.selectCount(temp)>0){
+        temp.setId(tSysParams.getId());
+        if(tSysParamsMapper.selectCountByKey(temp)>0){
             throw new BaseException(ExceptionEnum.SYSTEM_PARAMSKEY_EXIST);
         }
         return tSysParamsMapper.updateByPrimaryKeySelective(tSysParams);
@@ -58,6 +59,6 @@ public class TSysParamsServiceImpl implements ITSysParamsService {
     @Override
     public PageList<TSysParams> pageList(TSysParams tSysParams,Integer pageNo,Integer pageSize) {
         PageHelper.startPage(pageNo,pageSize);
-        return new PageList<TSysParams>(tSysParamsMapper.select(tSysParams));
+        return new PageList<TSysParams>(tSysParamsMapper.selectPageList(tSysParams));
     }
 }

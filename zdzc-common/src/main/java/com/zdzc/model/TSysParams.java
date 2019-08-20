@@ -1,38 +1,39 @@
 package com.zdzc.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
 @Table(name = "t_sys_params")
+@ApiModel
 public class TSysParams {
-    /**
-     * 主键
-     */
+
     @Id
+    @ApiModelProperty("主键")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    /**
-     * 参数名称
-     */
+    @ApiModelProperty("参数名称")
     @Column(name = "params_name")
     private String paramsName;
 
-    /**
-     * 参数key
-     */
+    @ApiModelProperty("参数key")
     @Column(name = "params_key")
     private String paramsKey;
 
-    /**
-     * 参数值
-     */
+    @ApiModelProperty("参数值")
     @Column(name = "params_value")
     private String paramsValue;
 
-    /**
-     * 备注
-     */
+    @ApiModelProperty("备注")
     private String remark;
+
+    /**
+     * 关键字
+     */
+    @Transient
+    private String keyWord;
 
     /**
      * 获取主键
@@ -122,5 +123,13 @@ public class TSysParams {
      */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getKeyWord() {
+        return keyWord;
+    }
+
+    public void setKeyWord(String keyWord) {
+        this.keyWord = keyWord;
     }
 }

@@ -73,7 +73,7 @@ public class TSysParamsController {
         return feigntSysParamsService.delete(id);
     }
 
-    @PutMapping
+    @PutMapping()
     @ApiOperation("更新")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键Id", required = true, paramType = "query"),
@@ -102,11 +102,12 @@ public class TSysParamsController {
         return feigntSysParamsService.findById(id);
     }
 
-    @GetMapping
+    @GetMapping("pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query"),
+            @ApiImplicitParam(name="keyword",value="关键字", required = false, paramType = "query")
     })
     public PageList<TSysParams> pageList(@ApiIgnore TSysParams tSysParams,
             @RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
