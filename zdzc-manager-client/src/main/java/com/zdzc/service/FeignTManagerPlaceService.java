@@ -29,7 +29,7 @@ public interface FeignTManagerPlaceService {
     TManagerPlace findById(@RequestParam("id") String id);
 
     @PostMapping("/manager/place/pageList")
-    PageList<TManagerPlace> pageList(@RequestBody TManagerPlace tManagerPlace);
+    PageList<TManagerPlace> pageList(@RequestBody TManagerPlace tManagerPlace,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
 
 
 }

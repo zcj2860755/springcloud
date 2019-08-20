@@ -91,7 +91,37 @@ public enum ExceptionEnum {
     AREA_LEVEL_NULL(60009,"区域等级不能为空"),
     AREA_TYPE_NULL(600010,"类型不能为空"),
 
+    //--------------区域单位场所相关错误 70000+ --------------------
+    PLACE_NAME_NULL(70001,"场所名称不能为空"),
+    PLACE_TYPE_NULL(70001,"场所性质不能为空"),
+    PLACE_ADDRESS_NULL(70001,"场所地址不能为空"),
+    PLACE_OF_AREA_NULL(70001,"所属区域不能为空"),     // 单位也有
+    PLACE_UNIT_NULL(70001,"所属单位不能为空"),
+    PLACE_MM_NULL(70001,"场所面积不能为空"),
+    MANAGER_NULL(70001,"负责人不能为空"),              // 单位也有
+    MANAGER_TEL_NULL(70001,"负责人电话不能为空"),        // 单位也有
+    FIRE_TEL_NULL(70001,"消防室电话不能为空"),
+    IS_MAIN_NULL(70001,"独立主机不能为空"),
+    PLACE_LON_NULL(70001,"场所坐标-经度不能为空"),
+    PLACE_LAT_NULL(70001,"场所坐标-纬度不能为空"),
+    ADMIN_AREA_ID_MULL(70001,"adminAreaId不能为空"),
+    PROVINCE_NULL(70001,"省份不能为空"),
+    CITY_NULL(70001,"城市不能为空"),
+    AREA_NULL(70001,"区不能为空"),
+    CITY_CODE_NULL(70001,"城市编码不能为空"),
+    AREA_CODE_NULL(70001,"区编码不能为空"),
 
+
+    //单位
+    UNIT_NAME_NULL(70001,"单位名称不能为空"),
+    UNIT_ADDRESS_NULL(70001,"单位地址不能为空"),
+    CREDIT_CODE_NULL(70001,"统一信用码不能为空"),
+    UNIT_CHILDREN_PLACE_NULL(70001,"该单位下有场所,不能删除"),
+    PARAM_IS_NOT_NULL(70001,"参数不能为空"),  //标志参数不能为空
+
+    //区域
+    PARENT_AREA_ID_NULL(70001,"上级区域id不能为空"),
+    PARENT_AREA_IDS_NULL(70001,"上级区域ids不能为空"),
 
 
     ;

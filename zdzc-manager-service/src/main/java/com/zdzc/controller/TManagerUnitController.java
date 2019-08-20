@@ -35,13 +35,15 @@ public class TManagerUnitController {
        return tManagerUnitService.update(tManagerUnit);
     }
 
+
     @GetMapping("/findById")
     public TManagerUnit detail(@RequestParam("id") String id){
         return tManagerUnitService.findById(id);
     }
 
+
     @PostMapping("/pageList")
-    public PageList<TManagerUnit> pageList(@RequestBody TManagerUnit tManagerUnit,BaseRequest baseRequest) {
-        return tManagerUnitService.pageList(tManagerUnit,baseRequest);
+    public PageList<TManagerUnit> pageList(@RequestBody TManagerUnit tManagerUnit,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize) {
+        return tManagerUnitService.pageList(tManagerUnit,pageNo,pageSize);
     }
 }

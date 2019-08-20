@@ -46,7 +46,7 @@ public class TManagerPlaceController {
     }
 
     @PostMapping("/pageList")
-    public PageList<TManagerPlace> pageList(@RequestBody TManagerPlace tManagerPlace,BaseRequest baseRequest) {
-        return tManagerPlaceService.pageList(tManagerPlace,baseRequest);
+    public PageList<TManagerPlace> pageList(@RequestBody TManagerPlace tManagerPlace,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize) {
+        return tManagerPlaceService.pageList(tManagerPlace,pageNo,pageSize);
     }
 }

@@ -39,18 +39,20 @@ public interface ITManagerPlaceService {
     */
     int deleteById(String id);
 
+
     /**
-    * @description：根据Id获取详情
-    * @author：李琳青
-    * @date：2019-08-13 16:17
-    */
+     * @description：根据Id获取详情
+     * @author：李琳青
+     * @date：2019-08-13 16:17
+     */
     TManagerPlace findById(String id);
+
 
     /**
     * @description：分页查询
     * @author：李琳青
     * @date：2019-08-13 16:17
     */
-    PageList<TManagerPlace> pageList(TManagerPlace tManagerPlace,BaseRequest baseRequest);
+    PageList<TManagerPlace> pageList(TManagerPlace tManagerPlace,Integer pageNo,Integer pageSize);
 
 }

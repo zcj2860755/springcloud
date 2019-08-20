@@ -30,7 +30,7 @@ public class TManagerPlace {
     /**
      * 场所性质
      */
-    private Integer type;
+    private String type;
 
     /**
      * 负责人
@@ -70,12 +70,12 @@ public class TManagerPlace {
     /**
      * 经度
      */
-    private Double lon;
+    private String lon;
 
     /**
      * 纬度
      */
-    private Double lat;
+    private String lat;
 
     private String province;
 
@@ -88,8 +88,8 @@ public class TManagerPlace {
 
     private String adcode;
 
-    @Column(name = "long_address")
-    private String longAddress;
+    @Column(name = "formatted_address")
+    private String formattedAddress;
 
     @Column(name = "create_user")
     private String createUser;
@@ -130,6 +130,10 @@ public class TManagerPlace {
     private String keyWords;
     @Transient
     private Integer mark;
+    @Transient
+    private String unitName;
+    @Transient
+    private String areaName;
 
     public String getKeyWords() {
         return keyWords;
@@ -147,7 +151,21 @@ public class TManagerPlace {
         this.mark = mark;
     }
 
+    public String getUnitName() {
+        return unitName;
+    }
 
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     /**
      * 获取主键id
@@ -226,7 +244,7 @@ public class TManagerPlace {
      *
      * @return type - 场所性质
      */
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
@@ -235,7 +253,7 @@ public class TManagerPlace {
      *
      * @param type 场所性质
      */
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -352,7 +370,7 @@ public class TManagerPlace {
      *
      * @return lon - 经度
      */
-    public Double getLon() {
+    public String getLon() {
         return lon;
     }
 
@@ -361,7 +379,7 @@ public class TManagerPlace {
      *
      * @param lon 经度
      */
-    public void setLon(Double lon) {
+    public void setLon(String lon) {
         this.lon = lon;
     }
 
@@ -370,7 +388,7 @@ public class TManagerPlace {
      *
      * @return lat - 纬度
      */
-    public Double getLat() {
+    public String getLat() {
         return lat;
     }
 
@@ -379,7 +397,7 @@ public class TManagerPlace {
      *
      * @param lat 纬度
      */
-    public void setLat(Double lat) {
+    public void setLat(String lat) {
         this.lat = lat;
     }
 
@@ -454,17 +472,17 @@ public class TManagerPlace {
     }
 
     /**
-     * @return long_address
+     * @return formatted_address
      */
-    public String getLongAddress() {
-        return longAddress;
+    public String getFormattedAddress() {
+        return formattedAddress;
     }
 
     /**
-     * @param longAddress
+     * @param formattedAddress
      */
-    public void setLongAddress(String longAddress) {
-        this.longAddress = longAddress;
+    public void setFormattedAddress(String formattedAddress) {
+        this.formattedAddress = formattedAddress;
     }
 
     /**
