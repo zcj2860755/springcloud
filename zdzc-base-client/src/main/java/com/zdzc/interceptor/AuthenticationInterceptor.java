@@ -1,12 +1,11 @@
 package com.zdzc.interceptor;
 
 import com.zdzc.enums.ExceptionEnum;
-import com.zdzc.redis.RedisService;
 import com.zdzc.utils.BaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,19 +24,18 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Resource(name="excludInterceptorSet")
     private Set<String> excludInterceptor;
 
-    @Resource
-    private RedisService redisService;
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        Enumeration<String> names = request.getParameterNames();
-        StringBuilder sb = new StringBuilder();
-        if(excludInterceptor.contains(request.getRequestURI())){
+        if(excludInterceptor.contains(request.getRequestURI()) || request.getRequestURI().contains("/webjars/springfox-swagger-ui/")){
             return true;
         }
-         /*if(!redisService.exists(request.getHeader("token"))){
+
+        if(StringUtils.isEmpty(request.getHeader("Token"))){
             throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
-        }*/
+        }
+
+        Enumeration<String> names = request.getParameterNames();
+        StringBuilder sb = new StringBuilder();
         while (names.hasMoreElements())
         {
             String name = names.nextElement();

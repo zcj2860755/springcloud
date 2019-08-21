@@ -18,6 +18,9 @@ public class BaseRequest implements Serializable {
     @Transient
     private Integer pageSize = 20;
 
+    @Transient
+    private String uuid;
+
     public Integer getPageNo() {
         return pageNo;
     }
@@ -43,8 +46,6 @@ public class BaseRequest implements Serializable {
         }
     }
 
-    @Transient
-    private String uuid;
 
     public String getUuid() {
         return uuid;

@@ -16,6 +16,9 @@
     <result column="CategoryDirValue" jdbcType="VARCHAR" property="CategoryDirValue" />-->
   </resultMap>
 
+    <sql id="BaseResultMap_List">
+        id,category_id,dic_key,dic_value,is_enable,sort_no,remark
+    </sql>
 
     <!-- 根据id 查询对象 —— 关联类别 -->
     <select id="selectTSysDicWithCatergory" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -44,4 +47,11 @@
         where category_id = #{categoryId} and dic_key= #{dicKey}
     </select>
 
+    <select id="getDicByDicKey" resultMap="BaseResultMap">
+        select
+        tsd.dic_key,tsd.dic_value
+        from t_sys_dic tsd left join t_sys_dic_category tsdc on tsd.category_id = tsdc.id
+        where tsdc.is_enable=1 and tsdc.is_enable=1 and tsdc.dic_key=#{dicKey}
+        order by tsd.sort_no desc
+    </select>
 </mapper>

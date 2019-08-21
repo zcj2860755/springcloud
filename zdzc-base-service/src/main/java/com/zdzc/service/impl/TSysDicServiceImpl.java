@@ -1,20 +1,14 @@
 package com.zdzc.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
-import com.zdzc.dao.TSysDicCategoryMapper;
 import com.zdzc.dao.TSysDicMapper;
-
-
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDic;
-import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicService;
 import com.zdzc.utils.BaseException;
 import com.zdzc.utils.UUIDUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -62,6 +56,10 @@ public  class TSysDicServiceImpl implements ITSysDicService {
         return new PageList<TSysDic>(tSysDicList);
     }
 
+    @Override
+    public List<TSysDic> getDicByDicKey(String DicKey) {
+        return tSysDicMapper.getDicByDicKey(DicKey);
+    }
 
 
 }

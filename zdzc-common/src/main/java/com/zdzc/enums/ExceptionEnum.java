@@ -11,7 +11,7 @@ public enum ExceptionEnum {
     SYSTEM_TIMECHANGE_NULL(1006,"时间转换失败"),
     SYSTEM_USER_NOTLOGIN(1007,"用户未登陆"),
     SYSTEM_CONNECTIONTIMEOUT(1008,"查询超时，请重新查询"),
-    SYSTEM_USER_TOKEN(1009,"请传入登录用户uuid"),
+    SYSTEM_USER_TOKEN(1009,"用户未登录，请登录！"),
 
     //--------------- 用户自定义自定义异常 -------------------------
     SYSTEM_ADD_ERROR_RESON(1001001,"该用户账号已存在"),
