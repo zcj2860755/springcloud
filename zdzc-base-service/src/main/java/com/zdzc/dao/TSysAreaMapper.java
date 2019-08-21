@@ -24,11 +24,12 @@ public interface TSysAreaMapper extends Mapper<TSysArea> {
     List<TSysArea> selectAreaListByParentId(@Param("parentId") Integer parentId);
 
     /**
-     * @description：   根据id 查询城市、区、街道
+     * @description：   根据parentId查询count
      * @author：李琳青
      * @date：2019-08-08 13:17
      */
-    List<TSysArea> selectProvinceCityAreaList(@Param("id") Integer id,@Param("mark") Integer mark);
+    int selectCountByParentId(@Param("parentId") Integer parentId);
+
 
 
 

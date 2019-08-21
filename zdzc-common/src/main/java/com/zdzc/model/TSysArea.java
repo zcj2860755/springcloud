@@ -43,28 +43,6 @@ public class TSysArea {
     @Column(name = "path_ids")
     private String pathIds;
 
-    @Transient
-    private String GroupName;
-
-    @Transient
-    private Integer mark;
-
-
-    public String getGroupName() {
-        return GroupName;
-    }
-
-    public void setGroupName(String groupName) {
-        GroupName = groupName;
-    }
-
-    public Integer getMark() {
-        return mark;
-    }
-
-    public void setMark(Integer mark) {
-        this.mark = mark;
-    }
 
     /**
      * 获取主键id

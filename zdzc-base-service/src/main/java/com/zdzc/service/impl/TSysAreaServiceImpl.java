@@ -31,7 +31,7 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
         Integer parentId = tSysArea.getParentId();
         TSysArea area = tSysAreaMapper.selectByPrimaryKey(parentId);
         if(area != null){ //添加省份校验
-            tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");
+            tSysArea.setPathIds(area.getPathIds()+"&"+String.valueOf(parentId)+"&");
         }
         return tSysAreaMapper.insertSelective(tSysArea);
     }
@@ -40,48 +40,27 @@ public class TSysAreaServiceImpl implements ITSysAreaService {
     public int update(TSysArea tSysArea) {
         Integer parentId = tSysArea.getParentId();
         TSysArea area = tSysAreaMapper.selectByPrimaryKey(parentId);
-        tSysArea.setPathIds(area.getPathIds()+String.valueOf(parentId)+"&");
+        tSysArea.setPathIds(area.getPathIds()+"&"+String.valueOf(parentId)+"&");
         return tSysAreaMapper.updateByPrimaryKeySelective(tSysArea);
     }
 
     @Override
     public int deleteById(String id) {
-        List<TSysArea> list = tSysAreaMapper.selectAreaListByParentId(Integer.valueOf(id));
-        if(list != null && list.size() >0 ){
+        int count = tSysAreaMapper.selectCountByParentId(Integer.valueOf(id));
+        if(count !=0){
             throw new BaseException(ExceptionEnum.POWER_CHILD_EXIST);
         }
-        int key = tSysAreaMapper.deleteByPrimaryKey(id);
-        deleteChildrenAreas(Integer.valueOf(id));
-        return key;
+        return tSysAreaMapper.deleteByPrimaryKey(id);
     }
 
-    /**
-     * @description：递归删除所有子类别
-     */
-    public void deleteChildrenAreas(Integer id) {
-        List<TSysArea> tSysAreas = tSysAreaMapper.selectAreaListByParentId(id);
-        //判断id是否存在下级id   无判断就ok
-        for (TSysArea tSysArea : tSysAreas) {
-            int delete = tSysAreaMapper.deleteByPrimaryKey(tSysArea.getId());
-            deleteChildrenAreas(tSysArea.getId());
-        }
-    }
 
     @Override
     public List<TSysArea> selectProvinceCityAreaList(TSysArea tSysArea) {
         Integer id = tSysArea.getId();
-        Integer mark = tSysArea.getMark();
-        int type = 0;
-        if (mark == 1) {
-                return tSysAreaMapper.selectProvinceList();
-        } else if (mark == 2) {
-            type = 2;
-        } else if (mark == 3) {
-            type = 3;
-        } else if (mark == 4) {
-            type = 4;
+        if(StringUtils.isEmpty(id)){
+            return tSysAreaMapper.selectProvinceList();
         }
-        return tSysAreaMapper.selectProvinceCityAreaList(id, type);
+        return tSysAreaMapper.selectAreaListByParentId(id);
     }
 
 

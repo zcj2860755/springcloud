@@ -28,11 +28,12 @@
      where   parent_id = #{parentId}
     </select>
 
-    <!--根据id查询市、区、街道-->
-    <select id="selectProvinceCityAreaList" resultMap="BaseResultMap">
-     SELECT  *  from  t_sys_area
-     where level = #{mark} and parent_id = #{id}
+    <!--查询子类的数量-->
+    <select id="selectCountByParentId" resultType="java.lang.Integer" >
+     SELECT  count(0) from  t_sys_area
+     where   parent_id = #{parentId}
     </select>
+
 
 
 </mapper>
