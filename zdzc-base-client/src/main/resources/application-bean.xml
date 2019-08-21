@@ -12,7 +12,7 @@
 				<value>/swagger-resources/configuration/ui</value>
 				<value>/swagger-resources/configuration/security</value>
 				<value>/swagger-resources</value>
-				<value>/account/login</value>
+				<value>/base/account/login</value>
 			</list>
 		</constructor-arg>
 	</bean>

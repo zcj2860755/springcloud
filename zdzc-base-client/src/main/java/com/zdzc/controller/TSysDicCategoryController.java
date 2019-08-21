@@ -94,6 +94,18 @@ public class TSysDicCategoryController {
         return feigntSysDicCategoryService.update(tSysDicCategory);
     }
 
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TSysDicCategory detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        return feigntSysDicCategoryService.findById(id);
+    }
+
 
     @PostMapping("/pageList") //get 报错
     @ApiOperation("分页查询")

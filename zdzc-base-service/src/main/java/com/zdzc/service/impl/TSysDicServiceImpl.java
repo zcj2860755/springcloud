@@ -31,8 +31,8 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     @Override
     public int insert(TSysDic tSysDic) {
         //categoryId + key查询是否有数据
-        List<TSysDic> list = tSysDicMapper.selectListBykeyAndCategory(tSysDic);
-        if(list != null && list.size() > 0 ){
+        int count = tSysDicMapper.selectCountBykeyAndCategory(tSysDic);
+        if(count != 0){
             throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDic.setId(UUIDUtils.getUUID());
@@ -41,14 +41,18 @@ public  class TSysDicServiceImpl implements ITSysDicService {
 
     @Override
     public int delete(String id) {
-        int delete = tSysDicMapper.deleteByPrimaryKey(id);
-        return delete;
+        return tSysDicMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public int update(TSysDic tSysDic) {
-        int update = tSysDicMapper.updateByPrimaryKey(tSysDic);
-        return update;
+        return tSysDicMapper.updateByPrimaryKey(tSysDic);
+    }
+
+
+    @Override
+    public TSysDic findById(String id) {
+        return tSysDicMapper.selectTSysDicWithCatergory(id);
     }
 
     @Override

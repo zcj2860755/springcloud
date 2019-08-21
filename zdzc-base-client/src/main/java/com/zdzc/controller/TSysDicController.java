@@ -3,6 +3,7 @@ package com.zdzc.controller;
 import com.zdzc.common.PageList;
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDic;
+import com.zdzc.model.TSysDicCategory;
 import com.zdzc.model.TSysParams;
 import com.zdzc.service.FeignTSysDicService;
 import com.zdzc.utils.BaseException;
@@ -96,6 +97,20 @@ public class TSysDicController {
         checkParams(tSysDic);
         feigntSysDicService.update(tSysDic);
     }
+
+
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TSysDic detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        return feigntSysDicService.findById(id);
+    }
+
 
     @PostMapping("/pageList")
     @ApiOperation("分页查询")

@@ -65,6 +65,18 @@ public class TSysDicController {
         return tSysDicService.update(tSysDic);
     }
 
+
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TSysDic detail(@RequestParam("id") String id){
+        return tSysDicService.findById(id);
+    }
+
+
+
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({

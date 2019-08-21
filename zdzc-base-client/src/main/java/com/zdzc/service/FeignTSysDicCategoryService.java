@@ -22,6 +22,9 @@ public interface FeignTSysDicCategoryService {
     @PutMapping("/dic/category")
     int update(@RequestBody TSysDicCategory tSysDicCategory);
 
+    @GetMapping("/dic/category/findById")
+    TSysDicCategory findById(@RequestParam("id") String id);
+
     @PostMapping("/dic/category/pageList")
     PageList<TSysDicCategory> pageList(@RequestBody TSysDicCategory tSysDicCategory,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
 

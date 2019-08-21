@@ -31,6 +31,12 @@ public interface ITSysDicCategoryService {
     */
     int deleteById(String id);
 
+    /**
+     * @description：查询一个
+     * @author：李琳青
+     * @date：2019-08-06 19:08
+     */
+    TSysDicCategory findById(String id);
 
     /**
     * @description：分页查询

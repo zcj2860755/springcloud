@@ -21,7 +21,7 @@ public interface TSysDicCategoryMapper extends Mapper<TSysDicCategory> {
      * @author：李琳青
      * @date：2019-08-08 13:17
      */
-    List<TSysDicCategory> selectListByDicKey(TSysDicCategory category);
+   int selectCountByDicKey(TSysDicCategory category);
 
 
 

@@ -19,14 +19,14 @@
 
     <!-- 根据id 查询对象 —— 关联类别 -->
     <select id="selectTSysDicWithCatergory" parameterType="java.lang.String" resultMap="BaseResultMap">
-     SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
+     SELECT a.*,b.dic_key categoryDirKey,b.dic_value categoryName
         from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
         where a.id=#{id}
     </select>
 
     <!--  一个类别下的selectAll  -->
     <select id="selectAllDic" resultMap="BaseResultMap">
-        SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
+        SELECT a.*,b.dic_key categoryDirKey,b.dic_value categoryName
         from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
         where a.category_id = #{categoryId}
         order by a.sort_no desc
@@ -38,8 +38,8 @@
         where category_id = #{categoryId}
     </select>
 
-    <select id="selectListBykeyAndCategory" resultMap="BaseResultMap">
-        SELECT *
+    <select id="selectCountBykeyAndCategory" resultType="integer">
+        SELECT count(0)
         from t_sys_dic
         where category_id = #{categoryId} and dic_key= #{dicKey}
     </select>
