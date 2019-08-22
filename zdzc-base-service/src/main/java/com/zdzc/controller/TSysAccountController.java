@@ -58,7 +58,8 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "realName", value = "用户名", required = true, paramType = "query"),
             @ApiImplicitParam(name = "tel", value = "联系电话", required = true, paramType = "query"),
             @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "proId", value = "项目id", required = false, paramType = "query")
 
 
     })
@@ -80,6 +81,10 @@ public class TSysAccountController extends BaseController {
 
         if(StringUtils.isEmpty(tSysAccount.getTel())){
             throw new BaseException(ExceptionEnum.USER_PHONE_NULL);
+        }
+        if(StringUtils.isEmpty(tSysAccount.getProId())){
+            String proId = ((Token)redisService.get(tSysAccount.getUuid())).getProId();
+            tSysAccount.setProId(proId);
         }
 
         String passWord = CommonStatus.DEFAULTPASSWORD;
