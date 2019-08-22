@@ -3,7 +3,6 @@ package com.zdzc.controller;
 import com.zdzc.common.PageList;
 import com.zdzc.common.Token;
 import com.zdzc.enums.ExceptionEnum;
-import com.zdzc.model.TSysAccount;
 import com.zdzc.model.TSysProject;
 import com.zdzc.service.ITSysAccountService;
 import com.zdzc.service.ITSysProjectService;
@@ -33,9 +32,6 @@ public class TSysProjectController extends BaseController{
     @Resource
     private ITSysProjectService tSysProjectService;
 
-    @Resource
-    private ITSysAccountService tSysAccountService;
-
     @PostMapping
     @ApiOperation("新增")
     @ApiImplicitParams({
@@ -59,7 +55,7 @@ public class TSysProjectController extends BaseController{
         if(StringUtils.isEmpty(tSysProject.getUuid())){
             throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
         }
-        if(StringUtils.isEmpty(tSysProject.getParentId()) || tSysProject.getParentId().equals("0")){
+        if(StringUtils.isEmpty(tSysProject.getParentId()) || "0".equals(tSysProject.getParentId())){
             tSysProject.setParentId(getLoginUser(tSysProject.getUuid()).getProId());
             tSysProject.setCascadeId(getLoginUser(tSysProject.getUuid()).getProId());
         }
@@ -119,24 +115,6 @@ public class TSysProjectController extends BaseController{
     })
     public TSysProject detail(@PathVariable String id) {
         TSysProject sysProject = tSysProjectService.selectByPrimaryKey(id);
-        TSysAccount account = new TSysAccount();
-
-        //根据项目id查询绑定的管理员以及管理员名称
-        account.setProId(sysProject.getId());
-        account.setIsbind(1);
-        List<TSysAccount> accountList = tSysAccountService.selectAccountList(account);
-        if(!StringUtils.isEmpty(accountList)) {
-            List<String> userNames = new ArrayList<>();
-            List<String> userIds = new ArrayList<>();
-            for (TSysAccount tSysAccount : accountList) {
-                userNames.add(tSysAccount.getRealName());
-                userIds.add(tSysAccount.getId());
-            }
-            sysProject.setUserIds(userIds.toArray(new String[userIds.size()]));
-            sysProject.setUserNames(userNames);
-        }
-
-
         return sysProject;
     }
 
@@ -146,57 +124,38 @@ public class TSysProjectController extends BaseController{
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query")
+            @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "id", value = "上级分组Id", required = false, paramType = "query")
     })
     public PageList<TSysProject> list(@ApiIgnore @RequestBody TSysProject tSysProject) {
         if(StringUtils.isEmpty(tSysProject.getUuid())){
             throw new BaseException(ExceptionEnum.SYSTEM_USER_TOKEN);
         }
-
         Token token = getLoginUser(tSysProject.getUuid());
-        if(!StringUtils.isEmpty(token.getProId())){
-            TSysAccount tSysAccount = tSysAccountService.selectByPrimaryKey(getLoginUser(tSysProject.getUuid()).getUserId());
-            if(tSysAccount.getIsbind() == 0){
-                tSysProject.setId(token.getProId());
-            }else if (tSysAccount.getIsbind() == 1){
-                tSysProject.setCascadeId(token.getProId());
-            }
+        //获取用户所属本级及下级项目
+        TSysProject temp = tSysProjectService.selectProjectById(token.getProId());
+        tSysProject.setCascadeId(temp.getCascadeId());
+
+        if(!StringUtils.isEmpty(tSysProject.getId())){
+            TSysProject temp2 = tSysProjectService.selectProjectById(tSysProject.getId());
+            tSysProject.setParentCascadeId(temp2.getCascadeId());
         }
 
-        if(StringUtils.isEmpty(tSysProject.getSearchContent())){
-            tSysProject.setSearchContent(null);
+        PageList<TSysProject> list = tSysProjectService.selectParamsList(tSysProject);
+        //拼接上级全路径
+        String seperator = "->";
+        for(TSysProject t :list.getList()){
+            String parentPath = tSysProjectService.selectProjectAllPath(t.getCascadeId().split("&"),seperator);
+            t.setParentName(parentPath);
         }
-        PageList<TSysProject> pageList = tSysProjectService.selectParamsList(tSysProject);
-        List<TSysProject> projectList = pageList.getList();
-        List<TSysProject> resultList = new ArrayList<TSysProject>();
-        TSysAccount account = new TSysAccount();
-        for(TSysProject sysProject : projectList){
-            //根据项目id查询绑定的管理员以及管理员名称
-            account.setProId(sysProject.getId());
-            account.setIsbind(1);
-            List<TSysAccount> accountList = tSysAccountService.selectAccountList(account);
-            if(!StringUtils.isEmpty(accountList)) {
-                List<String> userNames = new ArrayList<>();
-                for (TSysAccount tSysAccount : accountList) {
-                    userNames.add(tSysAccount.getRealName());
-                }
-                sysProject.setUserNames(userNames);
-            }
-
-            if(!StringUtils.isEmpty(sysProject.getParentId()) && !sysProject.getParentId().equals("0")){
-                TSysProject project = tSysProjectService.selectByPrimaryKey(sysProject.getParentId());
-                if(!StringUtils.isEmpty(project)){
-                    sysProject.setParentName(project.getProName());
-                }
-            }
-            resultList.add(sysProject);
-        }
-        pageList.setList(resultList);
-        return pageList;
+        return list;
     }
 
     @PostMapping("/findList")
     @ApiOperation("查询所有--级联展示")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键Id", required = false, paramType = "query")
+    })
     public List<TSysProject> findAlllist(@ApiIgnore @RequestBody TSysProject tSysProject) {
         List<TSysProject>  lists= tSysProjectService.selectByExample(tSysProject);
         return lists;
@@ -217,7 +176,6 @@ public class TSysProjectController extends BaseController{
             if(StringUtils.isEmpty(getLoginUser(tSysProject.getUuid()).getProId())){
                 tSysProject.setId(null);
             }
-
         }
         tSysProject.setCascadeId(getLoginUser(tSysProject.getUuid()).getProId());
         List<TSysProject>  lists= tSysProjectService.selectByExample(tSysProject);

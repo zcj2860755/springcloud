@@ -17,6 +17,7 @@
     <result column="is_enable" jdbcType="INTEGER" property="isEnable" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="parentName" jdbcType="VARCHAR" property="parentName" />
   </resultMap>
 
 
@@ -25,27 +26,28 @@
   </sql>
 
   <select id="selectParamsBySreach" resultMap="BaseResultMap">
-
-  select
-  <include refid="Base_Column_List" />
-  from t_sys_project
-  <where>
-    <if test="searchContent != null">
-      (pro_name like concat('%',#{searchContent},'%') or pro_code like concat('%',#{searchContent},'%'))
-    </if>
-    <if test="id!=null">
-      and id = #{id}
-    </if>
-    <if test="cascadeId!=null">
-      and (cascade_id  like concat('%',#{cascadeId},'%') or id = #{cascadeId})
-    </if>
-  </where>
-    order by orders
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_project
+    <where>
+      <if test="searchContent != null">
+        (pro_name like concat('%',#{searchContent},'%') or pro_code like concat('%',#{searchContent},'%'))
+      </if>
+      <if test="id!=null">
+        and id = #{id}
+      </if>
+      <if test="cascadeId!=null">
+        and cascade_id like concat(#{cascadeId},'%')
+      </if>
+        <if test="parentCascadeId!=null">
+            and cascade_id like concat(#{parentCascadeId},'%')
+        </if>
+    </where>
+      order by orders
  </select>
 
 
   <select id="selectParamsNot" resultMap="BaseResultMap">
-
     select
     <include refid="Base_Column_List" />
     from t_sys_project
@@ -59,53 +61,6 @@
     </where>
     order by orders
   </select>
-
-  <update id="updateByExampleSelective">
-
-    update  t_sys_project
-    <set>
-      <if test="cascadeId!=null">
-        cascade_id = #{cascadeId}
-      </if>
-
-      <if test="parentId!=null">
-        parent_id = #{parentId}
-      </if>
-
-      <if test="proCode!=null">
-        pro_code = #{proCode}
-      </if>
-
-      <if test="proName!=null">
-        pro_name = #{proName}
-      </if>
-
-      <if test="contacts!=null">
-        contacts = #{contacts}
-      </if>
-
-      <if test="isLeaf!=null">
-        is_leaf = #{isLeaf}
-      </if>
-
-      <if test="orders!=null">
-        orders = #{orders}
-      </if>
-
-      <if test="remark!=null">
-        remark = #{remark}
-      </if>
-
-      <if test="isEnable!=null">
-        is_enable = #{isEnable}
-      </if>
-
-      <if test="accountId!=null">
-        account_id = #{accountId}
-      </if>
-
-    </set>
-  </update>
 
   <select id="selectProjectByIdAndCascade" resultType="java.lang.String">
     select id from t_sys_project
@@ -130,6 +85,17 @@
       <if test="id != null">
         and id !=#{id}
       </if>
+    </where>
+  </select>
+
+  <select id="selectProjectAllPath" resultType="java.lang.String">
+    select GROUP_CONCAT(pro_name SEPARATOR #{seperator}) as parentName
+      from t_sys_project
+    <where>
+      id in
+      <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
     </where>
   </select>
 </mapper>

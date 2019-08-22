@@ -2,6 +2,7 @@ package com.zdzc.dao;
 
 import com.zdzc.core.Mapper;
 import com.zdzc.model.TSysProject;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,17 +14,6 @@ public interface TSysProjectMapper extends Mapper<TSysProject> {
      * @return
      */
     List<TSysProject> selectParamsBySreach(TSysProject tSysProject);
-
-    /**
-     *
-     * @Description: 更新项目信息
-     * @auther:   zcj
-     * @date:     2018/12/19
-     * @param:    [tSysProject]
-     * @return:   int
-     *
-     */
-    int updateByExampleSelective(TSysProject tSysProject);
 
 
     List<TSysProject> selectParamsNot(TSysProject tSysProject);
@@ -40,4 +30,11 @@ public interface TSysProjectMapper extends Mapper<TSysProject> {
      * @return
      */
     int selectProjectNameCount(TSysProject proParams);
+
+    /**
+     * 通过项目Id拼接项目名称
+     * @param ids
+     * @return
+     */
+    String selectProjectAllPath(@Param("ids") String [] ids, @Param("seperator") String seperator);
 }
