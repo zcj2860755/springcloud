@@ -34,7 +34,15 @@ public interface TSysDicMapper extends Mapper<TSysDic> {
      * @author：李琳青
      * @date：2019-08-07 13:18
      */
-    List<TSysDic> selectListBykeyAndCategory(TSysDic tSysDic);
+    int selectCountBykeyAndCategory(TSysDic tSysDic);
 
 
+    /**
+     * @Author  zhuqilong
+     * @Description 通过父类别Key查询子类字典
+     * @Date 15:59 2019/8/21
+     * @Param
+     * @return
+    */
+    List<TSysDic> getDicByDicKey(@Param("dicKey") String dicKey);
 }

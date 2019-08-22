@@ -16,17 +16,20 @@
     <result column="CategoryDirValue" jdbcType="VARCHAR" property="CategoryDirValue" />-->
   </resultMap>
 
+    <sql id="BaseResultMap_List">
+        id,category_id,dic_key,dic_value,is_enable,sort_no,remark
+    </sql>
 
     <!-- 根据id 查询对象 —— 关联类别 -->
     <select id="selectTSysDicWithCatergory" parameterType="java.lang.String" resultMap="BaseResultMap">
-     SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
+     SELECT a.*,b.dic_key categoryDirKey,b.dic_value categoryName
         from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
         where a.id=#{id}
     </select>
 
     <!--  一个类别下的selectAll  -->
     <select id="selectAllDic" resultMap="BaseResultMap">
-        SELECT a.*,b.dic_key CategoryDirKey,b.dic_value CategoryDirValue
+        SELECT a.*,b.dic_key categoryDirKey,b.dic_value categoryName
         from t_sys_dic a inner join t_sys_dic_category b  on a.category_id = b.id
         where a.category_id = #{categoryId}
         order by a.sort_no desc
@@ -38,10 +41,17 @@
         where category_id = #{categoryId}
     </select>
 
-    <select id="selectListBykeyAndCategory" resultMap="BaseResultMap">
-        SELECT *
+    <select id="selectCountBykeyAndCategory" resultType="integer">
+        SELECT count(0)
         from t_sys_dic
         where category_id = #{categoryId} and dic_key= #{dicKey}
     </select>
 
+    <select id="getDicByDicKey" resultMap="BaseResultMap">
+        select
+        tsd.dic_key,tsd.dic_value
+        from t_sys_dic tsd left join t_sys_dic_category tsdc on tsd.category_id = tsdc.id
+        where tsdc.is_enable=1 and tsdc.is_enable=1 and tsdc.dic_key=#{dicKey}
+        order by tsd.sort_no desc
+    </select>
 </mapper>

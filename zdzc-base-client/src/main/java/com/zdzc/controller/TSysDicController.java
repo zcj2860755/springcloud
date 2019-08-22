@@ -3,7 +3,6 @@ package com.zdzc.controller;
 import com.zdzc.common.PageList;
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDic;
-import com.zdzc.model.TSysParams;
 import com.zdzc.service.FeignTSysDicService;
 import com.zdzc.utils.BaseException;
 import io.swagger.annotations.Api;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -97,6 +97,20 @@ public class TSysDicController {
         feigntSysDicService.update(tSysDic);
     }
 
+
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TSysDic detail(String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        return feigntSysDicService.findById(id);
+    }
+
+
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
@@ -109,5 +123,16 @@ public class TSysDicController {
             throw new BaseException(ExceptionEnum.DIC_CATEGORY_NULL);
         }
         return feigntSysDicService.pageList(tSysDic,pageNo,pageSize);
+    }
+
+    @GetMapping("getDicByDicKey")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "dicKey", value = "父类Key", required = true, paramType = "query")
+    })
+    public List<TSysDic> getDicByDicKey(@ApiIgnore String dicKey){
+        if(StringUtils.isEmpty(dicKey)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSKEY_NULL);
+        }
+        return feigntSysDicService.getDicByDicKey(dicKey);
     }
 }

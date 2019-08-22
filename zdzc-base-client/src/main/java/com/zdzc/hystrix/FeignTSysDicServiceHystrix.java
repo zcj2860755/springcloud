@@ -2,8 +2,8 @@ package com.zdzc.hystrix;
 
 import com.zdzc.common.PageList;
 import com.zdzc.model.TSysDic;
-import org.springframework.stereotype.Component;
 import com.zdzc.service.FeignTSysDicService;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -11,7 +11,7 @@ import com.zdzc.service.FeignTSysDicService;
  * Date : 2019-08-06 13:41
  */
 @Component
-public  class FeignTSysDicServiceHystrix implements FeignTSysDicService {
+public abstract class FeignTSysDicServiceHystrix implements FeignTSysDicService {
 
 
     @Override
@@ -30,7 +30,13 @@ public  class FeignTSysDicServiceHystrix implements FeignTSysDicService {
     }
 
     @Override
+    public TSysDic findById(String id) {
+        return null;
+    }
+
+    @Override
     public PageList<TSysDic> pageList(TSysDic tSysDic, Integer pageNo, Integer pageSize) {
         return null;
     }
+
 }

@@ -1,13 +1,12 @@
 package com.zdzc.controller;
 
-import com.zdzc.common.BaseRequest;
+import com.zdzc.common.PageList;
 import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicCategoryService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-import com.zdzc.common.PageList;
 
 import javax.annotation.Resource;
 
@@ -57,6 +56,15 @@ public class TSysDicCategoryController {
     })
     public int update(@RequestBody TSysDicCategory tSysDicCategory){
         return tSysDicCategoryService.update(tSysDicCategory);
+    }
+
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TSysDicCategory detail(@RequestParam("id") String id){
+        return tSysDicCategoryService.findById(id);
     }
 
 

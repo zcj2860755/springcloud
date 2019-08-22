@@ -95,17 +95,8 @@ public class TSysAreaController {
     @ApiOperation("省市区查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "省份/城市/区id", required = true, paramType = "query"),
-            @ApiImplicitParam(name = "mark", value = "类型 1.省份 2.城市 3.区域 4.镇、街道 ", required = true, paramType = "query"),
     })
     public List<TSysArea> selectProvinceCityAreaList(@ApiIgnore TSysArea tSysArea) {
-        if(tSysArea.getId()!=1){
-            if(StringUtils.isEmpty(tSysArea.getId())){
-                throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
-            }
-        }
-        if(StringUtils.isEmpty(tSysArea.getMark())){
-            throw new BaseException(ExceptionEnum.AREA_TYPE_NULL);
-        }
         return feigntSysAreaService.selectProvinceCityAreaList(tSysArea);
     }
 

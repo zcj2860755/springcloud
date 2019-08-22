@@ -30,8 +30,8 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
     @Override
     public int save(TSysDicCategory tSysDicCategory) {
         //判断字典编码是否重复
-        List<TSysDicCategory> list = tSysDicCategoryMapper.selectListByDicKey(tSysDicCategory);
-        if(list != null && list.size() > 0 ){
+        int count = tSysDicCategoryMapper.selectCountByDicKey(tSysDicCategory);
+        if(count !=0){
             throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDicCategory.setId(UUIDUtils.getUUID());
@@ -54,6 +54,11 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
         return tSysDicCategoryMapper.updateByPrimaryKeySelective(tSysDicCategory);
     }
 
+
+    @Override
+    public TSysDicCategory findById(String id) {
+        return tSysDicCategoryMapper.selectByPrimaryKey(id);
+    }
 
     @Override
     public PageList<TSysDicCategory> list(TSysDicCategory tSysDicCategory,Integer pageNo,Integer pageSize) {

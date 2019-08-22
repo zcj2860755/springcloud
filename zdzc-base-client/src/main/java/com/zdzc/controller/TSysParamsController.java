@@ -102,7 +102,7 @@ public class TSysParamsController {
         return feigntSysParamsService.findById(id);
     }
 
-    @GetMapping("pageList")
+    @GetMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),

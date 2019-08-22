@@ -62,7 +62,7 @@ public class TSysAuthority extends BaseRequest {
      */
     @ApiModelProperty("权限类型（1:菜单;2:操作）")
     @Column(name = "auth_type")
-    private Integer authType;
+    private String authType;
 
     /**
      * 备注
@@ -220,7 +220,7 @@ public class TSysAuthority extends BaseRequest {
      *
      * @return auth_type - 权限类型（1:菜单;2:操作）
      */
-    public Integer getAuthType() {
+    public String getAuthType() {
         return authType;
     }
 
@@ -229,7 +229,7 @@ public class TSysAuthority extends BaseRequest {
      *
      * @param authType 权限类型（1:菜单;2:操作）
      */
-    public void setAuthType(Integer authType) {
+    public void setAuthType(String authType) {
         this.authType = authType;
     }
 

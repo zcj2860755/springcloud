@@ -28,8 +28,8 @@
   </select>
 
   <!-- by dic_key 查询集合-->
-  <select id="selectListByDicKey" resultMap="BaseResultMap">
-    SELECT id,dic_key,dic_value,is_enable,sort_no,remark
+  <select id="selectCountByDicKey" resultType="integer">
+    SELECT count(0)
     from  t_sys_dic_category
     where  dic_key =#{dicKey}
   </select>

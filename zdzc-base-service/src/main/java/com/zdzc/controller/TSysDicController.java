@@ -1,19 +1,22 @@
 package com.zdzc.controller;
 
-import com.zdzc.common.BaseRequest;
 import com.zdzc.common.PageList;
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDic;
 import com.zdzc.service.ITSysDicService;
+import com.zdzc.utils.BaseException;
 import com.zdzc.utils.oss.OSSUnit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -65,6 +68,18 @@ public class TSysDicController {
         return tSysDicService.update(tSysDic);
     }
 
+
+    @GetMapping("/findById")
+    @ApiOperation("获取详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
+    })
+    public TSysDic detail(@RequestParam("id") String id){
+        return tSysDicService.findById(id);
+    }
+
+
+
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
@@ -92,5 +107,16 @@ public class TSysDicController {
         }
 
         return 0;
+    }
+
+    @GetMapping("getDicByDicKey")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "dicKey", value = "父类Key", required = false, paramType = "query")
+    })
+    public List<TSysDic> getDicByDicKey(@RequestParam String dicKey){
+        if(StringUtils.isEmpty(dicKey)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSKEY_NULL);
+        }
+        return tSysDicService.getDicByDicKey(dicKey);
     }
 }

@@ -48,26 +48,27 @@ public class TSysDic {
 
 
     @Transient
-    private String CategoryDirKey;   //类别表的key
+    private String categoryDirKey;   //类别表的key
     @Transient
-    private String CategoryDirValue;   //类别表的value
+    private String categoryName;   //类别表的value
     @Transient
     private String keyWords;   //关键字
 
+
     public String getCategoryDirKey() {
-        return CategoryDirKey;
+        return categoryDirKey;
     }
 
     public void setCategoryDirKey(String categoryDirKey) {
-        CategoryDirKey = categoryDirKey;
+        this.categoryDirKey = categoryDirKey;
     }
 
-    public String getCategoryDirValue() {
-        return CategoryDirValue;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryDirValue(String categoryDirValue) {
-        CategoryDirValue = categoryDirValue;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getKeyWords() {
@@ -77,8 +78,6 @@ public class TSysDic {
     public void setKeyWords(String keyWords) {
         this.keyWords = keyWords;
     }
-
-
 
     /**
      * 获取主键
