@@ -23,9 +23,6 @@ import java.util.Map;
 public class BaseController {
 
     @Resource
-    protected HttpSession session;
-
-    @Resource
     protected ITSysAccountService tSysAccountService;
 
     @Resource
