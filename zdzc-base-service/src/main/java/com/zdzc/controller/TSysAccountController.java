@@ -62,6 +62,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "proId", value = "项目id", required = false, paramType = "query")
 
 
+
     })
     public void add(@ApiIgnore @RequestBody TSysAccount tSysAccount){
         if(StringUtils.isEmpty(tSysAccount.getUuid())){
@@ -403,9 +404,6 @@ public class TSysAccountController extends BaseController {
         Map<String,Object> map = getManageProjectIds(uuid);
         String userType = map.get(CommonStatus.USER_TYPE).toString();
         List<String> list = (List<String>) map.get(CommonStatus.PROJECTIDS);
-        //设备编辑时，查询启用的用户
-
-        //设备新增是查询，启用用户
         if(!StringUtils.isEmpty(projectId)){
             if(CommonStatus.USER_MANAGER.equals(userType)){
                 tSysAccount.setProjectIds(list);
