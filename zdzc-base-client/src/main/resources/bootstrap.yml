@@ -8,6 +8,11 @@ spring:
         service-id: config-server  # 注册中心的服务名
       profile: dev  # 指定配置文件的环境
 
+
+
+  main:
+    allow-bean-definition-overriding: true
+
 eureka:
   client:
     service-url:
