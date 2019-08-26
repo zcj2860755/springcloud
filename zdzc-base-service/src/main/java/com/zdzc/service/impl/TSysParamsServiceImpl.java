@@ -57,8 +57,8 @@ public class TSysParamsServiceImpl implements ITSysParamsService {
     }
 
     @Override
-    public PageList<TSysParams> pageList(TSysParams tSysParams,Integer pageNo,Integer pageSize) {
+    public PageList<TSysParams> pageList(TSysParams tSysParams, Integer pageNo, Integer pageSize) {
         PageHelper.startPage(pageNo,pageSize);
-        return new PageList<TSysParams>(tSysParamsMapper.selectPageList(tSysParams));
+        return new PageList<>(tSysParamsMapper.selectPageList(tSysParams));
     }
 }

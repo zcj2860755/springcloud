@@ -39,8 +39,8 @@ public class ${modelNameUpperCamel}ServiceImpl implements I${modelNameUpperCamel
     }
 
     @Override
-    public PageList<${modelNameUpperCamel}> pageList(${modelNameUpperCamel} ${modelNameLowerCamel},Integer pageNo,Integer pageSize) {
-        PageHelper.startPage(pageNo,pageSize);
+    public PageList<${modelNameUpperCamel}> pageList(${modelNameUpperCamel} ${modelNameLowerCamel},int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
         return new PageList<${modelNameUpperCamel}>(${modelNameLowerCamel}Mapper.select(${modelNameLowerCamel}));
     }
 }
