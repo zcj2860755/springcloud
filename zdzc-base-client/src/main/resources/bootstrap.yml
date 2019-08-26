@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: base-client
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server  # 注册中心的服务名
+      profile: dev  # 指定配置文件的环境
+
+eureka:
+  client:
+    service-url:
+      #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+      defaultZone: http://localhost:8761/eureka/
