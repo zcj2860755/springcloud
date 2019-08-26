@@ -42,7 +42,7 @@ public class CodeGenerator {
 
 
     private static final String AUTHOR = "zdzc";//@author
-    private static final String FEIGNCLIENTNAME = "basic-service";//@FeignClient名称
+    private static final String FEIGNCLIENTNAME = "base-service";//@FeignClient名称
 
     private static final String DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());//@date
 
