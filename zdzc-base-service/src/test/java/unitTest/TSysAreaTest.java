@@ -1,6 +1,6 @@
 package unitTest;
 
-import com.zdzc.BasicServiceApplication;
+import com.zdzc.BaseServiceApplication;
 import com.zdzc.controller.TSysAreaController;
 import com.zdzc.model.TSysArea;
 import org.junit.FixMethodOrder;
@@ -24,7 +24,7 @@ import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BasicServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = BaseServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(NAME_ASCENDING)
 @Transactional
 @Rollback

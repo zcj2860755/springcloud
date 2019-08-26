@@ -1,12 +1,10 @@
 package unitTest;
 
-import com.zdzc.BasicServiceApplication;
-import com.zdzc.common.BaseRequest;
+import com.zdzc.BaseServiceApplication;
 import com.zdzc.controller.TSysRoleController;
 import com.zdzc.dao.TSysRoleMapper;
 import com.zdzc.model.TSysRole;
 import com.zdzc.utils.BaseException;
-import org.apache.catalina.connector.Request;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +25,7 @@ import static org.junit.runners.MethodSorters.NAME_ASCENDING;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BasicServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = BaseServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(NAME_ASCENDING)
 @Transactional
 @Rollback

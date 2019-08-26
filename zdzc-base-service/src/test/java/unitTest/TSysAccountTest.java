@@ -1,11 +1,10 @@
 package unitTest;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zdzc.BasicServiceApplication;
+import com.zdzc.BaseServiceApplication;
 import com.zdzc.controller.TSysAccountController;
 import com.zdzc.model.TSysAccount;
 import com.zdzc.redis.RedisService;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-
 import javax.annotation.Resource;
 
 import java.util.HashMap;
@@ -26,7 +22,7 @@ import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BasicServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = BaseServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(NAME_ASCENDING)
 @Transactional
 @Rollback

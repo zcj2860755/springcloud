@@ -1,6 +1,6 @@
 package unitTest;
 
-import com.zdzc.BasicServiceApplication;
+import com.zdzc.BaseServiceApplication;
 import com.zdzc.common.BaseRequest;
 import com.zdzc.controller.TSysAuthorityController;
 import com.zdzc.dao.TSysAuthorityMapper;
@@ -17,20 +17,13 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * description :  菜单权限相关  test
@@ -40,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BasicServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = BaseServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(NAME_ASCENDING)
 @Transactional
 @Rollback
