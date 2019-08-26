@@ -33,10 +33,9 @@ public class MyResponseBody implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (body instanceof ExceptionResponse)
-        {
-            return (Object)BaseRespsonse.error((ExceptionResponse)body);
+        if (body instanceof ExceptionResponse) {
+            return BaseRespsonse.error((ExceptionResponse)body);
         }
-        return  (Object) BaseRespsonse.success(body);
+        return BaseRespsonse.success(body);
     }
 }

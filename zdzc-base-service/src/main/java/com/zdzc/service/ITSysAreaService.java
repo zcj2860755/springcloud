@@ -1,8 +1,6 @@
 package com.zdzc.service;
 
 import com.zdzc.model.TSysArea;
-import com.zdzc.common.BaseRequest;
-import com.zdzc.common.PageList;
 
 import java.util.List;
 
