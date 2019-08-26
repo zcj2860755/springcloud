@@ -12,7 +12,7 @@ import java.util.List;
  * Author : 李琳青
  * Date : 2019-08-06 13:41
  */
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTSysDicService {
 
     @PostMapping("/dic")

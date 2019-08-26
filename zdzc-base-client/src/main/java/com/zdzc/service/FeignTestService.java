@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 1.0
  */
 
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTestService {
 
     @GetMapping("hello2")

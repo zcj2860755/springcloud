@@ -10,7 +10,7 @@ import com.zdzc.model.TSysDicCategory;
  * Author : 李琳青
  * Date : 2019-08-06 19:08
  */
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTSysDicCategoryService {
 
     @PostMapping("/dic/category")

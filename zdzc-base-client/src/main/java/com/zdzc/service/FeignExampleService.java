@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignExampleService {
 
     @GetMapping("hello")

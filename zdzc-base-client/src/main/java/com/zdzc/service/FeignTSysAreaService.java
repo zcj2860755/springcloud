@@ -12,7 +12,7 @@ import java.util.List;
  * Author : 李琳青
  * Date : 2019-08-09 11:06
  */
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTSysAreaService {
 
     @PostMapping("/area")

@@ -3,16 +3,16 @@ package com.zdzc.service;
 
 import com.zdzc.common.PageList;
 import com.zdzc.common.Token;
+import com.zdzc.hystrix.FeignServiceHystrix;
+import com.zdzc.hystrix.FeignTSysAccountServiceHystrix;
 import com.zdzc.model.TSysAccount;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service",fallback = FeignServiceHystrix.class)
 public interface FeignTSysAccountService {
 
     /**

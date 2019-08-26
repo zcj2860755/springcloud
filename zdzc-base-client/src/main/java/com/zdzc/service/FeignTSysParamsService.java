@@ -10,7 +10,7 @@ import com.zdzc.model.TSysParams;
  * Author : zhuqilong
  * Date : 2019-08-13 14:02
  */
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTSysParamsService {
 
     /**

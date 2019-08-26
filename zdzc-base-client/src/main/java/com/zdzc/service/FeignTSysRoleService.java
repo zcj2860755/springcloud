@@ -8,7 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTSysRoleService {
     /**
      * @Author  zcj

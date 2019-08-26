@@ -12,7 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
-@FeignClient(value = "basic-service")
+@FeignClient(value = "base-service")
 public interface FeignTSysAuthorithService {
 
     /**
