@@ -1,6 +1,7 @@
 package ${basePackage}.controller;
 
-import com.zdzc.common.BaseRequest;
+import com.zdzc.enums.ExceptionEnum;
+import com.zdzc.utils.BaseException;
 import ${basePackage}.model.${modelNameUpperCamel};
 import ${basePackage}.service.I${modelNameUpperCamel}Service;
 import org.springframework.web.bind.annotation.*;
