@@ -11,10 +11,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.zdzc.dao")
-public class BasicServiceApplication{
+public class BaseServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BasicServiceApplication.class, args);
+        SpringApplication.run(BaseServiceApplication.class, args);
     }
 
 }

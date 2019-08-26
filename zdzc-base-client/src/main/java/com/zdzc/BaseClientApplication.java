@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 //启用feign进行远程调用
 @EnableFeignClients
-public class BaseClientApplication{
+public class BaseClientApplication {
 
 
     public static void main(String[] args) {
