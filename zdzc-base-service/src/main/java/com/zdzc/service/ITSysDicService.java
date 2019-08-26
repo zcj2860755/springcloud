@@ -20,9 +20,7 @@ public interface ITSysDicService {
     int update(TSysDic tSysDic);
 
     /**
-     * @description：查询一个
-     * @author：李琳青
-     * @date：2019-08-06 19:08
+     * @description：查询详情
      */
     TSysDic findById(String id);
 
@@ -36,8 +34,6 @@ public interface ITSysDicService {
      * @Author  zhuqilong
      * @Description 通过字典类别Key查询，子类字典
      * @Date 15:56 2019/8/21
-     * @Param
-     * @return
     */
     List<TSysDic> getDicByDicKey(String DicKey);
 }

@@ -3,6 +3,7 @@ package com.zdzc.model;
 import com.zdzc.common.BaseRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -107,16 +108,10 @@ public class TSysProject extends BaseRequest {
     private String parentName;
 
     /**
-     *管理员id集合
+     * 上级CascadeId
      */
     @Transient
-    private String[] userIds;
-
-    /**
-     *管理员名称集合
-     */
-    @Transient
-    private List<String> userNames;
+    private String parentCascadeId;
 
     /**
      * 获取主键
@@ -364,20 +359,11 @@ public class TSysProject extends BaseRequest {
         this.parentName = parentName;
     }
 
-    public String[] getUserIds() {
-        return userIds;
+    public String getParentCascadeId() {
+        return parentCascadeId;
     }
 
-    public void setUserIds(String[] userIds) {
-        this.userIds = userIds;
+    public void setParentCascadeId(String parentCascadeId) {
+        this.parentCascadeId = parentCascadeId;
     }
-
-    public List<String> getUserNames() {
-        return userNames;
-    }
-
-    public void setUserNames(List<String> userNames) {
-        this.userNames = userNames;
-    }
-
 }

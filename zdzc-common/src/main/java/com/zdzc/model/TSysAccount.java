@@ -168,7 +168,17 @@ public class TSysAccount extends BaseRequest {
     @Transient
     private String timestamp;
 
+    @ApiModelProperty("项目id-单元测试用")
+    @Transient
+    private String projectId;
 
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
 
     /**
      * 获取主键

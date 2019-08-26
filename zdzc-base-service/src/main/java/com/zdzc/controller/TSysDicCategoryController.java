@@ -1,11 +1,14 @@
 package com.zdzc.controller;
 
 import com.zdzc.common.PageList;
+import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDicCategory;
 import com.zdzc.service.ITSysDicCategoryService;
+import com.zdzc.utils.BaseException;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,16 +35,40 @@ public class TSysDicCategoryController {
             @ApiImplicitParam(name = "remark", value = "描述(类别)", required = true, paramType = "query"),
     })
     public int add(@RequestBody TSysDicCategory tSysDicCategory){
+        checkParams(tSysDicCategory);
+        System.out.println("哈哈，开始调用接口service");
         return tSysDicCategoryService.save(tSysDicCategory);
     }
+
+    /**
+     * @Description : 参数校验
+     */
+    public void checkParams(TSysDicCategory tSysDicCategory){
+        if(StringUtils.isEmpty(tSysDicCategory.getDicKey())){
+            throw new BaseException(ExceptionEnum.DIC_KEY_NULL);
+        }
+        if(StringUtils.isEmpty(tSysDicCategory.getDicValue())){
+            throw new BaseException(ExceptionEnum.DIC_VABLE_NULL);
+        }
+        if(StringUtils.isEmpty(tSysDicCategory.getIsEnable())){
+            throw new BaseException(ExceptionEnum.DIC_ENABLE_NULL);
+        }
+        if(StringUtils.isEmpty(tSysDicCategory.getSortNo())){
+            throw new BaseException(ExceptionEnum.DIC_SORT_NULL);
+        }
+    }
+
 
     @DeleteMapping
     @ApiOperation("删除")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
-    public int delete(@RequestParam("id") String Id){
-        return tSysDicCategoryService.deleteById(Id);
+    public int delete(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        return tSysDicCategoryService.deleteById(id);
     }
 
     @PutMapping
@@ -55,6 +82,10 @@ public class TSysDicCategoryController {
             @ApiImplicitParam(name = "remark", value = "描述(类别)", required = true, paramType = "query"),
     })
     public int update(@RequestBody TSysDicCategory tSysDicCategory){
+        if(StringUtils.isEmpty(tSysDicCategory.getId())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        checkParams(tSysDicCategory);
         return tSysDicCategoryService.update(tSysDicCategory);
     }
 
@@ -64,6 +95,9 @@ public class TSysDicCategoryController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public TSysDicCategory detail(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return tSysDicCategoryService.findById(id);
     }
 
@@ -75,7 +109,7 @@ public class TSysDicCategoryController {
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "keyWords", value = "查询内容", required = false, paramType = "query")
     })
-    public PageList<TSysDicCategory> pageList(@RequestBody TSysDicCategory tSysDicCategory,@RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+    public PageList<TSysDicCategory> pageList(@RequestBody TSysDicCategory tSysDicCategory, @RequestParam(value="pageNo",defaultValue="1") Integer pageNo, @RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
         return tSysDicCategoryService.list(tSysDicCategory,pageNo,pageSize);
     }
 }

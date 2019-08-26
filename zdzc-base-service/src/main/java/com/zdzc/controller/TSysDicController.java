@@ -41,8 +41,31 @@ public class TSysDicController {
             @ApiImplicitParam(name = "remark", value = "描述", required = true, paramType = "query"),
     })
     public int add(@RequestBody TSysDic tSysDic){
+        if(StringUtils.isEmpty(tSysDic.getCategoryId())){
+            throw new BaseException(ExceptionEnum.DIC_CATEGORY_NULL);
+        }
+        checkParams(tSysDic);
         return tSysDicService.insert(tSysDic);
     }
+
+    /**
+     * @Description : 参数校验
+     */
+    public void checkParams(TSysDic tSysDic){
+        if(StringUtils.isEmpty(tSysDic.getDicKey())){
+            throw new BaseException(ExceptionEnum.DIC_KEY_NULL);
+        }
+        if(StringUtils.isEmpty(tSysDic.getDicValue())){
+            throw new BaseException(ExceptionEnum.DIC_VABLE_NULL);
+        }
+        if(StringUtils.isEmpty(tSysDic.getIsEnable())){
+            throw new BaseException(ExceptionEnum.DIC_ENABLE_NULL);
+        }
+        if(StringUtils.isEmpty(tSysDic.getSortNo())){
+            throw new BaseException(ExceptionEnum.DIC_SORT_NULL);
+        }
+    }
+
 
     @DeleteMapping
     @ApiOperation("删除")
@@ -50,6 +73,9 @@ public class TSysDicController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public int delete(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return tSysDicService.delete(id);
     }
 
@@ -65,6 +91,10 @@ public class TSysDicController {
             @ApiImplicitParam(name = "remark", value = "描述", required = true, paramType = "query"),
     })
     public int update(@RequestBody TSysDic tSysDic){
+        if(StringUtils.isEmpty(tSysDic.getId())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
+        checkParams(tSysDic);
         return tSysDicService.update(tSysDic);
     }
 
@@ -75,6 +105,9 @@ public class TSysDicController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "query")
     })
     public TSysDic detail(@RequestParam("id") String id){
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return tSysDicService.findById(id);
     }
 
@@ -87,12 +120,27 @@ public class TSysDicController {
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
             @ApiImplicitParam(name = "categoryId", value = "类别id", required = true, paramType = "query")
     })
-    public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic,@RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+    public PageList<TSysDic> pageList(@RequestBody TSysDic tSysDic, @RequestParam(value="pageNo",defaultValue="1") Integer pageNo, @RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        if(StringUtils.isEmpty(tSysDic.getCategoryId())){
+            throw new BaseException(ExceptionEnum.DIC_CATEGORY_NULL);
+        }
         return tSysDicService.list(tSysDic,pageNo,pageSize);
     }
 
 
+    @GetMapping("getDicByDicKey")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "dicKey", value = "父类Key", required = false, paramType = "query")
+    })
+    public List<TSysDic> getDicByDicKey(@RequestParam String dicKey){
+        if(StringUtils.isEmpty(dicKey)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSKEY_NULL);
+        }
+        return tSysDicService.getDicByDicKey(dicKey);
+    }
 
+
+/*
     @PostMapping("/test")
     public int kkkk (@RequestBody MultipartFile image) {
         String imgName = "images";
@@ -107,16 +155,9 @@ public class TSysDicController {
         }
 
         return 0;
-    }
+    }*/
 
-    @GetMapping("getDicByDicKey")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "dicKey", value = "父类Key", required = false, paramType = "query")
-    })
-    public List<TSysDic> getDicByDicKey(@RequestParam String dicKey){
-        if(StringUtils.isEmpty(dicKey)){
-            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSKEY_NULL);
-        }
-        return tSysDicService.getDicByDicKey(dicKey);
-    }
+
+
+
 }

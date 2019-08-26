@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 import javax.annotation.Resource;
@@ -96,7 +97,8 @@ public class TSysProjectController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNo", value = "页数", required = false, paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页展示", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query")
+            @ApiImplicitParam(name = "searchContent", value = "查询内容", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "id", value = "上级项目Id", required = false, paramType = "query")
     })
     public PageList<TSysProject> list(@ApiIgnore TSysProject tSysProject) {
         return feignTSysProjectService.list(tSysProject);
@@ -104,6 +106,9 @@ public class TSysProjectController {
 
     @GetMapping("/findList")
     @ApiOperation("查询所有--级联展示")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "上级项目Id", required = false, paramType = "query")
+    })
     public List<TSysProject> findAlllist(@ApiIgnore TSysProject tSysProject) {
         return feignTSysProjectService.findAlllist(tSysProject);
     }

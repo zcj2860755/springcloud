@@ -5,16 +5,10 @@ import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysArea;
 import com.zdzc.service.ITSysAreaService;
 import com.zdzc.utils.BaseException;
-import io.swagger.models.auth.In;
-import javafx.scene.input.InputMethodTextRun;
 import org.springframework.stereotype.Service;
-import com.github.pagehelper.PageHelper;
-import com.zdzc.common.BaseRequest;
-import com.zdzc.common.PageList;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

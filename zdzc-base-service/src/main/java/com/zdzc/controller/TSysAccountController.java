@@ -109,7 +109,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "timestamp", value = "当前时间戳", required = false, paramType = "query")
     })
     public Token login(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request){
-        HttpSession session = request.getSession();
+        System.out.println("我是登录接口");
         Token token = new Token();
         tSysAccount.setPassword(MD5.getMD5Str(tSysAccount.getPassword()));
         Map<String,Object> result= tSysAccountService.login(tSysAccount);
@@ -169,7 +169,7 @@ public class TSysAccountController extends BaseController {
     @DeleteMapping("/deleteAccount")
     @ApiOperation("删除")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "uuid", value = "主键", required = true, paramType = "query"),
+            @ApiImplicitParam(name = "id", value = "主键", required = true, paramType = "query"),
             @ApiImplicitParam(name = "ids", value = "用户主键",allowMultiple = true, required = true, paramType = "query")
     })
     public void delete(@RequestParam(value="ids[]",required = false) String[] ids, @RequestParam(value="ids",required = false)String[] id)  {
@@ -260,7 +260,7 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "id", value = "用户Id", required = true, paramType = "path")
     })
     public TSysAccount detail(@PathVariable String id) {
-        if(ObjectUtils.isEmpty(id)){
+        if(ObjectUtils.isEmpty(id) || "0".equals(id)){
             throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
         }
         TSysAccount account =  tSysAccountService.selectByPrimaryKey(id);

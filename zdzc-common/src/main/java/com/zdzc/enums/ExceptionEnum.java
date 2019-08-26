@@ -55,6 +55,11 @@ public enum ExceptionEnum {
     //--------------- 权限相关错误 30000+ --------------------
     POWER_CHILD_EXIST(30001,"删除失败，存在子节点"),
     POWER_USER_EXIST(30002,"删除失败，存在用户"),
+    POWER_NAME_NULL(30003,"权限名称不能为空"),
+    POWER_SIGN_NULL(30004,"权限标识不能为空"),
+    POWER_PARENTID_NULL(30005,"权限上级Id不能为空"),
+    POWER_TYPE_NULL(30006,"权限类型不能为空"),
+    POWER_ID_NULL(30007,"权限Id不能为空"),
 
 
     //--------------- 用户角色相关错误 40000+ --------------------
