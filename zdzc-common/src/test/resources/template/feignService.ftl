@@ -27,7 +27,7 @@ public interface Feign${modelNameUpperCamel}Service {
 
     @PostMapping("${baseRequestMapping}/pageList")
     PageList<${modelNameUpperCamel}> pageList(@RequestBody ${modelNameUpperCamel} ${modelNameLowerCamel},
-        @RequestParam("pageNo")Integer pageNo,@RequestParam("pageSize")Integer pageSize);
+        @RequestParam("pageNo")int pageNo, @RequestParam("pageSize")int pageSize);
 
 
 }

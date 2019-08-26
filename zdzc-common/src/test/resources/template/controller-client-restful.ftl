@@ -28,7 +28,7 @@ public class ${modelNameUpperCamel}Controller {
     @PostMapping
     @ApiOperation("新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "parameter", value = "参数", required = true, paramType = "query"),
     })
     public int add(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
         return feign${modelNameLowerCamel}Service.add(${modelNameLowerCamel});
@@ -49,7 +49,7 @@ public class ${modelNameUpperCamel}Controller {
     @PutMapping
     @ApiOperation("更新")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "parameter", value = "参数", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "parameter", value = "参数", required = true, paramType = "query"),
     })
     public int update(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel}){
         return feign${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
@@ -70,11 +70,11 @@ public class ${modelNameUpperCamel}Controller {
     @PostMapping("/pageList")
     @ApiOperation("分页查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNo", value = "页数，默认1", required = false, paramType = "query"),
-            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", required = false, paramType = "query"),
+            @ApiImplicitParam(name = "pageNo", value = "页数，默认1", paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页展示，默认10，传0查全部", paramType = "query"),
     })
     public PageList<${modelNameUpperCamel}> pageList(@ApiIgnore ${modelNameUpperCamel} ${modelNameLowerCamel},
-        @RequestParam(value="pageNo",defaultValue="1") Integer pageNo,@RequestParam(value="pageSize",defaultValue="10") Integer pageSize) {
+        @RequestParam(value="pageNo",defaultValue="1") int pageNo, @RequestParam(value="pageSize",defaultValue="10") int pageSize) {
         return feign${modelNameLowerCamel}Service.pageList(${modelNameLowerCamel},pageNo,pageSize);
     }
 }
