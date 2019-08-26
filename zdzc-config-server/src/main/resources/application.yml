@@ -8,11 +8,11 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/zhangcjiang/springcloud-config-repo.git     # 配置git仓库的地址
+          uri: http://122.224.145.42:8804/nbiot/springcloud-config.git     # 配置git仓库的地址 gitlab 账号和密码登录
           search-paths: /**                                      # git仓库地址下的相对地址，可以配置多个，用,分割。
-          username:                                             # git仓库的账号（私有库必填）
-          password:                                             # git仓库的密码（私有库必填）
-      label: master                                        #配置git仓库的分支
+          username: zhangchangjiang                              # git仓库的账号（私有库必填） gitlab 账号和密码登录
+          password:                                              # git仓库的密码（私有库必填）
+      label: master                                              #配置git仓库的分支
 
   rabbitmq:
     host: 127.0.0.1
