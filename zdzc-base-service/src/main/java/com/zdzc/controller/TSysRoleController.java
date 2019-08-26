@@ -52,6 +52,12 @@ public class TSysRoleController {
             @ApiImplicitParam(name = "isLogin", value = "是否可以登录，0-可以登录，1-不容许", required = false, paramType = "query")
     })
     public void add(@ApiIgnore @RequestBody TSysRole tSysRole) {
+        if(StringUtils.isEmpty(tSysRole.getRoleName())){
+            throw new BaseException(ExceptionEnum.USER_REALNAME_NULL);
+        }
+        if(StringUtils.isEmpty(tSysRole.getRoleSign())){
+            throw new BaseException(ExceptionEnum.USER_REALNAME_NULL);
+        }
         tSysRoleService.insertSelective(tSysRole);
     }
 
@@ -89,6 +95,9 @@ public class TSysRoleController {
             @ApiImplicitParam(name = "id", value = "角色Id", required = true, paramType = "path")
     })
     public TSysRole detail(@PathVariable String id) {
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         TSysRole tSysRole = tSysRoleService.selectByPrimaryKey(id);
         TSysRoleAuthority roleAuthority =new TSysRoleAuthority();
         roleAuthority.setRoleId(tSysRole.getId());

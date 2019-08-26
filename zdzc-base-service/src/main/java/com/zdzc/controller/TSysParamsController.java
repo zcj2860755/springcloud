@@ -47,16 +47,14 @@ public class TSysParamsController {
      * @return
      */
     public void checkParams(TSysParams tSysParams){
-        if(StringUtils.isEmpty(tSysParams.getParamsValue())){
-            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSVALUE_NULL);
-        }
-
         if(StringUtils.isEmpty(tSysParams.getParamsName())){
             throw new BaseException(ExceptionEnum.SYSTEM_PARAMSNAME_NULL);
         }
-
         if(StringUtils.isEmpty(tSysParams.getParamsKey())){
             throw new BaseException(ExceptionEnum.SYSTEM_PARAMSKEY_NULL);
+        }
+        if(StringUtils.isEmpty(tSysParams.getParamsValue())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSVALUE_NULL);
         }
     }
 

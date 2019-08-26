@@ -376,8 +376,9 @@ public class TSysAuthorityTest {
      */
     @Test
     public void test2006() {
-        TSysAuthority params = new TSysAuthority();
-        tSysAuthorityController.defaultAuth(params);
+        TSysAuthority authority = new TSysAuthority();
+        authority.setAuthName("系统配置");
+        tSysAuthorityController.defaultAuth(authority);
     }
 
 
@@ -408,7 +409,19 @@ public class TSysAuthorityTest {
         }
     }
 
-
+    /**
+     * 默认权限列表
+     */
+    @Test
+    public void test5001() {
+        try {
+            TSysAuthority authority = new TSysAuthority();
+            authority.setAuthName("删除");
+            tSysAuthorityController.defaultAuth(authority);
+        }catch (BaseException e){
+            System.out.println(e.getMessage());
+        }
+    }
 
 
 

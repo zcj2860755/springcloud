@@ -96,7 +96,19 @@ public class TSysRoleTest {
     @Test
     public void test4002(){
         try {
-            tSysRoleController.delete("1b5c14fc3eb149dfa096176e8f03104c");
+            tSysRoleController.delete("123");
+        }catch (BaseException e){
+        }
+    }
+
+
+    /**
+     * 角色删除测试
+     */
+    @Test
+    public void test4003(){
+        try {
+            tSysRoleController.delete("cb38622ef33c4bc086f94c052a6511e7");
         }catch (BaseException e){
         }
     }
@@ -140,7 +152,7 @@ public class TSysRoleTest {
     @Test
     public void test2000(){
         try{
-            tSysRoleController.detail("1b5c14fc3eb149dfa096176e8f03104c");
+            tSysRoleController.detail("14c8cff4d7d940bc8801dbf03e07b29c");
         }catch (BaseException e){
         }
     }

@@ -65,9 +65,8 @@ public class TSysDicTest {
             tSysDicCategory.setIsEnable(1);
             tSysDicCategory.setSortNo(20);
             tSysDicCategoryController.add(tSysDicCategory);
-            System.out.println("TSysDicTest=====@Before");
         }catch (BaseException e){
-            System.out.println(e.getMessage()+" TSysDicTest=====@Before");
+            System.out.println(e.getMessage());
         }
     }
 

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.zdzc.common.CommonStatus;
 import com.zdzc.model.TSysAccount;
 import com.zdzc.redis.RedisService;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
@@ -48,6 +49,8 @@ public class BaseTest {
                     .andDo(print())
                     .andReturn();
         }
+
+
 
 
     public void deleteMethod2(String url, String content) throws Exception {
