@@ -1,0 +1,55 @@
+server:
+  port: 8099
+  servlet.context-path: /base
+
+spring:
+  application:
+    name: base-client
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
+    web:
+      client:
+        enabled: true
+  main:
+    allow-bean-definition-overriding: true
+
+
+  #关闭热部署日志
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false
+
+
+eureka:
+  client:
+    service-url:
+      #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+      defaultZone: http://localhost:8761/eureka/
+
+#开启Hystrix
+feign:
+  hystrix:
+    enabled: false
+  httpclient:
+    enabled: true
+
+
+#是否开启swagger文档 true-开启  false-关闭
+swagger:
+  enable: true
+
+
+#hystrix:
+#  command:
+#    default:  #default全局有效，service id指定应用有效
+#      execution:
+#        timeout:
+#          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 6000 #断路器超时时间，默认1000ms

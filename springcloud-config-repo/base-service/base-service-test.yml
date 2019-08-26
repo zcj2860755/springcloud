@@ -1,0 +1,94 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: base-service
+  #  zipkin:
+  #    #base-url: http://localhost:9411
+  #
+  #      #  内存方式配置：可不配
+  #    sender:
+  #      type: rabbit
+  #    enabled: true
+  #  sleuth:
+  #    sampler:
+  #      probability: 1.0
+  #      percentage: 1.0
+  #    web:
+  #      client:
+  #        enabled: true
+
+  datasource:
+    url: jdbc:mysql:// rm-bp138y5rq628s790h4o.mysql.rds.aliyuncs.com:3306/devfire?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: fire
+    password: zdzc@2018
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  redis: #redis
+    database: 0
+    host: localhost
+    port: 6379
+    jedis:
+      max-idle: 20
+      max-active: 20
+      max-wait: 60000
+
+
+
+  #关闭热部署日志
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false
+
+eureka:
+  client:
+    service-url:
+      #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+      defaultZone: http://localhost:8761/eureka/
+
+#是否开启swagger文档 true-开启  false-关闭
+swagger:
+  enable: true
+
+feign:
+  httpclient:
+    enabled: true
+
+#打印执行的sql
+logging:
+  level:
+    com:
+      zdzc:
+        dao: debug
+    org.springframework.cloud.openfeign: debug
+
+  path: ${spring.application.name}
+
+
+
+  #这个是设置feign的一个日志级别,key-val的形式设置
+#  pattern:
+#    console: %d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n
+
+#  config: classpath:logger.xml
+
+
+mybatis:
+  mapper-locations: classpath:com/zdzc/dao/mapper/*.xml
+
+
+#rabbitmq:
+#  host: localhost
+#  port: 5672
+#  username: guest
+#  password: guest
+
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
