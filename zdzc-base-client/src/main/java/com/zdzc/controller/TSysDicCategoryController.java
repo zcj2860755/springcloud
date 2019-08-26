@@ -41,6 +41,7 @@ public class TSysDicCategoryController {
     })
     public void add(@ApiIgnore TSysDicCategory tSysDicCategory){
          checkParams(tSysDicCategory);
+        System.out.println("哈哈，开始调用接口client");
          feigntSysDicCategoryService.add(tSysDicCategory);
     }
 

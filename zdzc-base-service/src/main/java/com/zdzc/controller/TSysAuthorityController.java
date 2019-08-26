@@ -44,6 +44,15 @@ public class TSysAuthorityController {
 
     })
     public void add(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
+        if(StringUtils.isEmpty(tSysAuthority.getAuthName())){
+            throw new BaseException(ExceptionEnum.POWER_NAME_NULL);
+        }
+        if(StringUtils.isEmpty(tSysAuthority.getAuthSign())){
+            throw new BaseException(ExceptionEnum.POWER_SIGN_NULL);
+        }
+        if(StringUtils.isEmpty(tSysAuthority.getParentId())){
+            throw new BaseException(ExceptionEnum.POWER_PARENTID_NULL);
+        }
         tSysAuthorityService.insertSelective(tSysAuthority);
     }
 
@@ -76,6 +85,9 @@ public class TSysAuthorityController {
             @ApiImplicitParam(name = "sortNo", value = "排序", required = false, paramType = "query")
     })
     public void update(@ApiIgnore @RequestBody TSysAuthority tSysAuthority) {
+        if(StringUtils.isEmpty(tSysAuthority.getId())){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         tSysAuthorityService.updateByPrimaryKeySelective(tSysAuthority);
     }
 
@@ -85,6 +97,9 @@ public class TSysAuthorityController {
             @ApiImplicitParam(name = "id", value = "主键id", required = true, paramType = "path")
     })
     public TSysAuthority detail(@PathVariable String id) {
+        if(StringUtils.isEmpty(id)){
+            throw new BaseException(ExceptionEnum.SYSTEM_PARAMSID_NULL);
+        }
         return tSysAuthorityService.selectByPrimaryKey(id);
     }
 
@@ -142,6 +157,7 @@ public class TSysAuthorityController {
 
 
     @PostMapping("existAuthSign")
+    @ApiOperation("菜单权限权限列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "authSign", value = "权限标识", required = false, paramType = "query"),
             @ApiImplicitParam(name = "id", value = "设备主键黑名单", required = false, paramType = "query")

@@ -31,7 +31,7 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
     public int save(TSysDicCategory tSysDicCategory) {
         //判断字典编码是否重复
         int count = tSysDicCategoryMapper.selectCountByDicKey(tSysDicCategory);
-        if(count !=0){
+        if(count > 0){
             throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDicCategory.setId(UUIDUtils.getUUID());
@@ -42,7 +42,7 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
     @Override
     public int deleteById(String id){
         int count = tSysDicMapper.selectDicCountByCategoryId(id);
-        if(count !=0){
+        if(count > 0){
             throw new BaseException(ExceptionEnum.POWER_CHILD_EXIST);
         }
         return tSysDicCategoryMapper.deleteByPrimaryKey(id);
@@ -60,15 +60,11 @@ public class TSysDicCategoryServiceImpl implements ITSysDicCategoryService {
         return tSysDicCategoryMapper.selectByPrimaryKey(id);
     }
 
+
     @Override
-    public PageList<TSysDicCategory> list(TSysDicCategory tSysDicCategory,Integer pageNo,Integer pageSize) {
+    public PageList<TSysDicCategory> list(TSysDicCategory tSysDicCategory, Integer pageNo, Integer pageSize) {
         PageHelper.startPage(pageNo,pageSize);
         List<TSysDicCategory> list = tSysDicCategoryMapper.selectDicCategoryList(tSysDicCategory);
-        //查询每一个类别里字典小类数量
-        for (TSysDicCategory category : list) {
-            int count = tSysDicMapper.selectDicCountByCategoryId(category.getId());
-            category.setDicCount(count);
-        }
-        return new PageList<TSysDicCategory>(list);
+        return new PageList<>(list);
     }
 }

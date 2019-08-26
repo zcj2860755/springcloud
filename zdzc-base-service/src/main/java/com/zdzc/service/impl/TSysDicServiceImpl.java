@@ -26,7 +26,7 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     public int insert(TSysDic tSysDic) {
         //categoryId + key查询是否有数据
         int count = tSysDicMapper.selectCountBykeyAndCategory(tSysDic);
-        if(count != 0){
+        if(count > 0){
             throw new BaseException(ExceptionEnum.SYSTEM_DICKEY_EXIST);
         }
         tSysDic.setId(UUIDUtils.getUUID());
@@ -50,10 +50,10 @@ public  class TSysDicServiceImpl implements ITSysDicService {
     }
 
     @Override
-    public PageList<TSysDic> list(TSysDic tSysDic, Integer pageNo,Integer pageSize) {
+    public PageList<TSysDic> list(TSysDic tSysDic, Integer pageNo, Integer pageSize) {
         PageHelper.startPage(pageNo,pageSize);
         List<TSysDic> tSysDicList = tSysDicMapper.selectAllDic(tSysDic);
-        return new PageList<TSysDic>(tSysDicList);
+        return new PageList<>(tSysDicList);
     }
 
     @Override
