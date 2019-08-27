@@ -20,3 +20,9 @@ eureka:
 spring:
   application:
     name: eureka-server-peer1
+
+
+  #关闭热部署日志
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false

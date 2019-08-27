@@ -14,11 +14,10 @@ spring:
           password:                                              # git仓库的密码（私有库必填）
       label: master                                              #配置git仓库的分支
 
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+  #关闭热部署日志
+  devtools:
+    restart:
+      log-condition-evaluation-delta: false
 
   #关闭安全认证
 management:
