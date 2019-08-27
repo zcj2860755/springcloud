@@ -1,19 +1,19 @@
 package com.zdzc.controller;
 
+import com.zdzc.common.PageList;
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysDicCategory;
-import com.zdzc.model.TSysParams;
 import com.zdzc.service.FeignTSysDicCategoryService;
 import com.zdzc.utils.BaseException;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
-import com.zdzc.common.PageList;
+
+import javax.annotation.Resource;
 
 
 /**

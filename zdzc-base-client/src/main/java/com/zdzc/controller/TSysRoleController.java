@@ -1,7 +1,5 @@
 package com.zdzc.controller;
 
-import com.zdzc.common.BaseRequest;
-import com.zdzc.common.CommonStatus;
 import com.zdzc.common.PageList;
 import com.zdzc.enums.ExceptionEnum;
 import com.zdzc.model.TSysRole;
@@ -14,6 +12,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
 import javax.annotation.Resource;
 import java.util.List;
 

@@ -1,4 +1,5 @@
 package com.zdzc.controller;
+
 import com.zdzc.common.PageList;
 import com.zdzc.common.Token;
 import com.zdzc.enums.ExceptionEnum;
@@ -17,7 +18,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.List;
 
 /**
  * @Author  zcj

@@ -24,7 +24,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.*;
 
 /**
@@ -60,9 +59,6 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "roleId", value = "角色id", required = true, paramType = "query"),
             @ApiImplicitParam(name = "uuid", value = "用户token", required = true, paramType = "query"),
             @ApiImplicitParam(name = "proId", value = "项目id", required = false, paramType = "query")
-
-
-
     })
     public void add(@ApiIgnore @RequestBody TSysAccount tSysAccount){
         if(StringUtils.isEmpty(tSysAccount.getUuid())){
@@ -109,7 +105,6 @@ public class TSysAccountController extends BaseController {
             @ApiImplicitParam(name = "timestamp", value = "当前时间戳", required = false, paramType = "query")
     })
     public Token login(@ApiIgnore @RequestBody TSysAccount tSysAccount, HttpServletRequest request){
-        System.out.println("我是登录接口");
         Token token = new Token();
         tSysAccount.setPassword(MD5.getMD5Str(tSysAccount.getPassword()));
         Map<String,Object> result= tSysAccountService.login(tSysAccount);
